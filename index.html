@@ -99,13 +99,13 @@ textarea{
 
 <div class="cart">
 <div>Total: $<span id="total">0</span></div>
-<textarea id="comentarios" rows="2" placeholder="Comentarios o especificaciones"></textarea>
+<textarea id="comentarios" rows="2" placeholder="Nota para el pedio"></textarea>
 <button class="orderbtn" onclick="enviarPedido()">Enviar pedido</button>
 </div>
 
 <script>
 
-let telefono="521XXXXXXXXXX" // Pon tu número aquí
+let telefono="525615265368" // Pon tu número aquí
 
 let productos=[
 {cat:"Hamburguesas",nombre:"Hamburguesa sencilla",precio:65},
@@ -194,7 +194,7 @@ let comentarios=document.getElementById("comentarios").value
 if(comentarios.trim()!=""){
 pedido+=`Comentarios: ${comentarios}`
 }
-window.open(`https://wa.me/${5615265368}?text=${pedido}`)
+window.open(`https://wa.me/${teléfono}?text=${pedido}`)
 }
 
 render()
