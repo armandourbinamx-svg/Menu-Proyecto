@@ -3,55 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Menú</title>
 
 <style>
 
 body{
-font-family: Arial;
-background:#f5f5f5;
+font-family: Arial, sans-serif;
+background:#0f0f0f;
+color:white;
 margin:0;
 }
 
 header{
-background:#ff5722;
-color:white;
+background:#000;
+padding:20px;
 text-align:center;
-padding:15px;
-font-size:22px;
+font-size:24px;
+font-weight:bold;
+border-bottom:1px solid #333;
 }
 
 .container{
 padding:15px;
 }
 
+.category{
+margin-top:25px;
+font-size:20px;
+color:#ff9800;
+}
+
 .product{
-background:white;
-border-radius:10px;
-padding:10px;
-margin-bottom:15px;
 display:flex;
+justify-content:space-between;
 align-items:center;
-box-shadow:0 2px 5px rgba(0,0,0,0.2);
-}
-
-.product img{
-width:80px;
-height:80px;
-border-radius:10px;
-margin-right:10px;
-}
-
-.info{
-flex:1;
+background:#1a1a1a;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
 }
 
 .name{
-font-weight:bold;
+font-size:16px;
 }
 
 .price{
-color:green;
+color:#4caf50;
+font-size:14px;
 }
 
 .controls{
@@ -60,32 +59,41 @@ align-items:center;
 }
 
 button{
-background:#ff5722;
-color:white;
+background:#ff9800;
 border:none;
-padding:5px 10px;
+color:black;
 font-size:18px;
+padding:5px 10px;
 border-radius:5px;
 }
 
 .qty{
-margin:0 8px;
+margin:0 10px;
 }
 
-.order{
+.cart{
 position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
+bottom:0;
+left:0;
+right:0;
+background:#000;
+border-top:1px solid #333;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.orderbtn{
 background:#25D366;
 color:white;
-padding:15px 25px;
-border-radius:30px;
-font-size:18px;
+border:none;
+padding:10px 20px;
+border-radius:25px;
+font-size:16px;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -94,52 +102,60 @@ font-size:18px;
 
 <div class="container" id="menu"></div>
 
-<button class="order" onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+<div class="cart">
+<div>Total: $<span id="total">0</span></div>
+<button class="orderbtn" onclick="enviarPedido()">Enviar pedido</button>
+</div>
 
 <script>
 
-let telefono = "521XXXXXXXXXX"
+let telefono="525611472050"
 
-let productos = [
+let productos=[
 
-{nombre:"Hamburguesa Sencilla",precio:65,img:"https://i.imgur.com/VZ8K8.png"},
-{nombre:"Hamburguesa Hawaiana",precio:65,img:"https://i.imgur.com/VZ8K8.png"},
-{nombre:"Hamburguesa Especial",precio:65,img:"https://i.imgur.com/VZ8K8.png"},
+{cat:"Hamburguesas",nombre:"Sencilla",precio:65},
+{cat:"Hamburguesas",nombre:"Hawaiana",precio:65},
+{cat:"Hamburguesas",nombre:"Especial",precio:65},
 
-{nombre:"Hot Dog Sencillo",precio:18,img:"https://i.imgur.com/3d1qH.png"},
-{nombre:"Hot Dog Tocino o Queso",precio:20,img:"https://i.imgur.com/3d1qH.png"},
-{nombre:"Hot Dog Tocino y Queso",precio:23,img:"https://i.imgur.com/3d1qH.png"},
+{cat:"Hot Dog",nombre:"Sencillo",precio:18},
+{cat:"Hot Dog",nombre:"Con tocino o queso",precio:20},
+{cat:"Hot Dog",nombre:"Con tocino y queso",precio:23},
 
-{nombre:"Fresas con crema",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Duraznos con crema",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Ensalada de manzana",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Tapioca con manzana y crema",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Trigo con uva y crema",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Gelatina de refresco",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Arroz con leche",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Flan vainilla",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Flan napolitano",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Pay de limón",precio:20,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Cheesecake zarzamora",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Cheesecake oreo",precio:25,img:"https://i.imgur.com/yP6G8.png"},
-{nombre:"Tartaleta chica",precio:40,img:"https://i.imgur.com/yP6G8.png"}
+{cat:"Postres",nombre:"Fresas con crema",precio:25},
+{cat:"Postres",nombre:"Duraznos con crema",precio:25},
+{cat:"Postres",nombre:"Ensalada de manzana",precio:25},
+{cat:"Postres",nombre:"Tapioca con manzana y crema",precio:25},
+{cat:"Postres",nombre:"Trigo con uva y crema",precio:25},
+{cat:"Postres",nombre:"Gelatina de refresco",precio:25},
+{cat:"Postres",nombre:"Arroz con leche",precio:25},
+{cat:"Postres",nombre:"Flan vainilla",precio:25},
+{cat:"Postres",nombre:"Flan napolitano",precio:25},
+{cat:"Postres",nombre:"Pay de limón",precio:20},
+{cat:"Postres",nombre:"Cheesecake zarzamora",precio:25},
+{cat:"Postres",nombre:"Cheesecake oreo",precio:25},
+{cat:"Postres",nombre:"Tartaleta chica",precio:40}
 
 ]
 
-let cantidades = new Array(productos.length).fill(0)
+let cantidades=new Array(productos.length).fill(0)
 
-function renderMenu(){
+function render(){
 
-let menu = document.getElementById("menu")
+let menu=document.getElementById("menu")
+let actual=""
 
 productos.forEach((p,i)=>{
 
-menu.innerHTML += `
+if(p.cat!=actual){
+menu.innerHTML+=`<div class="category">${p.cat}</div>`
+actual=p.cat
+}
+
+menu.innerHTML+=`
+
 <div class="product">
 
-<img src="${p.img}">
-
-<div class="info">
+<div>
 <div class="name">${p.nombre}</div>
 <div class="price">$${p.precio}</div>
 </div>
@@ -147,14 +163,13 @@ menu.innerHTML += `
 <div class="controls">
 
 <button onclick="restar(${i})">-</button>
-
 <div class="qty" id="q${i}">0</div>
-
 <button onclick="sumar(${i})">+</button>
 
 </div>
 
 </div>
+
 `
 
 })
@@ -164,32 +179,50 @@ menu.innerHTML += `
 function sumar(i){
 cantidades[i]++
 document.getElementById("q"+i).innerText=cantidades[i]
+actualizarTotal()
 }
 
 function restar(i){
 if(cantidades[i]>0){
 cantidades[i]--
 document.getElementById("q"+i).innerText=cantidades[i]
+actualizarTotal()
 }
+}
+
+function actualizarTotal(){
+
+let total=0
+
+productos.forEach((p,i)=>{
+total+=p.precio*cantidades[i]
+})
+
+document.getElementById("total").innerText=total
+
 }
 
 function enviarPedido(){
 
 let pedido="Hola quiero pedir:%0A"
+let total=0
 
 productos.forEach((p,i)=>{
 
 if(cantidades[i]>0){
 pedido+=cantidades[i]+" "+p.nombre+"%0A"
+total+=p.precio*cantidades[i]
 }
 
 })
+
+pedido+="Total: $"+total
 
 window.open(`https://wa.me/${telefono}?text=${pedido}`)
 
 }
 
-renderMenu()
+render()
 
 </script>
 
