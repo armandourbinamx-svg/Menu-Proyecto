@@ -13,7 +13,7 @@ header h1{margin:0; font-size:28px; font-weight:bold;}
 .categoria-btn{padding:10px 20px; border-radius:20px; border:none; cursor:pointer; color:white; background:#B55A1B; font-weight:bold; transition:0.2s;}
 .categoria-btn.active{background:#D9822B;}
 .categoria-btn:hover{transform:scale(1.05);}
-#menu{padding:15px;}
+#menu{padding:15px; max-height:400px; overflow-y:auto;} /* Scroll agregado */
 .product{display:flex; justify-content:space-between; background:white; padding:15px; border-radius:12px; margin-top:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:transform 0.2s;}
 .product:hover{transform:scale(1.02);}
 .product-info{display:flex; flex-direction:column; max-width:70%;}
@@ -49,6 +49,8 @@ textarea{width:90%; padding:10px; border-radius:8px; border:1px solid #D9822B; r
   <button class="categoria-btn active" data-cat="Hamburguesas">Hamburguesas</button>
   <button class="categoria-btn" data-cat="Hot Dog">Hot Dog</button>
   <button class="categoria-btn" data-cat="Postres">Postres</button>
+  <button class="categoria-btn" data-cat="Quesadillas fritas">Quesadillas fritas</button>
+  <button class="categoria-btn" data-cat="Antojito Mexicano">Antojito Mexicano</button>
 </div>
 
 <div id="menu"></div>
@@ -79,7 +81,28 @@ const productos=[
 {cat:"Postres",nombre:"Fresas con crema",desc:"Fresas frescas con crema",precio:25},
 {cat:"Postres",nombre:"Duraznos con crema",desc:"Duraznos en almíbar con crema",precio:25},
 {cat:"Postres",nombre:"Pay de limón",desc:"Con merengue y base de galleta",precio:20},
-{cat:"Postres",nombre:"Cheesecake oreo",desc:"Base de galleta y crema de oreo",precio:25}
+{cat:"Postres",nombre:"Cheesecake oreo",desc:"Base de galleta y crema de oreo",precio:25},
+
+// Quesadillas fritas
+{cat:"Quesadillas fritas",nombre:"Queso",desc:"Queso derretido",precio:18},
+{cat:"Quesadillas fritas",nombre:"Pollo",desc:"Pollo deshebrado",precio:18},
+{cat:"Quesadillas fritas",nombre:"Chicharrón",desc:"Chicharrón prensado",precio:18},
+{cat:"Quesadillas fritas",nombre:"Champiñones",desc:"Con champiñones frescos",precio:18},
+{cat:"Quesadillas fritas",nombre:"Res",desc:"Carne de res",precio:20},
+
+// Antojito Mexicano
+{cat:"Antojito Mexicano",nombre:"Tlacoyos",desc:"Masa rellena tradicional",precio:12},
+{cat:"Antojito Mexicano",nombre:"Sope sencillo",desc:"Base de masa con frijol y salsa",precio:20},
+{cat:"Antojito Mexicano",nombre:"Sope con suadero",desc:"Base con carne de suadero",precio:35},
+{cat:"Antojito Mexicano",nombre:"Sope con longaniza",desc:"Base con longaniza",precio:40},
+{cat:"Antojito Mexicano",nombre:"Sope campechano",desc:"Base con varias carnes",precio:40},
+{cat:"Antojito Mexicano",nombre:"Huarache sencillo",desc:"Base de masa larga",precio:25},
+{cat:"Antojito Mexicano",nombre:"Huarache con suadero",desc:"Base con suadero",precio:45},
+{cat:"Antojito Mexicano",nombre:"Huarache con longaniza",desc:"Base con longaniza",precio:50},
+{cat:"Antojito Mexicano",nombre:"Huarache campechano",desc:"Base con varias carnes",precio:50},
+{cat:"Antojito Mexicano",nombre:"Tacos suadero",desc:"Taco de suadero",precio:15},
+{cat:"Antojito Mexicano",nombre:"Tacos longaniza",desc:"Taco de longaniza",precio:15},
+{cat:"Antojito Mexicano",nombre:"Tacos campechano",desc:"Taco mixto",precio:15}
 ];
 
 let cantidades=new Array(productos.length).fill(0);
