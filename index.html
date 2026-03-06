@@ -105,7 +105,7 @@ textarea{
 
 <script>
 
-let telefono="525615265368" // Pon tu número aquí
+let telefono="+525615265368" // Pon tu número aquí
 
 let productos=[
 {cat:"Hamburguesas",nombre:"Hamburguesa sencilla",precio:65},
@@ -194,7 +194,7 @@ let comentarios=document.getElementById("comentarios").value
 if(comentarios.trim()!=""){
 pedido+=`Comentarios: ${comentarios}`
 }
-window.open(`https://wa.me/${teléfono}?text=${pedido}`)
+window.open(`https://wa.me/${telefono}?text=${pedido}`)
 }
 
 render()
