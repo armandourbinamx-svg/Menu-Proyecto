@@ -7,62 +7,28 @@
 <style>
 body, html {margin:0; padding:0; font-family:'Arial', sans-serif;}
 body {background:#1c1c1c; color:white; overflow-x:hidden; position:relative;}
-body::before{
-  content:'';
-  position:absolute; top:0; left:0; right:0; bottom:0;
-  background-image:
-    url('https://i.ibb.co/YTB8qjc/pizza-outline.png'),
-    url('https://i.ibb.co/Z2GyN2h/burger-outline.png'),
-    url('https://i.ibb.co/tHjMRmT/hotdog-outline.png');
-  background-repeat:repeat;
-  background-size:150px;
-  opacity:0.03; z-index:0;
-}
-header{
-  background:#ff5722; text-align:center; padding:25px 0; position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center;
-}
-header img{width:80px; height:80px; border-radius:50%; margin-bottom:10px;}
-header h1{margin:0; font-size:26px; font-weight:bold;}
+header{background:#ff5722; text-align:center; padding:25px 0;}
+header h1{margin:0;}
 #categorias{display:flex; justify-content:center; gap:15px; margin:15px 0;}
-.categoria-btn{
-  background:#2c2c2c; border:none; padding:8px 15px; border-radius:20px; cursor:pointer; transition:0.2s; color:white; font-weight:bold;
-}
+.categoria-btn{padding:8px 15px; border-radius:20px; border:none; cursor:pointer; color:white; background:#2c2c2c;}
 .categoria-btn.active{background:#ff5722;}
-.categoria-btn:hover{transform: scale(1.1);}
-#menu{padding:15px; position:relative; z-index:1;}
-.product{
-  display:flex; justify-content:space-between; align-items:center; background:#2c2c2c;
-  padding:15px 10px; margin-top:10px; border-radius:12px; box-shadow:0 3px 7px rgba(0,0,0,0.5);
-  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s; opacity:1;
-}
-.product.fade-out{opacity:0;}
-.product:hover{transform: scale(1.02); box-shadow:0 6px 12px rgba(0,0,0,0.7);}
-.name{font-size:17px; font-weight:bold;}
-.price{color:#4caf50; font-size:15px;}
-.controls{display:flex; align-items:center;}
-button.product-btn{background:#ff9800; border:none; color:#1c1c1c; font-size:18px; padding:5px 12px; border-radius:6px; margin:0 2px; cursor:pointer; transition:0.15s;}
-button.product-btn:hover{transform: scale(1.15); background:#ffc107;}
-.qty{margin:0 10px; font-weight:bold; min-width:25px; text-align:center;}
-.cart{
-  position:fixed; bottom:0; left:0; right:0; background:#121212; border-top:2px solid #333;
-  padding:15px; display:flex; flex-direction:column; align-items:center; gap:10px; z-index:2;
-}
-.cart-summary{width:90%; max-height:160px; overflow-y:auto; background:#1a1a1a; border-radius:10px; padding:10px;}
-.cart-summary ul{padding:0; margin:0; list-style:none;}
-.cart-summary li{margin-bottom:5px;}
-.orderbtn{background:#25D366; color:white; border:none; padding:12px 25px; border-radius:30px; font-size:18px; width:90%; font-weight:bold; cursor:pointer; box-shadow:0 4px 6px rgba(0,0,0,0.4); transition:0.15s;}
-.orderbtn:hover{transform: scale(1.05); background:#1ed760;}
-textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; font-size:14px; background:#2c2c2c; color:white;}
+#menu{padding:15px;}
+.product{display:flex; justify-content:space-between; background:#2c2c2c; padding:15px; border-radius:12px; margin-top:10px;}
+.controls button{padding:5px 12px; border:none; border-radius:6px; cursor:pointer; margin:0 2px; background:#ff9800; color:#1c1c1c;}
+.controls button:hover{background:#ffc107;}
+.cart{position:fixed; bottom:0; left:0; right:0; background:#121212; padding:15px; display:flex; flex-direction:column; align-items:center; gap:10px;}
+textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; background:#2c2c2c; color:white;}
+.orderbtn{padding:12px 25px; border-radius:30px; border:none; background:#25D366; color:white; cursor:pointer; font-size:18px; width:90%;}
+.orderbtn:hover{background:#1ed760;}
 #entrega{display:flex; justify-content:center; gap:10px; margin-top:10px;}
-.entrega-btn{background:#ff9800; border:none; padding:8px 15px; border-radius:20px; cursor:pointer; transition:0.2s;}
-.entrega-btn.active{background:#ffc107; color:black; font-weight:bold;}
+.entrega-btn{padding:8px 15px; border-radius:20px; border:none; background:#ff9800; cursor:pointer;}
+.entrega-btn.active{background:#ffc107; color:black;}
 .entrega-btn:hover{transform: scale(1.1);}
 </style>
 </head>
 <body>
+
 <header>
-  <img src="https://via.placeholder.com/80" alt="Logo">
   <h1>CENADURIA DON APULEYO</h1>
 </header>
 
@@ -75,11 +41,9 @@ textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; f
 <div id="menu"></div>
 
 <div class="cart">
-  <div class="cart-summary">
-    <ul id="cart-list"></ul>
-  </div>
+  <div class="cart-summary"><ul id="cart-list"></ul></div>
   <div>Total: $<span id="total">0</span></div>
-  <textarea id="comentarios" rows="2" placeholder="Comentarios o especificaciones"></textarea>
+  <textarea id="comentarios" rows="2" placeholder="Comentarios"></textarea>
   <div id="entrega">
     <button class="entrega-btn active" data-type="llevar">Para llevar</button>
     <button class="entrega-btn" data-type="domicilio">Entrega a domicilio</button>
@@ -91,9 +55,8 @@ textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; f
 <script>
 document.addEventListener("DOMContentLoaded", function(){
 
-let telefono="521XXXXXXXXXX";
-
-let productos=[
+const telefono="521XXXXXXXXXX"; // tu número
+const productos=[
 {cat:"Hamburguesas",nombre:"Sencilla",precio:65},
 {cat:"Hamburguesas",nombre:"Hawaiana",precio:65},
 {cat:"Hamburguesas",nombre:"Especial",precio:65},
@@ -119,32 +82,46 @@ let cantidades=new Array(productos.length).fill(0);
 let categoriaActual="Hamburguesas";
 
 function renderProductos(){
-  let menu=document.getElementById("menu");
+  const menu=document.getElementById("menu");
   menu.innerHTML="";
   productos.forEach((p,i)=>{
     if(p.cat===categoriaActual){
-      let div=document.createElement("div");
-      div.className="product fade-out";
-      div.innerHTML=`<div>
-        <div class="name">${p.nombre}</div>
-        <div class="price">$${p.precio}</div>
-      </div>
-      <div class="controls">
-        <button class="product-btn" onclick="restar(${i})">-</button>
-        <div class="qty" id="q${i}">${cantidades[i]}</div>
-        <button class="product-btn" onclick="sumar(${i})">+</button>
-      </div>`;
+      const div=document.createElement("div");
+      div.className="product";
+      div.innerHTML=`
+        <div>
+          <div class="name">${p.nombre}</div>
+          <div class="price">$${p.precio}</div>
+        </div>
+        <div class="controls">
+          <button data-index="${i}" class="restar">-</button>
+          <span id="q${i}">${cantidades[i]}</span>
+          <button data-index="${i}" class="sumar">+</button>
+        </div>
+      `;
       menu.appendChild(div);
-      setTimeout(()=>div.classList.remove("fade-out"),50);
     }
+  });
+
+  // asignar eventos a los botones + y -
+  document.querySelectorAll(".sumar").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=parseInt(btn.dataset.index);
+      cantidades[i]++;
+      document.getElementById("q"+i).innerText=cantidades[i];
+      actualizarCarrito();
+    });
+  });
+  document.querySelectorAll(".restar").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=parseInt(btn.dataset.index);
+      if(cantidades[i]>0){ cantidades[i]--; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); }
+    });
   });
 }
 
-window.sumar=function(i){ cantidades[i]++; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); }
-window.restar=function(i){ if(cantidades[i]>0){ cantidades[i]--; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); } }
-
 function actualizarCarrito(){
-  let cartList=document.getElementById("cart-list");
+  const cartList=document.getElementById("cart-list");
   cartList.innerHTML="";
   let total=0;
   productos.forEach((p,i)=>{
@@ -167,14 +144,14 @@ function enviarPedido(){
     }
   });
   pedido+="Total: $"+total+"%0A";
-  let comentarios=document.getElementById("comentarios").value;
+  const comentarios=document.getElementById("comentarios").value;
   if(comentarios.trim()!=""){ pedido+="Comentarios: "+comentarios; }
   window.open(`https://wa.me/${telefono}?text=${pedido}`);
 }
 
-// Inicializar categorías
+// Categorías
 document.querySelectorAll(".categoria-btn").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
+  btn.addEventListener("click",()=>{
     document.querySelectorAll(".categoria-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
     categoriaActual=btn.dataset.cat;
@@ -182,9 +159,9 @@ document.querySelectorAll(".categoria-btn").forEach(btn=>{
   });
 });
 
-// Inicializar tipo de entrega
+// Tipo de entrega
 document.querySelectorAll(".entrega-btn").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
+  btn.addEventListener("click",()=>{
     document.querySelectorAll(".entrega-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
   });
@@ -192,10 +169,10 @@ document.querySelectorAll(".entrega-btn").forEach(btn=>{
 
 document.getElementById("enviarPedidoBtn").addEventListener("click", enviarPedido);
 
-// Render inicial
 renderProductos();
 
 });
 </script>
+
 </body>
 </html>
