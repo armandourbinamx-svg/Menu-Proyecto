@@ -93,7 +93,7 @@ textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; f
 </div>
 
 <script>
-let telefono="+525615265368" // cambia por tu número
+let telefono="521XXXXXXXXXX"; // Cambia por tu número
 let productos=[
 {cat:"Hamburguesas",nombre:"Sencilla",precio:65},
 {cat:"Hamburguesas",nombre:"Hawaiana",precio:65},
@@ -132,7 +132,7 @@ function renderProductos(){
       </div>
       <div class="controls">
         <button class="product-btn" onclick="restar(${i})">-</button>
-        <div class="qty" id="q${i}">0</div>
+        <div class="qty" id="q${i}">${cantidades[i]}</div>
         <button class="product-btn" onclick="sumar(${i})">+</button>
       </div>`;
       menu.appendChild(div);
@@ -173,7 +173,7 @@ function enviarPedido(){
   window.open(`https://wa.me/${telefono}?text=${pedido}`);
 }
 
-// Cambio de categoría
+// Inicializar categorías
 document.querySelectorAll(".categoria-btn").forEach(btn=>{
   btn.addEventListener("click",()=>{
     document.querySelectorAll(".categoria-btn").forEach(b=>b.classList.remove("active"));
@@ -183,7 +183,7 @@ document.querySelectorAll(".categoria-btn").forEach(btn=>{
   });
 });
 
-// Tipo de entrega
+// Inicializar tipo de entrega
 document.querySelectorAll(".entrega-btn").forEach(btn=>{
   btn.addEventListener("click",()=>{
     document.querySelectorAll(".entrega-btn").forEach(b=>b.classList.remove("active"));
@@ -191,6 +191,7 @@ document.querySelectorAll(".entrega-btn").forEach(btn=>{
   });
 });
 
+// Render inicial
 renderProductos();
 </script>
 </body>
