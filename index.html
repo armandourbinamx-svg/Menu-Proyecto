@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menú</title>
 
 <style>
 body{
 font-family: Arial;
-background:#f2f2f2;
+background:#f5f5f5;
 margin:0;
+padding:0;
+text-align:center;
 }
 
-.header{
+header{
 background:#25D366;
 color:white;
-text-align:center;
 padding:20px;
-font-size:28px;
+font-size:24px;
 }
 
 .menu{
+display:flex;
+flex-direction:column;
+gap:10px;
 padding:20px;
 }
 
 .categoria{
 font-size:22px;
-margin-top:30px;
-margin-bottom:10px;
+margin-top:20px;
 }
 
-.item{
+.producto{
 background:white;
 padding:15px;
-margin-bottom:10px;
 border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -44,124 +48,193 @@ background:#25D366;
 color:white;
 border:none;
 padding:8px 12px;
-border-radius:6px;
+border-radius:5px;
 font-size:14px;
+cursor:pointer;
+}
+
+#carrito{
+background:white;
+margin:20px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
+}
+
+ul{
+list-style:none;
+padding:0;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
-Menú
-</div>
+<header>
+🍔 Menú
+</header>
 
 <div class="menu">
 
-<div class="categoria">🍔 Hamburguesas</div>
+<div class="categoria">Hamburguesas</div>
 
-<div class="item">
+<div class="producto">
 <span>Sencilla $65</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20una%20hamburguesa%20sencilla">
-<button>Pedir</button>
-</a>
+<button onclick="agregar('Hamburguesa sencilla',65)">Agregar</button>
 </div>
 
-<div class="item">
+<div class="producto">
 <span>Hawaiana $65</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20una%20hamburguesa%20hawaiana">
-<button>Pedir</button>
-</a>
+<button onclick="agregar('Hamburguesa hawaiana',65)">Agregar</button>
 </div>
 
-<div class="item">
+<div class="producto">
 <span>Especial $65</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20una%20hamburguesa%20especial">
-<button>Pedir</button>
-</a>
+<button onclick="agregar('Hamburguesa especial',65)">Agregar</button>
 </div>
 
 
-<div class="categoria">🌭 Hot Dog</div>
+<div class="categoria">Hot Dog</div>
 
-<div class="item">
+<div class="producto">
 <span>Sencillo $18</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20un%20hot%20dog%20sencillo">
-<button>Pedir</button>
-</a>
+<button onclick="agregar('Hot dog sencillo',18)">Agregar</button>
 </div>
 
-<div class="item">
+<div class="producto">
 <span>Con tocino o queso $20</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20un%20hot%20dog%20con%20tocino%20o%20queso">
-<button>Pedir</button>
-</a>
+<button onclick="agregar('Hot dog con tocino o queso',20)">Agregar</button>
 </div>
 
-<div class="item">
+<div class="producto">
 <span>Con tocino y queso $23</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20un%20hot%20dog%20con%20tocino%20y%20queso">
-<button>Pedir</button>
-</a>
+<button onclick="agregar('Hot dog con tocino y queso',23)">Agregar</button>
 </div>
 
 
-<div class="categoria">🍰 Postres</div>
+<div class="categoria">Postres</div>
 
-<div class="item"><span>Fresas con crema $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20fresas%20con%20crema"><button>Pedir</button></a>
+<div class="producto">
+<span>Fresas con crema $25</span>
+<button onclick="agregar('Fresas con crema',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Duraznos con crema $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20duraznos%20con%20crema"><button>Pedir</button></a>
+<div class="producto">
+<span>Duraznos con crema $25</span>
+<button onclick="agregar('Duraznos con crema',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Ensalada de manzana $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20ensalada%20de%20manzana"><button>Pedir</button></a>
+<div class="producto">
+<span>Ensalada de manzana $25</span>
+<button onclick="agregar('Ensalada de manzana',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Tapioca con manzana y crema $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20tapioca%20con%20manzana%20y%20crema"><button>Pedir</button></a>
+<div class="producto">
+<span>Tapioca con manzana y crema $25</span>
+<button onclick="agregar('Tapioca con manzana y crema',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Trigo con uva y crema $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20trigo%20con%20uva%20y%20crema"><button>Pedir</button></a>
+<div class="producto">
+<span>Trigo con uva y crema $25</span>
+<button onclick="agregar('Trigo con uva y crema',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Gelatina de refresco $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20gelatina%20de%20refresco"><button>Pedir</button></a>
+<div class="producto">
+<span>Gelatina de refresco $25</span>
+<button onclick="agregar('Gelatina de refresco',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Arroz con leche $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20arroz%20con%20leche"><button>Pedir</button></a>
+<div class="producto">
+<span>Arroz con leche $25</span>
+<button onclick="agregar('Arroz con leche',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Flan vainilla $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20flan%20de%20vainilla"><button>Pedir</button></a>
+<div class="producto">
+<span>Flan vainilla $25</span>
+<button onclick="agregar('Flan vainilla',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Flan napolitano $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20flan%20napolitano"><button>Pedir</button></a>
+<div class="producto">
+<span>Flan napolitano $25</span>
+<button onclick="agregar('Flan napolitano',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Pay de limón $20</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20pay%20de%20limon"><button>Pedir</button></a>
+<div class="producto">
+<span>Pay de limón $20</span>
+<button onclick="agregar('Pay de limón',20)">Agregar</button>
 </div>
 
-<div class="item"><span>Cheesecake de zarzamora $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20cheesecake%20de%20zarzamora"><button>Pedir</button></a>
+<div class="producto">
+<span>Cheesecake de zarzamora $25</span>
+<button onclick="agregar('Cheesecake de zarzamora',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Cheesecake de oreo $25</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20cheesecake%20de%20oreo"><button>Pedir</button></a>
+<div class="producto">
+<span>Cheesecake de oreo $25</span>
+<button onclick="agregar('Cheesecake de oreo',25)">Agregar</button>
 </div>
 
-<div class="item"><span>Tartaleta chica $40</span>
-<a href="https://wa.me/521TU_NUMERO?text=Quiero%20una%20tartaleta"><button>Pedir</button></a>
+<div class="producto">
+<span>Tartaleta chica $40</span>
+<button onclick="agregar('Tartaleta chica',40)">Agregar</button>
 </div>
 
 </div>
+
+
+<div id="carrito">
+
+<h2>🛒 Tu pedido</h2>
+
+<ul id="lista"></ul>
+
+<h3>Total: $<span id="total">0</span></h3>
+
+<button onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+
+</div>
+
+
+<script>
+
+let pedido = [];
+let total = 0;
+
+function agregar(nombre,precio){
+
+pedido.push(nombre);
+total += precio;
+
+let lista = document.getElementById("lista");
+
+let item = document.createElement("li");
+item.textContent = nombre + " - $" + precio;
+
+lista.appendChild(item);
+
+document.getElementById("total").textContent = total;
+
+}
+
+function enviarPedido(){
+
+let mensaje = "Hola, quiero hacer este pedido:%0A%0A";
+
+pedido.forEach(p=>{
+mensaje += "- " + p + "%0A";
+});
+
+mensaje += "%0ATotal: $" + total;
+
+let telefono = "521TU_NUMERO";
+
+let url = "https://wa.me/" + telefono + "?text=" + mensaje;
+
+window.open(url);
+
+}
+
+</script>
 
 </body>
 </html>
