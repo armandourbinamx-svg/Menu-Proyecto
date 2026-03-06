@@ -3,33 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CENADURIA DON APULEYO</title>
+<title>CENADURÍA DON APULEYO</title>
 <style>
-body, html {margin:0; padding:0; font-family:'Arial', sans-serif;}
-body {background:#1c1c1c; color:white; overflow-x:hidden; position:relative;}
-header{background:#ff5722; text-align:center; padding:25px 0;}
-header h1{margin:0;}
-#categorias{display:flex; justify-content:center; gap:15px; margin:15px 0;}
-.categoria-btn{padding:8px 15px; border-radius:20px; border:none; cursor:pointer; color:white; background:#2c2c2c;}
-.categoria-btn.active{background:#ff5722;}
+/* === Estilo General === */
+body, html {margin:0; padding:0; font-family:'Arial', sans-serif; background:#FFF8E7; color:#5B3A29;}
+header{background:#D9822B; text-align:center; padding:25px 0; color:white; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
+header h1{margin:0; font-size:28px; font-weight:bold;}
+#categorias{display:flex; justify-content:center; gap:15px; margin:15px 0; flex-wrap:wrap;}
+.categoria-btn{padding:10px 20px; border-radius:20px; border:none; cursor:pointer; color:white; background:#B55A1B; font-weight:bold; transition:0.2s;}
+.categoria-btn.active{background:#D9822B;}
+.categoria-btn:hover{transform:scale(1.05);}
 #menu{padding:15px;}
-.product{display:flex; justify-content:space-between; background:#2c2c2c; padding:15px; border-radius:12px; margin-top:10px;}
-.controls button{padding:5px 12px; border:none; border-radius:6px; cursor:pointer; margin:0 2px; background:#ff9800; color:#1c1c1c;}
-.controls button:hover{background:#ffc107;}
-.cart{position:fixed; bottom:0; left:0; right:0; background:#121212; padding:15px; display:flex; flex-direction:column; align-items:center; gap:10px;}
-textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; background:#2c2c2c; color:white;}
-.orderbtn{padding:12px 25px; border-radius:30px; border:none; background:#25D366; color:white; cursor:pointer; font-size:18px; width:90%;}
-.orderbtn:hover{background:#1ed760;}
+.product{display:flex; justify-content:space-between; background:white; padding:15px; border-radius:12px; margin-top:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:transform 0.2s;}
+.product:hover{transform:scale(1.02);}
+.product-info{display:flex; flex-direction:column; max-width:70%;}
+.product-info .name{font-weight:bold; font-size:16px;}
+.product-info .desc{font-size:13px; color:#7A5A42; margin-top:3px;}
+.product-info .price{font-size:15px; color:#D9822B; margin-top:5px;}
+.controls{display:flex; align-items:center; gap:10px;}
+.controls button{padding:5px 12px; border:none; border-radius:6px; cursor:pointer; background:#D9822B; color:white; font-weight:bold; transition:0.15s;}
+.controls button:hover{background:#B55A1B;}
+.qty{min-width:25px; text-align:center; font-weight:bold;}
+/* === Carrito === */
+.cart{position:fixed; bottom:0; left:0; right:0; background:#F5E6D3; padding:15px; display:flex; flex-direction:column; align-items:center; gap:10px; box-shadow:0 -2px 6px rgba(0,0,0,0.1);}
+.cart-summary{width:90%; max-height:150px; overflow-y:auto; background:white; border-radius:10px; padding:10px;}
+.cart-summary ul{padding:0; margin:0; list-style:none;}
+.cart-summary li{margin-bottom:5px; color:#5B3A29;}
+textarea{width:90%; padding:10px; border-radius:8px; border:1px solid #D9822B; resize:none; font-size:14px; background:#FFF8E7; color:#5B3A29;}
+.orderbtn{padding:12px 25px; border-radius:30px; border:none; background:#5B3A29; color:white; cursor:pointer; font-size:18px; width:90%; font-weight:bold; transition:0.2s;}
+.orderbtn:hover{background:#7A5A42;}
 #entrega{display:flex; justify-content:center; gap:10px; margin-top:10px;}
-.entrega-btn{padding:8px 15px; border-radius:20px; border:none; background:#ff9800; cursor:pointer;}
-.entrega-btn.active{background:#ffc107; color:black;}
-.entrega-btn:hover{transform: scale(1.1);}
+.entrega-btn{padding:8px 15px; border-radius:20px; border:none; background:#D9822B; color:white; cursor:pointer; transition:0.2s; font-weight:bold;}
+.entrega-btn.active{background:#B55A1B;}
+.entrega-btn:hover{transform:scale(1.05);}
+@media(max-width:600px){.product-info{max-width:60%;}.categoria-btn{padding:8px 12px; font-size:14px;}}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>CENADURIA DON APULEYO</h1>
+  <h1>CENADURÍA DON APULEYO</h1>
 </header>
 
 <div id="categorias">
@@ -43,7 +56,7 @@ textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; b
 <div class="cart">
   <div class="cart-summary"><ul id="cart-list"></ul></div>
   <div>Total: $<span id="total">0</span></div>
-  <textarea id="comentarios" rows="2" placeholder="Comentarios"></textarea>
+  <textarea id="comentarios" rows="2" placeholder="Comentarios o especificaciones"></textarea>
   <div id="entrega">
     <button class="entrega-btn active" data-type="llevar">Para llevar</button>
     <button class="entrega-btn" data-type="domicilio">Entrega a domicilio</button>
@@ -55,28 +68,18 @@ textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; b
 <script>
 document.addEventListener("DOMContentLoaded", function(){
 
-const telefono="+525615265368"; // tu número
+const telefono="521XXXXXXXXXX"; // Cambia por tu número
 const productos=[
-{cat:"Hamburguesas",nombre:"Hamburguesa sencilla",precio:65},
-{cat:"Hamburguesas",nombre:"Hamburguesa hawaiana",precio:65},
-{cat:"Hamburguesas",nombre:"Hamburguesa especial",precio:65},
-{cat:"Hot Dog",nombre:"Hot dog sencillo",precio:18},
-{cat:"Hot Dog",nombre:"Hot dog con tocino",precio:20},
-{cat:"Hot Dog",nombre:"Hot dog con queso",precio:20},
-{cat:"Hot Dog",nombre:"Hot dog con tocino y queso",precio:23},
-{cat:"Postres",nombre:"Fresas con crema",precio:25},
-{cat:"Postres",nombre:"Duraznos con crema",precio:25},
-{cat:"Postres",nombre:"Ensalada de manzana",precio:25},
-{cat:"Postres",nombre:"Tapioca con manzana y crema",precio:25},
-{cat:"Postres",nombre:"Trigo con uva y crema",precio:25},
-{cat:"Postres",nombre:"Gelatina de refresco",precio:25},
-{cat:"Postres",nombre:"Arroz con leche",precio:25},
-{cat:"Postres",nombre:"Flan vainilla",precio:25},
-{cat:"Postres",nombre:"Flan napolitano",precio:25},
-{cat:"Postres",nombre:"Pay de limón",precio:20},
-{cat:"Postres",nombre:"Cheesecake zarzamora",precio:25},
-{cat:"Postres",nombre:"Cheesecake oreo",precio:25},
-{cat:"Postres",nombre:"Tartaleta chica",precio:40}
+{cat:"Hamburguesas",nombre:"Sencilla",desc:"Carne, lechuga y tomate",precio:65},
+{cat:"Hamburguesas",nombre:"Hawaiana",desc:"Carne, piña y queso",precio:65},
+{cat:"Hamburguesas",nombre:"Especial",desc:"Carne, tocino, queso y jalapeño",precio:65},
+{cat:"Hot Dog",nombre:"Sencillo",desc:"Salchicha y pan fresco",precio:18},
+{cat:"Hot Dog",nombre:"Con tocino o queso",desc:"Salchicha, tocino o queso",precio:20},
+{cat:"Hot Dog",nombre:"Con tocino y queso",desc:"Salchicha, tocino y queso",precio:23},
+{cat:"Postres",nombre:"Fresas con crema",desc:"Fresas frescas con crema",precio:25},
+{cat:"Postres",nombre:"Duraznos con crema",desc:"Duraznos en almíbar con crema",precio:25},
+{cat:"Postres",nombre:"Pay de limón",desc:"Con merengue y base de galleta",precio:20},
+{cat:"Postres",nombre:"Cheesecake oreo",desc:"Base de galleta y crema de oreo",precio:25}
 ];
 
 let cantidades=new Array(productos.length).fill(0);
@@ -90,13 +93,14 @@ function renderProductos(){
       const div=document.createElement("div");
       div.className="product";
       div.innerHTML=`
-        <div>
+        <div class="product-info">
           <div class="name">${p.nombre}</div>
+          <div class="desc">${p.desc}</div>
           <div class="price">$${p.precio}</div>
         </div>
         <div class="controls">
           <button data-index="${i}" class="restar">-</button>
-          <span id="q${i}">${cantidades[i]}</span>
+          <span id="q${i}" class="qty">${cantidades[i]}</span>
           <button data-index="${i}" class="sumar">+</button>
         </div>
       `;
@@ -104,7 +108,6 @@ function renderProductos(){
     }
   });
 
-  // asignar eventos a los botones + y -
   document.querySelectorAll(".sumar").forEach(btn=>{
     btn.addEventListener("click",()=>{
       const i=parseInt(btn.dataset.index);
