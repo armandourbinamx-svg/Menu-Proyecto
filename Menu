@@ -22,3 +22,129 @@ font-size:24px;
 }
 
 .menu{
+display:flex;
+flex-direction:column;
+gap:15px;
+padding:20px;
+}
+
+.producto{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
+}
+
+button{
+background:#25D366;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1ebe5d;
+}
+
+#carrito{
+background:white;
+margin:20px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
+}
+
+ul{
+list-style:none;
+padding:0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+🌮 CENADURIA DON APULEYO 
+</header>
+
+<div class="menu">
+
+<div class="producto">
+<h3>Taco al Pastor - $15</h3>
+<button onclick="agregar('Taco al Pastor',15)">Agregar</button>
+</div>
+
+<div class="producto">
+<h3>Quesadilla - $25</h3>
+<button onclick="agregar('Quesadilla',25)">Agregar</button>
+</div>
+
+<div class="producto">
+<h3>Refresco - $20</h3>
+<button onclick="agregar('Refresco',20)">Agregar</button>
+</div>
+
+<div class="producto">
+<h3>Hamburguesa - $50</h3>
+<button onclick="agregar('Hamburguesa',50)">Agregar</button>
+</div>
+
+</div>
+
+<div id="carrito">
+<h2>🛒 Tu pedido</h2>
+
+<ul id="lista"></ul>
+
+<h3>Total: $<span id="total">0</span></h3>
+
+<button onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+
+</div>
+
+<script>
+
+let pedido = [];
+let total = 0;
+
+function agregar(nombre,precio){
+
+pedido.push(nombre);
+total += precio;
+
+let lista = document.getElementById("lista");
+
+let item = document.createElement("li");
+item.textContent = nombre + " - $" + precio;
+
+lista.appendChild(item);
+
+document.getElementById("total").textContent = total;
+
+}
+
+function enviarPedido(){
+
+let mensaje = "Hola, quiero hacer este pedido:%0A%0A";
+
+pedido.forEach(p=>{
+mensaje += "- " + p + "%0A";
+});
+
+mensaje += "%0ATotal: $" + total;
+
+let telefono = "521TU_NUMERO";
+
+let url = "https://wa.me/" + telefono + "?text=" + mensaje;
+
+window.open(url);
+
+}
+
+</script>
+
+</body>
+</html>
