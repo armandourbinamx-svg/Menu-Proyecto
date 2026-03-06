@@ -66,34 +66,33 @@ textarea{width:90%; padding:10px; border-radius:8px; border:none; resize:none; f
   <h1>CENADURIA DON APULEYO</h1>
 </header>
 
-<!-- Categorías -->
 <div id="categorias">
   <button class="categoria-btn active" data-cat="Hamburguesas">Hamburguesas</button>
   <button class="categoria-btn" data-cat="Hot Dog">Hot Dog</button>
   <button class="categoria-btn" data-cat="Postres">Postres</button>
 </div>
 
-<!-- Productos -->
 <div id="menu"></div>
 
-<!-- Carrito -->
 <div class="cart">
   <div class="cart-summary">
     <ul id="cart-list"></ul>
   </div>
   <div>Total: $<span id="total">0</span></div>
   <textarea id="comentarios" rows="2" placeholder="Comentarios o especificaciones"></textarea>
-  <!-- Selector de tipo de entrega al final -->
   <div id="entrega">
     <button class="entrega-btn active" data-type="llevar">Para llevar</button>
     <button class="entrega-btn" data-type="domicilio">Entrega a domicilio</button>
     <button class="entrega-btn" data-type="sitio">Para el sitio</button>
   </div>
-  <button class="orderbtn" onclick="enviarPedido()">Enviar pedido</button>
+  <button class="orderbtn" id="enviarPedidoBtn">Enviar pedido</button>
 </div>
 
 <script>
-let telefono="521XXXXXXXXXX"; // Cambia por tu número
+document.addEventListener("DOMContentLoaded", function(){
+
+let telefono="521XXXXXXXXXX";
+
 let productos=[
 {cat:"Hamburguesas",nombre:"Sencilla",precio:65},
 {cat:"Hamburguesas",nombre:"Hawaiana",precio:65},
@@ -141,8 +140,8 @@ function renderProductos(){
   });
 }
 
-function sumar(i){ cantidades[i]++; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); }
-function restar(i){ if(cantidades[i]>0){ cantidades[i]--; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); } }
+window.sumar=function(i){ cantidades[i]++; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); }
+window.restar=function(i){ if(cantidades[i]>0){ cantidades[i]--; document.getElementById("q"+i).innerText=cantidades[i]; actualizarCarrito(); } }
 
 function actualizarCarrito(){
   let cartList=document.getElementById("cart-list");
@@ -175,7 +174,7 @@ function enviarPedido(){
 
 // Inicializar categorías
 document.querySelectorAll(".categoria-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
+  btn.addEventListener("click", ()=>{
     document.querySelectorAll(".categoria-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
     categoriaActual=btn.dataset.cat;
@@ -185,14 +184,18 @@ document.querySelectorAll(".categoria-btn").forEach(btn=>{
 
 // Inicializar tipo de entrega
 document.querySelectorAll(".entrega-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
+  btn.addEventListener("click", ()=>{
     document.querySelectorAll(".entrega-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
   });
 });
 
+document.getElementById("enviarPedidoBtn").addEventListener("click", enviarPedido);
+
 // Render inicial
 renderProductos();
+
+});
 </script>
 </body>
 </html>
