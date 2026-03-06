@@ -3,202 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DON APULEYO - Menú</title>
-
+<title>DON APULEYO - Menú Profesional</title>
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#0f0f0f;
-  color:white;
-  margin:0;
-}
-header{
-  background:#000;
-  padding:20px;
-  text-align:center;
-  font-size:24px;
-  font-weight:bold;
-  border-bottom:1px solid #333;
-}
-.container{
-  padding:15px;
-}
-.category{
-  margin-top:25px;
-  font-size:20px;
-  color:#ff9800;
-}
-.product{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#1a1a1a;
-  padding:12px;
-  border-radius:8px;
-  margin-top:10px;
-}
-.name{
-  font-size:16px;
-}
-.price{
-  color:#4caf50;
-  font-size:14px;
-}
-.controls{
-  display:flex;
-  align-items:center;
-}
-button{
-  background:#ff9800;
-  border:none;
-  color:black;
-  font-size:18px;
-  padding:5px 10px;
-  border-radius:5px;
-}
-.qty{
-  margin:0 10px;
-}
-.cart{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#000;
-  border-top:1px solid #333;
-  padding:15px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
-.orderbtn{
-  background:#25D366;
-  color:white;
-  border:none;
-  padding:10px 20px;
-  border-radius:25px;
-  font-size:16px;
-  width:90%;
-}
-textarea{
-  width:90%;
-  padding:8px;
-  border-radius:5px;
-  border:none;
-  resize:none;
-}
+  body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #ffcc00;
+    margin-bottom: 20px;
+  }
+
+  #menu {
+    max-height: 70vh; /* Menú con scroll */
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+
+  .category {
+    margin-top: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+  }
+
+  .product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    flex-wrap: wrap;
+  }
+
+  .product-info {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .price {
+    color: #ffcc00;
+    margin-top: 3px;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #ffaa00;
+  }
+
+  .qty {
+    min-width: 25px;
+    text-align: center;
+  }
+
+  .comentarios {
+    margin-top: 3px;
+    width: 100%;
+    padding: 4px;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.8em;
+  }
+
+  #total-container {
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  #enviar {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #ffcc00;
+    color: #111;
+    cursor: pointer;
+    border: none;
+  }
+
+  #enviar:hover {
+    background-color: #ffaa00;
+  }
 </style>
 </head>
-
 <body>
 
-<header> CENADURIA<br>DON APULEYO</br></header>
+<h1>DON APULEYO</h1>
 
-<div class="container" id="menu"></div>
+<div id="menu"></div>
 
-<div class="cart">
-<div>Total: $<span id="total">0</span></div>
-<textarea id="comentarios" rows="2" placeholder="Nota para el pedio"></textarea>
-<button class="orderbtn" onclick="enviarPedido()">Enviar pedido</button>
-</div>
+<div id="total-container">Total: $<span id="total">0</span></div>
+<button id="enviar" onclick="enviarPedido()">Enviar pedido</button>
 
 <script>
+// Lista de productos de ejemplo (puedes agregar más)
+let productos = [
+  {cat:"Hamburguesas", nombre:"Sencilla", precio:65},
+  {cat:"Hamburguesas", nombre:"Hawaiana", precio:65},
+  {cat:"Hamburguesas", nombre:"Especial", precio:65},
+  {cat:"Hot Dog", nombre:"Sencillo", precio:18},
+  {cat:"Bebidas", nombre:"Refresco 500ml", precio:20},
+  {cat:"Bebidas", nombre:"Agua 500ml", precio:15},
+  // Puedes agregar aquí más productos
+];
 
-let telefono="+525615265368" // Pon tu número aquí
+let cantidades = new Array(productos.length).fill(0);
+let telefono = "5211234567890"; // Tu WhatsApp internacional
 
-let productos=[
-{cat:"Hamburguesas",nombre:"Hamburguesa sencilla",precio:65},
-{cat:"Hamburguesas",nombre:"Hamburguesa hawaiana",precio:65},
-{cat:"Hamburguesas",nombre:"Hamburguesa especial",precio:65},
-
-{cat:"Hot Dog",nombre:"Hot Dog sencillo",precio:18},
-{cat:"Hot Dog",nombre:"Hot Dog con queso",precio:20},
- {cat:"Hot Dog",nombre:"Hot Dog tocino",precio:20},
-{cat:"Hot Dog",nombre:"Hot Dog con tocino y queso",precio:23},
-
-{cat:"Postres",nombre:"Fresas con crema",precio:25},
-{cat:"Postres",nombre:"Duraznos con crema",precio:25},
-{cat:"Postres",nombre:"Ensalada de manzana",precio:25},
-{cat:"Postres",nombre:"Tapioca con manzana y crema",precio:25},
-{cat:"Postres",nombre:"Trigo con uva y crema",precio:25},
-{cat:"Postres",nombre:"Gelatina de refresco",precio:25},
-{cat:"Postres",nombre:"Arroz con leche",precio:25},
-{cat:"Postres",nombre:"Flan vainilla",precio:25},
-{cat:"Postres",nombre:"Flan napolitano",precio:25},
-{cat:"Postres",nombre:"Pay de limón",precio:20},
-{cat:"Postres",nombre:"Cheesecake zarzamora",precio:25},
-{cat:"Postres",nombre:"Cheesecake oreo",precio:25},
-{cat:"Postres",nombre:"Tartaleta chica",precio:40}
-]
-
-let cantidades=new Array(productos.length).fill(0)
-
-function render(){
-let menu=document.getElementById("menu")
-let actual=""
-productos.forEach((p,i)=>{
-if(p.cat!=actual){
-menu.innerHTML+=`<div class="category">${p.cat}</div>`
-actual=p.cat
-}
-menu.innerHTML+=`
-<div class="product">
-<div>
-<div class="name">${p.nombre}</div>
-<div class="price">$${p.precio}</div>
-</div>
-<div class="controls">
-<button onclick="restar(${i})">-</button>
-<div class="qty" id="q${i}">0</div>
-<button onclick="sumar(${i})">+</button>
-</div>
-</div>
-`
-})
+function render() {
+  let menu = document.getElementById("menu");
+  menu.innerHTML = "";
+  let actual = "";
+  productos.forEach((p, i) => {
+    if (p.cat != actual) {
+      menu.innerHTML += `<div class="category">${p.cat}</div>`;
+      actual = p.cat;
+    }
+    menu.innerHTML += `
+      <div class="product">
+        <div class="product-info">
+          <div class="name">${p.nombre}</div>
+          <div class="price">$${p.precio}</div>
+          <input type="text" class="comentarios" id="c${i}" placeholder="Comentarios / Especificaciones">
+        </div>
+        <div class="controls">
+          <button onclick="restar(${i})">-</button>
+          <div class="qty" id="q${i}">0</div>
+          <button onclick="sumar(${i})">+</button>
+        </div>
+      </div>
+    `;
+  });
 }
 
-function sumar(i){
-cantidades[i]++
-document.getElementById("q"+i).innerText=cantidades[i]
-actualizarTotal()
+function sumar(i) {
+  cantidades[i]++;
+  document.getElementById("q"+i).innerText = cantidades[i];
+  actualizarTotal();
 }
 
-function restar(i){
-if(cantidades[i]>0){
-cantidades[i]--
-document.getElementById("q"+i).innerText=cantidades[i]
-actualizarTotal()
-}
-}
-
-function actualizarTotal(){
-let total=0
-productos.forEach((p,i)=>{
-total+=p.precio*cantidades[i]
-})
-document.getElementById("total").innerText=total
+function restar(i) {
+  if (cantidades[i] > 0) {
+    cantidades[i]--;
+    document.getElementById("q"+i).innerText = cantidades[i];
+    actualizarTotal();
+  }
 }
 
-function enviarPedido(){
-let pedido=`Hola, quiero pedir:%0A`
-let total=0
-productos.forEach((p,i)=>{
-if(cantidades[i]>0){
-pedido+=cantidades[i]+" "+p.nombre+"%0A"
-total+=cantidades[i]*p.precio
-}
-})
-pedido+=`Total: $${total}%0A`
-let comentarios=document.getElementById("comentarios").value
-if(comentarios.trim()!=""){
-pedido+=`Comentarios: ${comentarios}`
-}
-window.open(`https://wa.me/${telefono}?text=${pedido}`)
+function actualizarTotal() {
+  let total = 0;
+  productos.forEach((p,i) => total += p.precio * cantidades[i]);
+  document.getElementById("total").innerText = total;
 }
 
-render()
+function enviarPedido() {
+  let pedido = "Hola, quiero pedir:%0A";
+  let total = 0;
 
+  productos.forEach((p,i) => {
+    if (cantidades[i] > 0) {
+      let comentario = document.getElementById("c"+i).value.trim();
+      pedido += `${cantidades[i]} ${p.nombre}`;
+      if (comentario != "") pedido += ` (${comentario})`;
+      pedido += `%0A`;
+      total += cantidades[i] * p.precio;
+    }
+  });
+
+  pedido += `Total: $${total}%0A`;
+
+  window.open(`https://wa.me/${telefono}?text=${pedido}`);
+}
+
+render();
 </script>
 
 </body>
