@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CENADURÍA DON APULEYO - Premium</title>
+<title>DON APULEYO - Menú Digital Pro</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -12,260 +12,201 @@
   --card: #FFFFFF;
   --text: #2D3436;
   --text-light: #636E72;
-  --accent: #FF9F43; /* Color para "Popular" */
+  --accent: #FF9F43;
 }
 
-/* Modo Oscuro Automático */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121212;
-    --card: #1E1E1E;
-    --text: #F5F6FA;
-    --text-light: #A0A0A0;
-  }
+  :root { --bg: #121212; --card: #1E1E1E; --text: #F5F6FA; --text-light: #A0A0A0; }
 }
 
-body {
-  margin:0; font-family: 'Outfit', sans-serif; 
-  background: var(--bg); color: var(--text);
-  transition: background 0.3s;
-}
+body { margin:0; font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); }
 
-header {
-  background: var(--card); padding: 25px;
-  text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-header h1 { margin:0; font-size: 22px; text-transform: uppercase; letter-spacing: 1px; }
+header { background: var(--card); padding: 25px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05); }
+header h1 { margin:0; font-size: 24px; color: var(--primary); letter-spacing: 2px; }
 
 #categorias {
   display: flex; overflow-x: auto; gap: 10px; padding: 15px;
-  background: var(--card); sticky; top: 0; z-index: 100;
+  background: var(--card); position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 #categorias::-webkit-scrollbar { display: none; }
 
 .categoria-btn {
-  flex: 0 0 auto; padding: 8px 18px; border-radius: 50px;
-  border: 1px solid rgba(0,0,0,0.05); background: var(--card);
-  color: var(--text-light); cursor: pointer; transition: 0.3s;
+  flex: 0 0 auto; padding: 10px 20px; border-radius: 50px;
+  border: 1px solid rgba(0,0,0,0.1); background: var(--card);
+  color: var(--text-light); cursor: pointer; font-weight: 600;
 }
-.categoria-btn.active {
-  background: var(--primary); color: white; border-color: var(--primary);
-  box-shadow: 0 4px 12px rgba(227, 38, 54, 0.2);
-}
+.categoria-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-#menu-container { padding: 15px; padding-bottom: 300px; }
+#menu-container { padding: 15px; padding-bottom: 350px; }
 
-/* Estilo de Producto */
 .product {
-  background: var(--card); padding: 15px; border-radius: 24px;
-  margin-bottom: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-  position: relative; border: 1px solid rgba(0,0,0,0.02);
+  background: var(--card); padding: 15px; border-radius: 20px;
+  margin-bottom: 15px; display: flex; align-items: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
-
-.badge-popular {
-  position: absolute; top: 10px; left: 10px; background: var(--accent);
-  color: white; font-size: 10px; padding: 4px 8px; border-radius: 8px;
-  font-weight: 700; z-index: 1;
-}
-
-.product-content { display: flex; align-items: center; }
-.product-img { width: 80px; height: 80px; border-radius: 18px; object-fit: cover; margin-right: 15px; }
 .product-info { flex: 1; }
-.product-info .name { font-weight: 700; font-size: 17px; margin-bottom: 2px; }
-.product-info .desc { font-size: 13px; color: var(--text-light); }
-.product-info .price { font-weight: 700; color: var(--primary); margin-top: 5px; }
+.product-info .name { font-weight: 700; font-size: 16px; }
+.product-info .desc { font-size: 12px; color: var(--text-light); margin: 4px 0; }
+.product-info .price { font-weight: 700; color: var(--primary); }
 
-/* Extras */
-.extras-container {
-  margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1);
-  display: flex; gap: 8px; flex-wrap: wrap;
-}
-.extra-pill {
-  font-size: 11px; padding: 4px 10px; border-radius: 10px;
-  background: rgba(0,0,0,0.05); cursor: pointer; border: 1px solid transparent;
-}
-.extra-pill.selected { border-color: var(--primary); color: var(--primary); background: rgba(227, 38, 54, 0.1); }
+.controls { display: flex; align-items: center; background: rgba(0,0,0,0.05); border-radius: 12px; padding: 4px; }
+.controls button { width: 30px; height: 30px; border: none; background: var(--card); border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--text); }
+.qty { margin: 0 10px; font-weight: 700; min-width: 15px; text-align: center; }
 
-/* Controles */
-.controls { display: flex; align-items: center; background: rgba(0,0,0,0.04); border-radius: 12px; padding: 4px; }
-.controls button { width: 30px; height: 30px; border: none; border-radius: 10px; background: var(--card); color: var(--text); cursor: pointer; font-weight: bold; }
-
-/* Carrito */
 .cart {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: var(--card); padding: 20px;
-  border-radius: 30px 30px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+  border-radius: 25px 25px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
 }
+
+#entrega-options { display: flex; gap: 8px; margin-bottom: 15px; }
+.entrega-btn {
+  flex: 1; padding: 10px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1);
+  background: var(--bg); color: var(--text-light); font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.entrega-btn.active { background: var(--text); color: white; }
 
 .orderbtn {
-  width: 100%; padding: 18px; border-radius: 20px; border: none;
-  background: #ccc; color: white; font-size: 16px; font-weight: 700;
-  transition: 0.3s;
+  width: 100%; padding: 18px; border-radius: 15px; border: none;
+  background: #ccc; color: white; font-weight: 700; font-size: 16px;
 }
-.orderbtn.ready { 
-    background: var(--primary); 
-    animation: pulse 2s infinite; 
-    cursor: pointer;
-}
+.orderbtn.ready { background: var(--primary); cursor: pointer; }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-.total-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 18px; font-weight: 700; }
-
-textarea {
-  width: 100%; box-sizing: border-box; padding: 12px; border-radius: 15px;
-  border: 1px solid rgba(0,0,0,0.1); background: var(--bg); color: var(--text); margin-bottom: 15px;
-}
+.total-display { display: flex; justify-content: space-between; font-weight: 700; font-size: 20px; margin-bottom: 15px; }
+textarea { width: 100%; box-sizing: border-box; padding: 10px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg); color: var(--text); margin-bottom: 10px; }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Cenaduría Don Apuleyo</h1>
-</header>
+<header><h1>DON APULEYO</h1></header>
 
 <div id="categorias">
-  <button class="categoria-btn active" data-cat="Hamburguesas">Hamburguesas</button>
-  <button class="categoria-btn" data-cat="Hot Dog">Hot Dog</button>
-  <button class="categoria-btn" data-cat="Postres">Postres</button>
-  <button class="categoria-btn" data-cat="Quesadillas fritas">Quesadillas</button>
-</div>
+  </div>
 
 <div id="menu-container"></div>
 
 <div class="cart">
-  <div class="total-row">
-    <span>Total a pagar:</span>
-    <span>$<span id="total">0</span></span>
+  <div class="total-display"><span>Total:</span><span>$<span id="total">0</span></span></div>
+  
+  <div id="entrega-options">
+    <button class="entrega-btn active" data-val="Para llevar">🛍️ Para llevar</button>
+    <button class="entrega-btn" data-val="Domicilio">🛵 Domicilio</button>
+    <button class="entrega-btn" data-val="En sucursal">🍽️ En sitio</button>
   </div>
-  <textarea id="comentarios" rows="2" placeholder="Notas: ¿Sin cebolla? ¿Cambio de $200?"></textarea>
-  <button class="orderbtn" id="enviarPedidoBtn">Agregar productos</button>
+
+  <textarea id="notas" rows="2" placeholder="Notas (ej. sin cebolla, traer cambio...)"></textarea>
+  <button class="orderbtn" id="enviarBtn">Selecciona productos</button>
 </div>
 
 <script>
-const telefono = "521XXXXXXXXXX"; 
-const productos = [
-  {id:0, cat:"Hamburguesas", nombre:"Sencilla", desc:"Carne, lechuga y tomate", precio:65, popular:true, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200", extras:[{n:"Queso Extra", p:10}, {n:"Tocino", p:15}]},
-  {id:1, cat:"Hamburguesas", nombre:"Hawaiana", desc:"Carne, piña y queso", precio:65, popular:false, img:"https://images.unsplash.com/photo-1550317138-10000687ad32?w=200", extras:[{n:"Doble Piña", p:10}]},
-  {id:2, cat:"Hot Dog", nombre:"Sencillo", desc:"Salchicha clásica", precio:18, popular:true, img:"https://images.unsplash.com/photo-1612392062631-94dd858cba88?w=200", extras:[]},
-  {id:3, cat:"Postres", nombre:"Fresas con crema", desc:"Fresas dulces", precio:25, popular:false, img:"https://images.unsplash.com/photo-1590080874088-eec64895b423?w=200", extras:[]}
+const telefono = "521XXXXXXXXXX"; // Pon tu número aquí
+const menu = [
+  // ANTOJITOS
+  {cat:"Antojitos", n:"Tlacoyo", p:12},
+  {cat:"Antojitos", n:"Taco suadero", p:14},
+  {cat:"Antojitos", n:"Sopes sencillo", p:20},
+  {cat:"Antojitos", n:"Huarache con suadero", p:45},
+  // HAMBURGUESAS
+  {cat:"Hamburguesas", n:"Sencilla", p:55, d:"Carne, lechuga, tomate"},
+  {cat:"Hamburguesas", n:"Hawaiana", p:65, d:"Carne, queso y piña"},
+  {cat:"Hamburguesas", n:"Especial", p:65},
+  // PIZZAS
+  {cat:"Pizzas", n:"Chica (Hawaiana/Española/Peperoni)", p:85},
+  {cat:"Pizzas", n:"Grande (Hawaiana/Española/Peperoni)", p:205},
+  // POSTRES
+  {cat:"Postres", n:"Fresas con crema", p:25},
+  {cat:"Postres", n:"Pay de limón", p:25},
+  {cat:"Postres", n:"Cheesecake de oreo", p:40},
+  // BEBIDAS
+  {cat:"Bebidas", n:"Refresco", p:25},
+  {cat:"Bebidas", n:"Agua natural", p:20},
+  {cat:"Bebidas", n:"Café", p:15}
 ];
 
-let carrito = {}; 
-let categoriaActual = "Hamburguesas";
+let carrito = {};
+let catActual = "Hamburguesas";
 
-function renderProductos(){
+function init(){
+  const cats = [...new Set(menu.map(i => i.cat))];
+  const catDiv = document.getElementById("categorias");
+  cats.forEach(c => {
+    const btn = document.createElement("button");
+    btn.className = `categoria-btn ${c === catActual ? 'active' : ''}`;
+    btn.innerText = c;
+    btn.onclick = () => {
+      document.querySelectorAll(".categoria-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      catActual = c;
+      render();
+    };
+    catDiv.appendChild(btn);
+  });
+  render();
+}
+
+function render(){
   const container = document.getElementById("menu-container");
   container.innerHTML = "";
-  productos.filter(p => p.cat === categoriaActual).forEach(p => {
+  menu.filter(i => i.cat === catActual).forEach(i => {
     const div = document.createElement("div");
     div.className = "product";
-    const badge = p.popular ? `<div class="badge-popular">🔥 EL MÁS PEDIDO</div>` : '';
-    
-    // Generar botones de extras
-    let extrasHtml = '';
-    if(p.extras.length > 0) {
-        extrasHtml = `<div class="extras-container">`;
-        p.extras.forEach(ex => {
-            const isSel = carrito[p.id]?.extras?.includes(ex.n);
-            extrasHtml += `<div class="extra-pill ${isSel?'selected':''}" onclick="toggleExtra(${p.id}, '${ex.n}', ${ex.p})">+ ${ex.n} ($${ex.p})</div>`;
-        });
-        extrasHtml += `</div>`;
-    }
-
     div.innerHTML = `
-        ${badge}
-        <div class="product-content">
-            <img class="product-img" src="${p.img}">
-            <div class="product-info">
-                <div class="name">${p.nombre}</div>
-                <div class="desc">${p.desc}</div>
-                <div class="price">$${p.precio}</div>
-            </div>
-            <div class="controls">
-                <button onclick="updateQty(${p.id}, -1)">-</button>
-                <span class="qty">${carrito[p.id]?.qty || 0}</span>
-                <button onclick="updateQty(${p.id}, 1)">+</button>
-            </div>
-        </div>
-        ${extrasHtml}
+      <div class="product-info">
+        <div class="name">${i.n}</div>
+        <div class="desc">${i.d || ''}</div>
+        <div class="price">$${i.p}</div>
+      </div>
+      <div class="controls">
+        <button onclick="changeQty('${i.n}', -1)">-</button>
+        <span class="qty">${carrito[i.n]?.q || 0}</span>
+        <button onclick="changeQty('${i.n}', 1)">+</button>
+      </div>
     `;
     container.appendChild(div);
   });
 }
 
-function updateQty(id, delta){
-    if(!carrito[id]) carrito[id] = {qty: 0, extras: [], extraPrice: 0};
-    carrito[id].qty = Math.max(0, carrito[id].qty + delta);
-    if(carrito[id].qty === 0) delete carrito[id];
-    actualizarInterfaz();
+function changeQty(name, delta){
+  const item = menu.find(i => i.n === name);
+  if(!carrito[name]) carrito[name] = {q:0, p:item.p};
+  carrito[name].q = Math.max(0, carrito[name].q + delta);
+  if(carrito[name].q === 0) delete carrito[name];
+  updateCart();
+  render();
 }
 
-function toggleExtra(id, extraNombre, precio){
-    if(!carrito[id] || carrito[id].qty === 0) return alert("Primero añade el producto");
-    const idx = carrito[id].extras.indexOf(extraNombre);
-    if(idx > -1) {
-        carrito[id].extras.splice(idx, 1);
-        carrito[id].extraPrice -= precio;
-    } else {
-        carrito[id].extras.push(extraNombre);
-        carrito[id].extraPrice += precio;
-    }
-    actualizarInterfaz();
+function updateCart(){
+  let total = 0;
+  for(let key in carrito) total += (carrito[key].q * carrito[key].p);
+  document.getElementById("total").innerText = total;
+  const btn = document.getElementById("enviarBtn");
+  btn.className = total > 0 ? "orderbtn ready" : "orderbtn";
+  btn.innerText = total > 0 ? "Enviar Pedido a WhatsApp" : "Selecciona productos";
 }
 
-function actualizarInterfaz(){
-    let total = 0;
-    for(let id in carrito){
-        const p = productos.find(x => x.id == id);
-        total += (p.precio + carrito[id].extraPrice) * carrito[id].qty;
-    }
-    document.getElementById("total").innerText = total;
-    const btn = document.getElementById("enviarPedidoBtn");
-    if(total > 0){
-        btn.innerText = "Enviar pedido por WhatsApp";
-        btn.classList.add("ready");
-    } else {
-        btn.innerText = "Agregar productos";
-        btn.classList.remove("ready");
-    }
-    renderProductos();
-}
-
-function enviarPedido(){
-    let total = document.getElementById("total").innerText;
-    if(total == "0") return;
-
-    let mensaje = `*NUEVO PEDIDO - DON APULEYO*%0A------------------------------%0A`;
-    for(let id in carrito){
-        const p = productos.find(x => x.id == id);
-        mensaje += `• ${carrito[id].qty}x ${p.nombre}`;
-        if(carrito[id].extras.length > 0) mensaje += ` _(Extras: ${carrito[id].extras.join(", ")})_`;
-        mensaje += ` - $${(p.precio + carrito[id].extraPrice) * carrito[id].qty}%0A`;
-    }
-    const notas = document.getElementById("comentarios").value;
-    if(notas) mensaje += `%0A*Notas:* ${notas}`;
-    mensaje += `%0A------------------------------%0A*TOTAL A PAGAR: $${total}*`;
-    
-    window.open(`https://wa.me/${telefono}?text=${mensaje}`);
-}
-
-document.querySelectorAll(".categoria-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".categoria-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    categoriaActual = btn.dataset.cat;
-    renderProductos();
-  });
+document.querySelectorAll(".entrega-btn").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll(".entrega-btn").forEach(btn => btn.classList.remove("active"));
+    b.classList.add("active");
+  };
 });
 
-document.getElementById("enviarPedidoBtn").addEventListener("click", enviarPedido);
-renderProductos();
+document.getElementById("enviarBtn").onclick = () => {
+  let total = document.getElementById("total").innerText;
+  if(total === "0") return;
+  
+  let entrega = document.querySelector(".entrega-btn.active").dataset.val;
+  let msg = `*ORDEN - DON APULEYO*%0A*Modo:* ${entrega}%0A%0A`;
+  for(let key in carrito) msg += `• ${carrito[key].q}x ${key} ($${carrito[key].q * carrito[key].p})%0A`;
+  
+  const notas = document.getElementById("notas").value;
+  if(notas) msg += `%0A*Notas:* ${notas}`;
+  msg += `%0A%0A*TOTAL: $${total}*`;
+  window.open(`https://wa.me/${telefono}?text=${msg}`);
+};
+
+init();
 </script>
 </body>
 </html>
