@@ -1,55 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cenaduría Don Apuleyo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
 --primary:#D90429;
 --secondary:#FFB703;
---dark:#1A1A1A;
---bg:#F8F8F8;
---card:#FFFFFF;
+--bg:#F7F7F7;
+--card:#ffffff;
 }
 
 body{
 margin:0;
-font-family:'Outfit',sans-serif;
+font-family:'Poppins',sans-serif;
 background:var(--bg);
-color:var(--dark);
+color:#222;
 }
 
 /* HEADER */
 
 header{
+background:white;
 text-align:center;
 padding:25px;
-background:white;
 border-bottom:4px solid var(--primary);
 }
 
 .logo{
-font-size:30px;
+font-size:28px;
 font-weight:800;
 color:var(--primary);
 }
 
-/* STATUS */
-
 .status{
-margin-top:10px;
+margin-top:8px;
 font-size:12px;
 font-weight:700;
 }
 
-.open{color:#2E7D32;}
-.closed{color:#C62828;}
+.open{color:#2e7d32;}
+.closed{color:#c62828;}
+
+/* RECOMENDADOS */
+
+#recom{
+padding:15px;
+}
+
+.recom-title{
+font-weight:800;
+margin-bottom:10px;
+}
+
+.recom-list{
+display:flex;
+overflow-x:auto;
+gap:12px;
+}
+
+.recom-card{
+min-width:160px;
+background:white;
+border-radius:16px;
+box-shadow:0 6px 18px rgba(0,0,0,.1);
+overflow:hidden;
+}
+
+.recom-card img{
+width:100%;
+height:110px;
+object-fit:cover;
+}
+
+.recom-info{
+padding:10px;
+font-size:13px;
+font-weight:600;
+}
 
 /* CATEGORIAS */
 
@@ -57,7 +92,7 @@ font-weight:700;
 display:flex;
 overflow:auto;
 gap:10px;
-padding:15px;
+padding:10px 15px;
 background:white;
 position:sticky;
 top:0;
@@ -66,7 +101,7 @@ z-index:10;
 
 .cat{
 flex:0 0 auto;
-padding:10px 16px;
+padding:8px 14px;
 border-radius:20px;
 border:1px solid #eee;
 font-weight:700;
@@ -83,25 +118,20 @@ color:white;
 
 #menu{
 padding:15px;
-padding-bottom:180px;
+padding-bottom:200px;
 }
 
 .product{
 background:white;
 border-radius:20px;
 margin-bottom:20px;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
 overflow:hidden;
-box-shadow:0 6px 18px rgba(0,0,0,.05);
-transition:.15s;
-}
-
-.product:active{
-transform:scale(.98);
 }
 
 .product img{
 width:100%;
-height:170px;
+height:180px;
 object-fit:cover;
 }
 
@@ -110,7 +140,13 @@ padding:15px;
 }
 
 .name{
-font-weight:700;
+font-weight:800;
+font-size:18px;
+display:flex;
+justify-content:space-between;
+}
+
+.fire{
 font-size:18px;
 }
 
@@ -129,8 +165,8 @@ margin-top:12px;
 
 .price{
 font-weight:800;
-color:var(--primary);
 font-size:20px;
+color:var(--primary);
 }
 
 .qtybox{
@@ -140,12 +176,12 @@ align-items:center;
 }
 
 .qtybox button{
-width:32px;
-height:32px;
+width:34px;
+height:34px;
 border:none;
+border-radius:10px;
 background:var(--primary);
 color:white;
-border-radius:10px;
 font-weight:800;
 font-size:18px;
 }
@@ -154,29 +190,7 @@ font-size:18px;
 font-weight:800;
 }
 
-/* EXTRAS */
-
-.extras{
-margin-top:10px;
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-}
-
-.extra{
-font-size:11px;
-padding:6px 10px;
-background:#f4f4f4;
-border-radius:10px;
-border:1px solid transparent;
-}
-
-.extra.sel{
-border-color:var(--primary);
-color:var(--primary);
-}
-
-/* CARRITO */
+/* CARRITO FLOTANTE */
 
 .cart{
 position:fixed;
@@ -184,15 +198,15 @@ bottom:0;
 left:0;
 right:0;
 background:white;
-border-radius:30px 30px 0 0;
 padding:20px;
-box-shadow:0 -10px 40px rgba(0,0,0,.1);
+border-radius:30px 30px 0 0;
+box-shadow:0 -10px 40px rgba(0,0,0,.15);
 }
 
 .total{
 display:flex;
 justify-content:space-between;
-font-size:20px;
+font-size:22px;
 font-weight:800;
 }
 
@@ -221,7 +235,7 @@ font-weight:700;
 }
 
 .type.active{
-background:var(--dark);
+background:#222;
 color:white;
 }
 
@@ -237,16 +251,6 @@ font-weight:800;
 font-size:16px;
 }
 
-.badge{
-position:absolute;
-background:var(--secondary);
-font-size:10px;
-padding:4px 10px;
-border-radius:10px;
-margin:10px;
-font-weight:800;
-}
-
 </style>
 </head>
 
@@ -254,11 +258,18 @@ font-weight:800;
 
 <header>
 
-<div class="logo">DON APULEYO</div>
-
+<div class="logo">Cenaduría Don Apuleyo</div>
 <div id="status" class="status"></div>
 
 </header>
+
+<div id="recom">
+
+<div class="recom-title">🔥 Recomendados</div>
+
+<div class="recom-list" id="recomList"></div>
+
+</div>
 
 <div id="cats"></div>
 
@@ -274,9 +285,11 @@ font-weight:800;
 <textarea id="obs" placeholder="Notas o dirección"></textarea>
 
 <div class="types">
+
 <button class="type active" data="Llevar">Llevar</button>
 <button class="type" data="Domicilio">Domicilio</button>
 <button class="type" data="En sitio">En sitio</button>
+
 </div>
 
 <button class="order" onclick="send()">PEDIR POR WHATSAPP</button>
@@ -290,10 +303,11 @@ const WA="521XXXXXXXXXX"
 const menu=[
 
 {id:1,c:"Antojitos",n:"Tlacoyo",d:"Frijol o haba",p:12,pop:1,img:""},
-{id:2,c:"Antojitos",n:"Taco suadero",d:"Doble tortilla",p:14,img:""},
-{id:3,c:"Hamburguesas",n:"Hamburguesa",d:"100% res",p:55,ex:[{n:"Queso",p:10}]},
-{id:4,c:"Postres",n:"Fresas crema",d:"Especial",p:25,pop:1},
-{id:5,c:"Bebidas",n:"Refresco",d:"600ml",p:25}
+{id:2,c:"Antojitos",n:"Taco de suadero",d:"Doble tortilla",p:14,img:""},
+{id:3,c:"Antojitos",n:"Huarache suadero",d:"Grande con quesillo",p:45,pop:1,img:""},
+{id:4,c:"Hamburguesas",n:"Hamburguesa sencilla",d:"100% res",p:55,img:""},
+{id:5,c:"Postres",n:"Fresas con crema",d:"Especial de la casa",p:25,pop:1,img:""},
+{id:6,c:"Bebidas",n:"Refresco 600ml",d:"Coca, Sprite, Fanta",p:25,img:""}
 
 ]
 
@@ -311,7 +325,7 @@ let open=[5,6,0].includes(d)&&hr>=20&&hr<23
 let s=document.getElementById("status")
 
 if(open){
-s.innerText="● ABIERTO"
+s.innerText="● ABIERTO AHORA"
 s.className="status open"
 }else{
 s.innerText="● CERRADO (Vie-Dom 8-11)"
@@ -319,17 +333,18 @@ s.className="status closed"
 }
 
 return open
+
 }
 
 function init(){
 
-let c=[...new Set(menu.map(x=>x.c))]
-
+let cats=[...new Set(menu.map(x=>x.c))]
 let box=document.getElementById("cats")
 
-c.forEach(a=>{
+cats.forEach(a=>{
 
 let b=document.createElement("button")
+
 b.className="cat"+(a==cat?" active":"")
 b.innerText=a
 
@@ -338,15 +353,40 @@ cat=a
 document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"))
 b.classList.add("active")
 render()
-window.scrollTo({top:0,behavior:"smooth"})
 }
 
 box.appendChild(b)
 
 })
 
+renderRecom()
 render()
 horario()
+
+}
+
+function renderRecom(){
+
+let r=document.getElementById("recomList")
+
+menu.filter(x=>x.pop).forEach(p=>{
+
+let d=document.createElement("div")
+d.className="recom-card"
+
+d.innerHTML=`
+
+<img src="${p.img}">
+
+<div class="recom-info">
+${p.n}
+</div>
+
+`
+
+r.appendChild(d)
+
+})
 
 }
 
@@ -362,30 +402,22 @@ let q=cart[p.id]?.q||0
 let div=document.createElement("div")
 div.className="product"
 
-let badge=p.pop?`<div class="badge">POPULAR</div>`:""
-
 let img=p.img?`<img src="${p.img}">`:""
-
-let ex=""
-
-if(p.ex){
-
-ex=`<div class="extras">`+
-
-p.ex.map(e=>`<div class="extra ${cart[p.id]?.ex?.includes(e.n)?"sel":""}" onclick="toggle(${p.id},'${e.n}',${e.p})">+${e.n} $${e.p}</div>`).join("")
-
-+`</div>`
-
-}
 
 div.innerHTML=`
 
-${badge}
 ${img}
 
 <div class="info">
 
-<div class="name">${p.n}</div>
+<div class="name">
+
+${p.n}
+
+${p.pop?'<span class="fire">🔥</span>':''}
+
+</div>
+
 <div class="desc">${p.d}</div>
 
 <div class="controls">
@@ -393,16 +425,19 @@ ${img}
 <div class="price">$${p.p}</div>
 
 <div class="qtybox">
+
 <button onclick="add(${p.id},-1)">-</button>
+
 <div class="qty">${q}</div>
+
 <button onclick="add(${p.id},1)">+</button>
+
+</div>
+
 </div>
 
 </div>
 
-${ex}
-
-</div>
 `
 
 m.appendChild(div)
@@ -413,29 +448,11 @@ m.appendChild(div)
 
 function add(id,d){
 
-if(!cart[id])cart[id]={q:0,ex:[],ep:0}
+if(!cart[id])cart[id]={q:0}
 
 cart[id].q=Math.max(0,cart[id].q+d)
 
 if(cart[id].q==0)delete cart[id]
-
-refresh()
-
-}
-
-function toggle(id,n,p){
-
-if(!cart[id])return
-
-let i=cart[id].ex.indexOf(n)
-
-if(i>-1){
-cart[id].ex.splice(i,1)
-cart[id].ep-=p
-}else{
-cart[id].ex.push(n)
-cart[id].ep+=p
-}
 
 refresh()
 
@@ -449,7 +466,7 @@ for(let id in cart){
 
 let item=menu.find(x=>x.id==id)
 
-t+=(item.p+cart[id].ep)*cart[id].q
+t+=item.p*cart[id].q
 
 }
 
@@ -470,11 +487,9 @@ let total=document.getElementById("total").innerText
 
 if(total==0)return
 
-let type=document.querySelector(".type.active").dataset
-
 let notes=document.getElementById("obs").value
 
-let txt="*DON APULEYO*%0A%0A"
+let txt="*CENADURÍA DON APULEYO*%0A%0A"
 
 for(let id in cart){
 
@@ -484,7 +499,9 @@ txt+=`${cart[id].q}x ${item.n}%0A`
 
 }
 
-txt+=`%0ATotal $${total}`
+txt+=`%0A*Total:* $${total}%0A`
+
+txt+=`Notas: ${notes}`
 
 window.open(`https://wa.me/${WA}?text=${txt}`)
 
