@@ -3,233 +3,393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CENADURÍA DON APULEYO</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>CENADURÍA DON APULEYO - Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --rojo-fuerte: #D90429;
-  --rojo-oscuro: #A4031F;
-  --bg-gris: #F8F9FA;
-  --blanco: #FFFFFF;
+  --primary: #C00000; /* Rojo Intenso Sangre */
+  --primary-dark: #800000;
+  --accent: #FFB703; /* Amarillo Mostaza para destacados */
+  --bg: #FDFDFD;
+  --card: #FFFFFF;
+  --text-main: #1A1A1A;
+  --text-muted: #666666;
 }
 
-html, body {margin:0; padding:0; font-family:'Poppins', sans-serif; background: var(--bg-gris); color:#222; scroll-behavior: smooth;}
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  -webkit-tap-highlight-color: transparent;
+}
 
+/* Header con estilo Glass */
 header {
-  background: var(--blanco); text-align:center; padding:25px 0; 
-  box-shadow:0 4px 10px rgba(0,0,0,0.08); border-bottom: 5px solid var(--rojo-fuerte);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid var(--primary);
 }
+
 header h1 {
-  margin:0; font-size:24px; font-weight:700; letter-spacing:1px; color: var(--rojo-fuerte);
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
   text-transform: uppercase;
 }
 
+/* Categorías tipo Chips */
 #categorias {
-  display:flex; overflow-x:auto; gap:10px; padding:15px; background: var(--blanco);
-  position: sticky; top:0; z-index: 100; border-bottom: 1px solid #eee;
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 15px;
+  background: var(--bg);
 }
 #categorias::-webkit-scrollbar { display: none; }
 
 .categoria-btn {
-  flex:0 0 auto; padding:10px 20px; border-radius:30px; border:1px solid #ddd; cursor:pointer; 
-  font-weight:600; background: var(--blanco); color:#666; transition:0.3s; font-size: 14px;
-}
-.categoria-btn.active {
-  background: var(--rojo-fuerte); color: white; border-color: var(--rojo-fuerte);
-  box-shadow: 0 4px 10px rgba(217, 4, 41, 0.2);
+  flex: 0 0 auto;
+  padding: 10px 22px;
+  border-radius: 15px;
+  border: 1px solid #EEE;
+  background: var(--card);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#menu-container { padding:15px; padding-bottom:380px; }
+.categoria-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(192, 0, 0, 0.2);
+}
+
+/* Grid de Productos */
+#menu-container {
+  padding: 15px;
+  padding-bottom: 380px;
+  display: grid;
+  gap: 15px;
+}
 
 .product {
-  background: var(--blanco); padding:15px; border-radius:20px; margin-bottom:15px; 
-  box-shadow:0 4px 12px rgba(0,0,0,0.04); position: relative; border: 1px solid #f0f0f0;
+  background: var(--card);
+  border-radius: 24px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  border: 1px solid #F0F0F0;
+  animation: fadeInUp 0.5s ease backwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .badge-popular {
-  position: absolute; top: -10px; left: 15px; background: #FFB703;
-  color: #000; font-size: 10px; padding: 4px 10px; border-radius: 50px; font-weight: 700; z-index: 2;
+  align-self: flex-start;
+  background: var(--accent);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin-bottom: -5px;
 }
 
-.product-top { display:flex; justify-content:space-between; align-items: center; }
-.product-info { flex:1; padding-right: 10px; }
-.product-info .name { font-weight:600; font-size:16px; color: #111; }
-.product-info .desc { font-size:12px; color:#777; margin-top:3px; line-height: 1.3; }
-.product-info .price { font-size:16px; color: var(--rojo-fuerte); font-weight:700; margin-top:6px; }
+.product-body {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-.controls { display:flex; align-items:center; gap:8px; background: #f5f5f5; border-radius: 12px; padding: 4px; }
+.product-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  object-fit: cover;
+  background: #F5F5F5;
+}
+
+.product-info { flex: 1; }
+.product-info .name { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
+.product-info .desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+.product-info .price { 
+    font-weight: 800; 
+    color: var(--primary); 
+    font-size: 18px; 
+    margin-top: 8px;
+}
+
+/* Controles de Cantidad */
+.controls {
+  display: flex;
+  align-items: center;
+  background: #F8F8F8;
+  border-radius: 16px;
+  padding: 5px;
+  gap: 12px;
+}
+
 .controls button {
-  width: 32px; height: 32px; border:none; border-radius:8px; cursor:pointer; 
-  background: var(--rojo-fuerte); color:white; font-weight:bold; font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
 }
-.qty { min-width:20px; text-align:center; font-weight:700; }
 
-.extras-container { margin-top: 12px; padding-top: 12px; border-top: 1px dashed #ddd; display: flex; gap: 8px; flex-wrap: wrap; }
+.controls button:active { transform: scale(0.9); }
+.qty { font-weight: 800; font-size: 16px; min-width: 20px; text-align: center; }
+
+/* Extras Premium */
+.extras-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+}
+
 .extra-pill {
-  font-size: 11px; padding: 5px 12px; border-radius: 50px; background: #eee; 
-  color: #555; cursor: pointer; border: 1px solid transparent;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  background: #F0F0F0;
+  border-radius: 10px;
+  color: #555;
+  border: 2px solid transparent;
 }
-.extra-pill.selected { border-color: var(--rojo-fuerte); color: var(--rojo-fuerte); background: rgba(217, 4, 41, 0.05); font-weight: 600; }
 
-.cart {
-  position:fixed; bottom:0; left:0; right:0; background: var(--blanco); padding:20px; 
-  box-shadow:0 -5px 20px rgba(0,0,0,0.1); border-radius: 25px 25px 0 0; z-index: 1000;
+.extra-pill.selected {
+  background: #FFF0F0;
+  border-color: var(--primary);
+  color: var(--primary);
 }
-.total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-.total-price { color: var(--rojo-fuerte); }
+
+/* Carrito Estilo Moderno */
+.cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  padding: 25px;
+  border-radius: 35px 35px 0 0;
+  box-shadow: 0 -15px 40px rgba(0,0,0,0.1);
+  z-index: 1001;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.total-label { font-weight: 600; color: var(--text-muted); }
+.total-amount { font-weight: 800; font-size: 24px; color: var(--primary); }
 
 textarea {
-  width:100%; box-sizing: border-box; padding:12px; border-radius:12px; border:1px solid #ddd; 
-  font-family: inherit; background: var(--bg-gris); margin-bottom: 12px; font-size: 13px;
+  width: 100%;
+  border: 1.5px solid #EEE;
+  border-radius: 18px;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 14px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
-#entrega { display:flex; gap:8px; margin-bottom: 12px; }
-.entrega-btn {
-  flex:1; padding:10px; border-radius:12px; border:1px solid #ddd; cursor:pointer; 
-  font-weight:600; background: var(--bg-gris); color:#777; font-size: 12px;
+#entrega {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.entrega-btn.active { background: #333; color:white; border-color: #333; }
+
+.entrega-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 15px;
+  border: 1.5px solid #EEE;
+  background: #F9F9F9;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.entrega-btn.active {
+  background: var(--text-main);
+  color: white;
+  border-color: var(--text-main);
+}
 
 .orderbtn {
-  padding:16px; border-radius:15px; border:none; background:#ccc; color:white; 
-  cursor:pointer; font-size:16px; width:100%; font-weight:700; transition:0.3s;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  border: none;
+  background: #E0E0E0;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
 }
-.orderbtn.ready { background: var(--rojo-fuerte); }
+
+.orderbtn.ready {
+  background: var(--primary);
+  box-shadow: 0 10px 25px rgba(192, 0, 0, 0.3);
+}
 </style>
 </head>
 <body>
 
-<header><h1>CENADURÍA DON APULEYO</h1></header>
+<header>
+  <h1>Cenaduría Don Apuleyo</h1>
+</header>
+
 <div id="categorias"></div>
 <div id="menu-container"></div>
 
 <div class="cart">
-  <div class="total-row"><span>Total Pedido:</span><span class="total-price">$<span id="total">0</span></span></div>
-  <textarea id="comentarios" rows="2" placeholder="Notas: ¿Sin cebolla? ¿Traer cambio?"></textarea>
-  <div id="entrega">
-    <button class="entrega-btn active" data-type="Llevar">🛍️ Llevar</button>
-    <button class="entrega-btn" data-type="Domicilio">🛵 Domicilio</button>
-    <button class="entrega-btn" data-type="En sitio">🍽️ En sitio</button>
+  <div class="total-row">
+    <span class="total-label">Total a pagar</span>
+    <span class="total-amount">$<span id="total">0</span></span>
   </div>
-  <button class="orderbtn" id="enviarPedidoBtn">Selecciona productos</button>
+  
+  <textarea id="notas" rows="2" placeholder="¿Alguna especificación? (ej. Sin cebolla, traer cambio de $500)"></textarea>
+  
+  <div id="entrega">
+    <button class="entrega-btn active" data-type="Para llevar">🛍️ LLEVAR</button>
+    <button class="entrega-btn" data-type="Domicilio">🛵 DOMICILIO</button>
+    <button class="entrega-btn" data-type="En sitio">🍽️ EN SITIO</button>
+  </div>
+  
+  <button class="orderbtn" id="btnEnviar">Añade productos</button>
 </div>
 
 <script>
-const telefono = "521XXXXXXXXXX"; 
-
+// DATOS DEL MENÚ (Digitalizados de tu volante)
 const productos = [
-  // ANTOJITOS
-  {id:1, cat:"Antojitos", nombre:"Tlacoyo", desc:"Relleno de frijol o haba", precio:12, popular:true, extras:[]},
-  {id:2, cat:"Antojitos", nombre:"Taco suadero", desc:"Con cebollita y cilantro", precio:14, popular:false, extras:[]},
-  {id:3, cat:"Antojitos", nombre:"Sope sencillo", desc:"Con frijoles, lechuga y queso", precio:20, popular:false, extras:[{n:"Quesillo Extra", p:5}]},
-  {id:4, cat:"Antojitos", nombre:"Huarache con suadero", desc:"Tamaño grande", precio:45, popular:true, extras:[{n:"Quesillo Extra", p:5}]},
-  // HAMBURGUESAS
-  {id:5, cat:"Hamburguesas", nombre:"Sencilla", desc:"Carne de res, lechuga y tomate", precio:55, popular:false, extras:[{n:"Papas a la francesa", p:15},{n:"Queso Extra", p:10}]},
-  {id:6, cat:"Hamburguesas", nombre:"Hawaiana", desc:"Carne, queso y piña", precio:65, popular:true, extras:[{n:"Tocino", p:15}]},
-  // HOT-DOGS
-  {id:7, cat:"Hot-Dogs", nombre:"Sencillo", desc:"Salchicha clásica", precio:18, popular:false, extras:[]},
-  {id:8, cat:"Hot-Dogs", nombre:"Con tocino o quesillo", desc:"Especial de la casa", precio:20, popular:true, extras:[]},
-  // PIZZAS
-  {id:9, cat:"Pizzas", nombre:"Pizza Chica", desc:"Hawaiana, Española o Peperoni", precio:85, popular:false, extras:[]},
-  {id:10, cat:"Pizzas", nombre:"Pizza Familiar", desc:"Hawaiana, Española o Peperoni", precio:245, popular:false, extras:[]},
-  // SNACKS
-  {id:11, cat:"Snacks", nombre:"Alitas con papas", desc:"6 piezas con papas", precio:75, popular:true, extras:[]},
-  {id:12, cat:"Snacks", nombre:"Papas a la francesa", desc:"Crujientes", precio:40, popular:false, extras:[]},
-  {id:13, cat:"Snacks", nombre:"Nachos sencillos", desc:"Con queso fundido", precio:25, popular:false, extras:[]},
-  // POSTRES
-  {id:14, cat:"Postres", nombre:"Fresas con crema", desc:"Deliciosas y frescas", precio:25, popular:true, extras:[]},
-  {id:15, cat:"Postres", nombre:"Flan napolitano", desc:"Casero", precio:25, popular:false, extras:[]},
-  {id:16, cat:"Postres", nombre:"Cheesecake de oreo", desc:"Rebanada grande", precio:40, popular:false, extras:[]},
-  // BEBIDAS
-  {id:17, cat:"Bebidas", nombre:"Refresco", desc:"Varios sabores", precio:25, popular:false, extras:[]},
-  {id:18, cat:"Bebidas", nombre:"Agua natural", desc:"Botella 600ml", precio:20, popular:false, extras:[]},
-  {id:19, cat:"Bebidas", nombre:"Café", desc:"Calientito", precio:15, popular:false, extras:[]}
+  {id:1, cat:"Antojitos", n:"Tlacoyo", d:"Frijol o haba", p:12, pop:true},
+  {id:2, cat:"Antojitos", n:"Sope sencillo", d:"Frijol, lechuga y queso", p:20, pop:false, ex:[{n:"Quesillo", p:5}]},
+  {id:3, cat:"Antojitos", n:"Huarache suadero", d:"Tamaño grande", p:45, pop:true, ex:[{n:"Quesillo", p:5}]},
+  {id:4, cat:"Hamburguesas", n:"Sencilla", d:"Carne res, lechuga, jitomate", p:55, pop:false, ex:[{n:"Papas", p:15},{n:"Queso", p:10}]},
+  {id:5, cat:"Hamburguesas", n:"Hawaiana", d:"Queso fundido y piña", p:65, pop:true, ex:[{n:"Tocino", p:15}]},
+  {id:6, cat:"Hot-Dogs", n:"Sencillo", d:"Salchicha clásica", p:18, pop:false},
+  {id:7, cat:"Hot-Dogs", n:"Especial", d:"Tocino y quesillo", p:23, pop:true},
+  {id:8, cat:"Pizzas", n:"Pizza Chica", d:"Hawaiana / Peperoni", p:85, pop:false},
+  {id:9, cat:"Snacks", n:"Alitas con papas", d:"6 pzas", p:75, pop:true},
+  {id:10, cat:"Bebidas", n:"Refresco 600ml", d:"Varios sabores", p:25, pop:false}
 ];
 
 let carrito = {};
-let categoriaActual = "Antojitos";
+let catActual = "Antojitos";
 
 function init() {
-  const catContainer = document.getElementById("categorias");
-  const categorias = [...new Set(productos.map(p => p.cat))];
-  categorias.forEach(c => {
-    const btn = document.createElement("button");
-    btn.className = `categoria-btn ${c === categoriaActual ? 'active' : ''}`;
-    btn.innerText = c;
-    btn.onclick = () => {
-      document.querySelectorAll(".categoria-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      categoriaActual = c;
+  const ctn = document.getElementById("categorias");
+  const cats = [...new Set(productos.map(p => p.cat))];
+  cats.forEach(c => {
+    const b = document.createElement("button");
+    b.className = `categoria-btn ${c===catActual?'active':''}`;
+    b.innerText = c;
+    b.onclick = () => {
+      document.querySelectorAll(".categoria-btn").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      catActual = c;
       render();
     };
-    catContainer.appendChild(btn);
+    ctn.appendChild(b);
   });
   render();
 }
 
-function render(){
+function render() {
   const container = document.getElementById("menu-container");
   container.innerHTML = "";
-  productos.filter(p => p.cat === categoriaActual).forEach(p => {
+  productos.filter(p => p.cat === catActual).forEach(p => {
     const div = document.createElement("div");
     div.className = "product";
-    const badge = p.popular ? `<div class="badge-popular">🔥 MÁS VENDIDO</div>` : '';
-    let extrasHtml = p.extras.length > 0 ? `<div class="extras-container">` + p.extras.map(ex => `<div class="extra-pill ${carrito[p.id]?.extras?.includes(ex.n)?'selected':''}" onclick="toggleExtra(${p.id}, '${ex.n}', ${ex.p})">+ ${ex.n} ($${ex.p})</div>`).join('') + `</div>` : '';
+    const badge = p.pop ? `<div class="badge-popular">FAVORITO ✨</div>` : '';
+    let extras = p.ex ? `<div class="extras-container">` + p.ex.map(e => `<div class="extra-pill ${carrito[p.id]?.extras?.includes(e.n)?'selected':''}" onclick="toggleExtra(${p.id},'${e.n}',${e.p})">+ ${e.n} ($${e.p})</div>`).join('') + `</div>` : '';
 
-    div.innerHTML = `${badge}<div class="product-top"><div class="product-info"><div class="name">${p.nombre}</div><div class="desc">${p.desc}</div><div class="price">$${p.precio}</div></div><div class="controls"><button onclick="updateQty(${p.id}, -1)">-</button><span class="qty">${carrito[p.id]?.qty || 0}</span><button onclick="updateQty(${p.id}, 1)">+</button></div></div>${extrasHtml}`;
+    div.innerHTML = `${badge}<div class="product-body"><img class="product-img" src="https://via.placeholder.com/150/C00000/FFFFFF?text=${p.n[0]}"><div class="product-info"><div class="name">${p.n}</div><div class="desc">${p.d}</div><div class="price">$${p.p}</div></div><div class="controls"><button onclick="update(${p.id},-1)">-</button><span class="qty">${carrito[p.id]?.q || 0}</span><button onclick="update(${p.id},1)">+</button></div></div>${extras}`;
     container.appendChild(div);
   });
 }
 
-function updateQty(id, delta){
-  if(!carrito[id]) carrito[id] = {qty: 0, extras: [], extraPrice: 0};
-  carrito[id].qty = Math.max(0, carrito[id].qty + delta);
-  if(carrito[id].qty === 0) delete carrito[id];
+function update(id, delta) {
+  if(!carrito[id]) carrito[id] = {q:0, extras:[], exP:0};
+  carrito[id].q = Math.max(0, carrito[id].q + delta);
+  if(carrito[id].q === 0) delete carrito[id];
   actualizar();
 }
 
-function toggleExtra(id, nombre, precio){
-  if(!carrito[id] || carrito[id].qty === 0) return alert("Añade primero el producto");
+function toggleExtra(id, nombre, precio) {
+  if(!carrito[id]) return alert("Añade el producto primero");
   const idx = carrito[id].extras.indexOf(nombre);
-  if(idx > -1) { carrito[id].extras.splice(idx, 1); carrito[id].extraPrice -= precio; }
-  else { carrito[id].extras.push(nombre); carrito[id].extraPrice += precio; }
+  if(idx > -1) {
+    carrito[id].extras.splice(idx, 1);
+    carrito[id].exP -= precio;
+  } else {
+    carrito[id].extras.push(nombre);
+    carrito[id].exP += precio;
+  }
   actualizar();
 }
 
-function actualizar(){
+function actualizar() {
   let total = 0;
-  for(let id in carrito){
+  for(let id in carrito) {
     const p = productos.find(x => x.id == id);
-    total += (p.precio + carrito[id].extraPrice) * carrito[id].qty;
+    total += (p.p + carrito[id].exP) * carrito[id].q;
   }
   document.getElementById("total").innerText = total;
-  const btn = document.getElementById("enviarPedidoBtn");
-  btn.innerText = total > 0 ? "Enviar Pedido a WhatsApp" : "Selecciona productos";
+  const btn = document.getElementById("btnEnviar");
   btn.className = total > 0 ? "orderbtn ready" : "orderbtn";
+  btn.innerText = total > 0 ? "PEDIR POR WHATSAPP" : "Añade productos";
   render();
 }
 
-document.getElementById("enviarPedidoBtn").onclick = () => {
+document.getElementById("btnEnviar").onclick = () => {
   let total = document.getElementById("total").innerText;
   if(total == "0") return;
-  let entrega = document.querySelector(".entrega-btn.active").dataset.type;
-  let msg = `*CENADURÍA DON APULEYO*%0A*Modo:* ${entrega}%0A%0A`;
-  for(let id in carrito){
+  let tipo = document.querySelector(".entrega-btn.active").dataset.type;
+  let msg = `*DON APULEYO - PEDIDO*%0A*Entrega:* ${tipo}%0A%0A`;
+  for(let id in carrito) {
     const p = productos.find(x => x.id == id);
-    msg += `• *${carrito[id].qty}x ${p.nombre}*`;
-    if(carrito[id].extras.length > 0) msg += ` (Extras: ${carrito[id].extras.join(", ")})`;
-    msg += ` -> $${(p.precio + carrito[id].extraPrice) * carrito[id].qty}%0A`;
+    msg += `• *${carrito[id].q}x ${p.n}*`;
+    if(carrito[id].extras.length > 0) msg += ` _(Extras: ${carrito[id].extras.join(', ')})_`;
+    msg += ` -> $${(p.p + carrito[id].exP) * carrito[id].q}%0A`;
   }
-  const notas = document.getElementById("comentarios").value;
-  if(notas) msg += `%0A*Notas:* ${notas}`;
-  msg += `%0A%0A*TOTAL: $${total}*`;
-  window.open(`https://wa.me/${telefono}?text=${msg}`);
+  msg += `%0A*Notas:* ${document.getElementById("notas").value}%0A*TOTAL: $${total}*`;
+  window.open(`https://wa.me/521XXXXXXXXXX?text=${msg}`);
 };
 
-document.querySelectorAll(".entrega-btn").forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll(".entrega-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+document.querySelectorAll(".entrega-btn").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll(".entrega-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
   };
 });
 
