@@ -1,65 +1,55 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>CENADURÍA DON APULEYO - App Oficial</title>
+<title>Don Apuleyo - El Menú Definitivo</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #D90429;
-  --secondary: #FFB703;
-  --success: #2ECC71;
-  --dark: #1A1A1A;
-  --bg: #FDFDFD;
-}
+:root { --primary: #D90429; --secondary: #FFB703; --dark: #1A1A1A; --bg: #FDFDFD; }
+body { margin:0; font-family:'Outfit',sans-serif; background:var(--bg); padding-bottom:380px; }
 
-body { margin:0; font-family:'Outfit',sans-serif; background:var(--bg); color:var(--dark); padding-bottom:120px; }
-
-/* HEADER CON LOGO PREMIUM */
-header { background:#fff; padding:30px 15px; text-align:center; border-bottom:4px solid var(--primary); box-shadow:0 4px 15px rgba(0,0,0,0.05); }
-.logo-circle { width:65px; height:65px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; box-shadow:0 6px 15px rgba(217,4,41,0.3); }
-.logo-text { font-weight:800; font-size:28px; color:#fff; }
+/* HEADER */
+header { background:#fff; padding:25px 15px; text-align:center; border-bottom:4px solid var(--primary); }
+.logo-circle { width:60px; height:60px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; box-shadow:0 6px 15px rgba(217,4,41,0.3); }
+.logo-text { font-weight:800; font-size:26px; color:#fff; }
 .logo-text span { color:var(--secondary); }
-header h1 { margin:0; font-size:20px; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
-.status-pill { display:inline-block; font-size:10px; padding:5px 15px; border-radius:20px; font-weight:800; text-transform:uppercase; margin-top:8px; }
-.open { background:rgba(46,204,113,0.1); color:var(--success); }
+.status-pill { display:inline-block; font-size:10px; padding:5px 15px; border-radius:20px; font-weight:800; text-transform:uppercase; margin-top:5px; }
+.open { background:rgba(46,204,113,0.1); color:#2ECC71; }
 .closed { background:rgba(217,4,41,0.1); color:var(--primary); }
 
-/* NAVEGACIÓN INFERIOR ESTILO APP */
-.nav-bottom { position:fixed; bottom:0; left:0; right:0; background:#fff; display:flex; justify-content:space-around; padding:12px; border-top:1px solid #eee; z-index:2000; box-shadow:0 -5px 20px rgba(0,0,0,0.05); }
-.nav-item { border:none; background:none; display:flex; flex-direction:column; align-items:center; gap:4px; color:#999; font-weight:600; font-size:11px; }
-.nav-item.active { color:var(--primary); }
-.nav-item span { font-size:22px; }
-
-/* CATEGORÍAS */
-#categorias { display:flex; overflow-x:auto; gap:12px; padding:20px 15px; background:#fff; position:sticky; top:0; z-index:1000; }
+/* CATEGORÍAS CON ICONOS */
+#categorias { display:flex; overflow-x:auto; gap:12px; padding:15px; background:#fff; position:sticky; top:0; z-index:1000; border-bottom:1px solid #f0f0f0; }
 #categorias::-webkit-scrollbar { display:none; }
-.cat-btn { flex:0 0 auto; padding:12px 18px; border-radius:18px; border:1.5px solid #eee; background:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; gap:8px; transition:0.3s; }
-.cat-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 8px 15px rgba(217,4,41,0.2); }
+.cat-btn { flex:0 0 auto; padding:10px 18px; border-radius:15px; border:1.5px solid #eee; background:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; gap:8px; }
+.cat-btn span { font-size:18px; }
+.cat-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 5px 15px rgba(217,4,41,0.2); }
 
-/* PRODUCTOS ESTILO PREMIUM */
+/* PRODUCTOS */
 #menu { padding:15px; }
-.card { background:#fff; border-radius:22px; padding:18px; margin-bottom:15px; border:1px solid #f0f0f0; box-shadow:0 10px 25px rgba(0,0,0,0.03); display:flex; gap:15px; position:relative; }
-.card-info { flex:1; }
-.card-name { font-weight:700; font-size:17px; margin-bottom:4px; }
-.card-desc { font-size:12px; color:#777; line-height:1.4; }
-.card-price { font-weight:800; color:var(--primary); font-size:20px; margin-top:10px; }
-.qty-controls { display:flex; align-items:center; background:#f5f5f5; border-radius:14px; padding:5px; gap:12px; height:fit-content; }
-.qty-controls button { width:36px; height:36px; border:none; border-radius:10px; background:var(--primary); color:#fff; font-weight:800; font-size:20px; }
-.qty-val { font-weight:800; min-width:20px; text-align:center; }
+.card { background:#fff; border-radius:22px; padding:18px; margin-bottom:20px; border:1px solid #f0f0f0; box-shadow:0 8px 20px rgba(0,0,0,0.03); position:relative; }
+.badge-pop { position:absolute; top:-10px; left:20px; background:var(--secondary); color:#000; font-size:9px; font-weight:800; padding:4px 10px; border-radius:8px; }
+.card-name { font-weight:700; font-size:17px; }
+.card-price { font-weight:800; color:var(--primary); font-size:20px; margin-top:5px; }
 
-/* SECCIÓN DE DIRECCIÓN */
-footer { padding:40px 20px; background:#f8f9fa; text-align:center; border-top:1px solid #eee; margin-top:20px; }
-.address-box { font-size:14px; color:#555; line-height:1.6; margin-bottom:20px; }
-.maps-btn { display:inline-block; padding:14px 28px; background:var(--dark); color:white; text-decoration:none; border-radius:50px; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:1px; }
+/* EXTRAS */
+.extras-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; border-top:1px dashed #eee; padding-top:12px; }
+.extra-btn { font-size:10px; font-weight:700; padding:6px 12px; background:#f5f5f5; border-radius:10px; border:2px solid transparent; }
+.extra-btn.selected { border-color:var(--primary); color:var(--primary); background:#fff0f1; }
 
-/* PANEL DE PEDIDO */
-#cart-panel { position:fixed; bottom:75px; left:15px; right:15px; background:#fff; border-radius:25px; padding:20px; box-shadow:0 -10px 40px rgba(0,0,0,0.15); z-index:1500; display:none; border:2px solid var(--primary); }
-.order-btn { width:100%; padding:20px; border-radius:18px; border:none; background:#ccc; color:#fff; font-weight:800; font-size:16px; text-transform:uppercase; }
-.order-btn.active { background:var(--primary); box-shadow:0 8px 20px rgba(217,4,41,0.3); }
+.qty-controls { display:flex; align-items:center; background:#f5f5f5; border-radius:14px; padding:4px; gap:12px; float:right; }
+.qty-controls button { width:34px; height:34px; border:none; border-radius:10px; background:var(--primary); color:#fff; font-weight:800; font-size:20px; }
+.qty-val { font-weight:800; min-width:15px; text-align:center; }
 
-textarea { width:100%; border:1.5px solid #eee; border-radius:15px; padding:12px; font-family:inherit; margin-bottom:12px; box-sizing:border-box; }
+/* CARRITO */
+.cart-fixed { position:fixed; bottom:0; left:0; right:0; background:#fff; padding:25px; border-radius:30px 30px 0 0; box-shadow:0 -10px 40px rgba(0,0,0,0.15); z-index:2000; display:none; }
+.upsell { font-size:12px; color:var(--primary); background:rgba(217,4,41,0.05); padding:10px; border-radius:12px; margin-bottom:15px; text-align:center; font-weight:700; border:1px dashed var(--primary); }
+.delivery-grid { display:flex; gap:8px; margin-bottom:15px; }
+.del-btn { flex:1; padding:12px; border-radius:12px; border:1.5px solid #eee; background:#f9f9f9; font-weight:700; font-size:11px; color:#888; }
+.del-btn.active { background:var(--dark); color:white; border-color:var(--dark); }
+.order-btn { width:100%; padding:18px; border-radius:18px; border:none; background:var(--primary); color:#fff; font-weight:800; font-size:16px; }
+
+textarea { width:100%; border:1.5px solid #eee; border-radius:12px; padding:10px; font-family:inherit; margin-bottom:10px; box-sizing:border-box; }
 </style>
 </head>
 <body>
@@ -67,52 +57,37 @@ textarea { width:100%; border:1.5px solid #eee; border-radius:15px; padding:12px
 <header>
   <div class="logo-circle"><div class="logo-text">D<span>A</span></div></div>
   <h1>Cenaduría Don Apuleyo</h1>
-  <div id="status" class="status-pill">Verificando horario...</div>
+  <div id="status" class="status-pill">...</div>
 </header>
 
 <div id="categorias"></div>
 <div id="menu"></div>
 
-<footer>
-  <div class="address-box">
-    <strong style="color:var(--dark); font-size:16px;">📍 Visítanos en el Jardín</strong><br>
-    Av. Independencia No. 73, Santiago, Tezoyuca
-  </div>
-  <a href="https://www.google.com/maps/search/?api=1&query=Av.+Independencia+73+Santiago+Tezoyuca" target="_blank" class="maps-btn">
-    🗺️ CÓMO LLEGAR
-  </a>
-</footer>
-
-<div id="cart-panel">
-  <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:800; font-size:22px;">
+<div class="cart-fixed" id="cart-panel">
+  <div id="upsell-msg" class="upsell">¿Se te antoja un refresco o unas fresas con crema? 🍓</div>
+  <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-weight:800; font-size:22px;">
     <span style="color:#888;">Total:</span>
     <span style="color:var(--primary);">$<span id="total-val">0</span></span>
   </div>
+  <div class="delivery-grid">
+    <button class="del-btn active" data-v="Llevar">🛍️ LLEVAR</button>
+    <button class="del-btn" data-v="Domicilio">🛵 DOMICILIO</button>
+    <button class="del-btn" data-v="En sitio">🍽️ EN SITIO</button>
+  </div>
   <textarea id="notas" rows="2" placeholder="Notas: Sin cebolla, traer cambio de..."></textarea>
-  <button id="main-order-btn" class="order-btn">Añade productos</button>
+  <button class="order-btn" onclick="enviarWA()">ENVIAR A WHATSAPP</button>
 </div>
 
-<nav class="nav-bottom">
-  <button class="nav-item active"><span>🏠</span>Inicio</button>
-  <button class="nav-item" onclick="toggleCart()"><span>🛒</span>Carrito (<span id="cart-count">0</span>)</button>
-  <button class="nav-item" onclick="window.scrollTo(0, document.body.scrollHeight)"><span>📍</span>Lugar</button>
-</nav>
-
 <script>
-const CONFIG = {
-  tel: "521XXXXXXXXXX",
-  dias: [5, 6, 0], // Vie, Sab, Dom
-  apertura: 20, // 8 PM
-  cierre: 23    // 11 PM
-};
+const CONFIG = { tel: "521XXXXXXXXXX", dias: [5, 6, 0], apertura: 20, cierre: 23 };
 
 const menuData = [
-  {id:1, cat:"Antojitos", n:"Tlacoyo", d:"Relleno de frijol o haba", p:12, ico:"🌮"},
-  {id:2, cat:"Antojitos", n:"Huarache Suadero", d:"Tamaño grande con quesillo", p:45, ico:"🌮"},
-  {id:3, cat:"Hamburguesas", n:"Sencilla", d:"Carne 100% res", p:55, ico:"🍔"},
-  {id:4, cat:"Hamburguesas", n:"Hawaiana", d:"Piña y doble queso", p:65, ico:"🍍"},
-  {id:5, cat:"Postres", n:"Fresas con Crema", d:"Especialidad de la casa", p:25, ico:"🍓"},
-  {id:6, cat:"Bebidas", n:"Refresco 600ml", d:"Frío y refrescante", p:25, ico:"🥤"}
+  {id:1, cat:"Antojitos", ico:"🌮", n:"Tlacoyo", d:"Frijol o haba", p:12, pop:true, ex:[{n:"Quesillo", p:5}]},
+  {id:2, cat:"Antojitos", ico:"🌮", n:"Huarache Suadero", d:"Grande con quesillo", p:45, pop:true, ex:[{n:"Extra Carne", p:15}]},
+  {id:3, cat:"Hamburguesas", ico:"🍔", n:"Sencilla", d:"Carne 100% res", p:55, ex:[{n:"Tocino", p:12}, {n:"Papas", p:15}]},
+  {id:4, cat:"Hamburguesas", ico:"🍍", n:"Hawaiana", d:"Piña y doble queso", p:65, pop:true, ex:[{n:"Papas", p:15}]},
+  {id:5, cat:"Postres", ico:"🍓", n:"Fresas con Crema", d:"Especialidad", p:25, pop:true},
+  {id:6, cat:"Bebidas", ico:"🥤", n:"Refresco 600ml", d:"Varios sabores", p:25}
 ];
 
 let cart = {};
@@ -120,10 +95,7 @@ let currentCat = "Antojitos";
 
 function checkStatus() {
   const ahora = new Date();
-  const esDia = CONFIG.dias.includes(ahora.getDay());
-  const esHora = ahora.getHours() >= CONFIG.apertura && ahora.getHours() < CONFIG.cierre;
-  const abierto = esDia && esHora;
-  
+  const abierto = CONFIG.dias.includes(ahora.getDay()) && ahora.getHours() >= CONFIG.apertura && ahora.getHours() < CONFIG.cierre;
   const el = document.getElementById("status");
   el.innerText = abierto ? "● Abierto Ahora" : "● Cerrado - Abrimos Vie-Dom (8-11 PM)";
   el.className = `status-pill ${abierto ? 'open' : 'closed'}`;
@@ -135,8 +107,9 @@ function init() {
   const cats = [...new Set(menuData.map(m => m.cat))];
   cats.forEach(c => {
     const btn = document.createElement("button");
+    const item = menuData.find(x => x.cat === c);
     btn.className = `cat-btn ${c === currentCat ? 'active' : ''}`;
-    btn.innerHTML = `<span>${menuData.find(x=>x.cat===c).ico}</span> ${c}`;
+    btn.innerHTML = `<span>${item.ico}</span> ${c}`;
     btn.onclick = () => {
       document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
@@ -146,77 +119,81 @@ function init() {
     catBox.appendChild(btn);
   });
   render();
+  checkStatus();
 }
 
 function render() {
   const container = document.getElementById("menu");
   container.innerHTML = "";
   menuData.filter(m => m.cat === currentCat).forEach(p => {
+    let exHtml = p.ex ? `<div class="extras-grid">` + p.ex.map(e => `<button class="extra-btn ${cart[p.id]?.extras?.includes(e.n)?'selected':''}" onclick="toggleEx(${p.id},'${e.n}',${e.p})">+ ${e.n} ($${e.p})</button>`).join('') + `</div>` : '';
     const div = document.createElement("div");
     div.className = "card";
     div.innerHTML = `
-      <div class="card-info">
+        ${p.pop ? '<div class="badge-pop">RECOMENDADO ⭐</div>' : ''}
+        <div class="qty-controls">
+          <button onclick="upd(${p.id},-1)">-</button>
+          <span class="qty-val">${cart[p.id]?.q || 0}</span>
+          <button onclick="upd(${p.id},1)">+</button>
+        </div>
         <div class="card-name">${p.n}</div>
-        <div class="card-desc">${p.d}</div>
+        <div style="font-size:12px; color:#777; margin-bottom:5px;">${p.d}</div>
         <div class="card-price">$${p.p}</div>
-      </div>
-      <div class="qty-controls">
-        <button onclick="upd(${p.id},-1)">-</button>
-        <span class="qty-val">${cart[p.id]?.q || 0}</span>
-        <button onclick="upd(${p.id},1)">+</button>
-      </div>
+        ${exHtml}
     `;
     container.appendChild(div);
   });
 }
 
 function upd(id, d) {
-  if(!checkStatus()) return alert("Abrimos de Vie a Dom (8 PM - 11 PM)");
-  if(!cart[id]) cart[id] = {q:0};
+  if(!checkStatus()) return alert("Abrimos Vie-Dom (8-11 PM)");
+  if(!cart[id]) cart[id] = {q:0, extras:[], exTotal:0};
   cart[id].q = Math.max(0, cart[id].q + d);
   if(cart[id].q === 0) delete cart[id];
-  
-  let total = 0, count = 0;
-  for(let key in cart) {
-    total += menuData.find(x => x.id == key).p * cart[key].q;
-    count += cart[key].q;
+  refresh();
+}
+
+function toggleEx(id, name, price) {
+  if(!cart[id]) return alert("Primero añade el producto");
+  const idx = cart[id].extras.indexOf(name);
+  if(idx > -1) { cart[id].extras.splice(idx,1); cart[id].exTotal -= price; }
+  else { cart[id].extras.push(name); cart[id].exTotal += price; }
+  refresh();
+}
+
+function refresh() {
+  let total = 0, count = 0, extra = false;
+  for(let id in cart) {
+    const p = menuData.find(x => x.id == id);
+    total += (p.p + cart[id].exTotal) * cart[id].q;
+    count += cart[id].q;
+    if(p.cat === "Bebidas" || p.cat === "Postres") extra = true;
   }
-  
   document.getElementById("total-val").innerText = total;
-  document.getElementById("cart-count").innerText = count;
   document.getElementById("cart-panel").style.display = count > 0 ? "block" : "none";
-  
-  const btn = document.getElementById("main-order-btn");
-  if(total > 0) {
-    btn.innerText = "ENVIAR PEDIDO POR WHATSAPP";
-    btn.classList.add("active");
-    btn.onclick = enviar;
-  } else {
-    btn.innerText = "Selecciona productos";
-    btn.classList.remove("active");
-  }
+  document.getElementById("upsell-msg").style.display = (count > 0 && !extra) ? "block" : "none";
   render();
 }
 
-function toggleCart() {
-  const p = document.getElementById("cart-panel");
-  p.style.display = p.style.display === "none" ? "block" : "none";
-}
-
-function enviar() {
-  let total = document.getElementById("total-val").innerText;
-  let msg = `*CENADURÍA DON APULEYO*%0A_Pedido desde el Jardín_%0A%0A`;
+function enviarWA() {
+  let tipo = document.querySelector(".del-btn.active").dataset.v;
+  let msg = `*DON APULEYO - PEDIDO*%0A*Entrega:* ${tipo}%0A%0A`;
   for(let id in cart) {
     const p = menuData.find(x => x.id == id);
-    msg += `• *${cart[id].q}x ${p.n}* ($${p.p * cart[id].q})%0A`;
+    msg += `• *${cart[id].q}x ${p.n}*`;
+    if(cart[id].extras.length) msg += ` _(+${cart[id].extras.join(', ')})_`;
+    msg += ` -> $${(p.p + cart[id].exTotal) * cart[id].q}%0A`;
   }
-  msg += `%0A*Notas:* ${document.getElementById("notas").value}`;
-  msg += `%0A*TOTAL: $${total}*%0A%0A_Ubicación: Av. Independencia 73_`;
+  msg += `%0A*Notas:* ${document.getElementById("notas").value}%0A*TOTAL: $${document.getElementById("total-val").innerText}*`;
   window.open(`https://wa.me/${CONFIG.tel}?text=${msg}`);
 }
 
+document.querySelectorAll(".del-btn").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".del-btn").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+});
+
 init();
-setInterval(checkStatus, 60000);
 </script>
 </body>
 </html>
