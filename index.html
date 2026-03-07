@@ -7,8 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #D90429; /* Rojo Intenso */
-  --secondary: #FFB703; /* Amarillo Premium */
+  --primary: #D90429;
+  --secondary: #FFB703;
   --dark: #1A1A1A;
   --bg: #FDFDFD;
   --card: #FFFFFF;
@@ -22,13 +22,12 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* HEADER CON LOGO PREMIUM */
+/* HEADER */
 header {
   background: var(--card);
   padding: 30px 15px;
   text-align: center;
   border-bottom: 4px solid var(--primary);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .logo-circle {
@@ -40,42 +39,25 @@ header {
   align-items: center;
   justify-content: center;
   margin: 0 auto 12px;
-  box-shadow: 0 6px 20px rgba(217, 4, 41, 0.3);
 }
 
-.logo-text {
-  font-weight: 800;
-  font-size: 32px;
-  color: white;
-  letter-spacing: -1px;
-}
-
+.logo-text { font-weight: 800; font-size: 32px; color: white; }
 .logo-text span { color: var(--secondary); }
 
-header h1 {
-  margin: 0;
-  font-size: 20px;
+/* ESTILO DEL STATUS DE HORARIO */
+.status-container { text-align: center; padding: 10px 0; }
+.status-pill {
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 11px;
   font-weight: 800;
-  color: var(--dark);
-  letter-spacing: 1px;
   text-transform: uppercase;
 }
+.open { background: #E8F5E9; color: #2E7D32; border: 1px solid #2E7D32; }
+.closed { background: #FFEBEE; color: #C62828; border: 1px solid #C62828; }
 
-.tagline {
-  font-size: 12px;
-  color: #888;
-  margin-top: 4px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* CATEGORÍAS CON ICONOS */
-
-  
-<div id="status" class="status-pill">Verificando horario...</div>
-  
-  
+/* CATEGORÍAS */
 #categorias {
   display: flex;
   overflow-x: auto;
@@ -97,26 +79,14 @@ header h1 {
   color: #666;
   font-weight: 700;
   font-size: 13px;
-  transition: all 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
 }
-
-.categoria-btn span { font-size: 20px; }
-
-.categoria-btn.active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(217, 4, 41, 0.2);
-}
+.categoria-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
 /* PRODUCTOS */
-#menu-container { padding: 15px; padding-bottom: 380px; }
-
+#menu-container { padding: 15px; padding-bottom: 400px; }
 .product {
   background: var(--card);
   border-radius: 25px;
@@ -126,7 +96,6 @@ header h1 {
   border: 1px solid #F0F0F0;
   position: relative;
 }
-
 .badge-pop {
   position: absolute;
   top: -10px;
@@ -137,19 +106,10 @@ header h1 {
   font-weight: 800;
   padding: 5px 12px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(255, 183, 3, 0.3);
 }
 
-.product-info .name { font-weight: 700; font-size: 18px; margin-bottom: 4px; }
-.product-info .desc { font-size: 13px; color: #777; line-height: 1.4; margin-bottom: 12px; }
+.product-info .name { font-weight: 700; font-size: 18px; }
 .product-info .price { font-weight: 800; color: var(--primary); font-size: 20px; }
-
-.controls-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 15px;
-}
 
 .controls {
   display: flex;
@@ -159,7 +119,6 @@ header h1 {
   padding: 4px;
   gap: 15px;
 }
-
 .controls button {
   width: 38px;
   height: 38px;
@@ -168,123 +127,78 @@ header h1 {
   background: var(--primary);
   color: white;
   font-size: 22px;
-  font-weight: 800;
-  cursor: pointer;
 }
 
-.qty { font-weight: 800; font-size: 18px; min-width: 25px; text-align: center; }
-
-/* EXTRAS */
-.extras-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px dashed #EEE;
-}
-
-.extra-pill {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 8px 15px;
-  background: #F9F9F9;
-  border-radius: 12px;
-  color: #555;
-  border: 2px solid transparent;
-}
-
-.extra-pill.selected {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: #FFF0F1;
-}
+.extras-box { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; border-top: 1px dashed #EEE; padding-top: 10px; }
+.extra-pill { font-size: 11px; font-weight: 700; padding: 8px 15px; background: #F9F9F9; border-radius: 12px; }
+.extra-pill.selected { border: 2px solid var(--primary); color: var(--primary); background: #FFF0F1; }
 
 /* CARRITO */
 .cart {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   background: var(--card);
-  padding: 25px;
+  padding: 20px;
   border-radius: 35px 35px 0 0;
   box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
   z-index: 2000;
 }
 
-.total-display {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+/* MENSAJE DE RECORDATORIO */
+.upsell-msg {
+  background: #FFF9E6;
+  color: #856404;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  display: none;
+  border: 1px dashed var(--secondary);
 }
 
-.total-display span:first-child { font-weight: 600; color: #888; }
-.total-display span:last-child { font-weight: 800; font-size: 26px; color: var(--primary); }
+.total-display { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.total-display span:last-child { font-weight: 800; font-size: 24px; color: var(--primary); }
 
 .order-btn {
   width: 100%;
-  padding: 20px;
+  padding: 18px;
   border-radius: 20px;
   border: none;
   background: #DDD;
   color: white;
   font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 1px;
-  transition: 0.3s;
 }
+.order-btn.active { background: var(--primary); }
 
-.order-btn.active {
-  background: var(--primary);
-  box-shadow: 0 10px 25px rgba(217, 4, 41, 0.3);
-}
-
-textarea {
-  width: 100%;
-  border: 1.5px solid #EEE;
-  border-radius: 15px;
-  padding: 12px;
-  font-family: inherit;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-
-#delivery-type { display: flex; gap: 10px; margin-bottom: 15px; }
-.del-btn {
-  flex: 1;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1.5px solid #EEE;
-  background: #F9F9F9;
-  font-weight: 700;
-  font-size: 11px;
-  color: #888;
-}
-.del-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
+#delivery-type { display: flex; gap: 10px; margin-bottom: 10px; }
+.del-btn { flex: 1; padding: 10px; border-radius: 12px; border: 1.5px solid #EEE; font-size: 10px; font-weight: 700; }
+.del-btn.active { background: var(--dark); color: white; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-circle">
-    <div class="logo-text">D<span>A</span></div>
-  </div>
+  <div class="logo-circle"><div class="logo-text">D<span>A</span></div></div>
   <h1>Cenaduría Don Apuleyo</h1>
-  <div class="tagline">Sabor que enamora</div>
+  <div class="status-container">
+    <div id="status" class="status-pill">Verificando...</div>
+  </div>
 </header>
 
 <div id="categorias"></div>
 <div id="menu-container"></div>
 
 <div class="cart">
+  <div id="upsell" class="upsell-msg">🥤 ¡No olvides tu bebida o unas fresas con crema! 🍓</div>
+
   <div class="total-display">
     <span>Total del pedido</span>
     <span>$<span id="total-val">0</span></span>
   </div>
   
-  <textarea id="obs" rows="2" placeholder="Notas (ej. Sin cebolla, traer cambio de $200)"></textarea>
+  <textarea id="obs" rows="2" placeholder="Notas (ej. Sin cebolla, traer cambio)"></textarea>
   
   <div id="delivery-type">
     <button class="del-btn active" data-v="Llevar">🛍️ LLEVAR</button>
@@ -292,57 +206,18 @@ textarea {
     <button class="del-btn" data-v="En sitio">🍽️ EN SITIO</button>
   </div>
   
-  <button class="order-btn" id="sendOrder"onclick="enviarWA()">Enviar Pedido</button>
+  <button class="order-btn" id="sendOrder" onclick="enviarWA()">Selecciona productos</button>
 </div>
 
 <script>
-
-  function verificarHorarioDonApuleyo() {
-    const ahora = new Date();
-    const dia = ahora.getDay();    // 0=Dom, 5=Vie, 6=Sáb
-    const hora = ahora.getHours();  // Formato 0-23
-
-    // Configuración: Viernes(5), Sábado(6), Domingo(0) de 8pm(20) a 11pm(23)
-    const diasAbiertos = [5, 6, 0];
-    const horaApertura = 20; 
-    const horaCierre = 23;
-
-    const abierto = diasAbiertos.includes(dia) && hora >= horaApertura && hora < horaCierre;
-    
-    // Aquí mandamos el resultado a la pantalla para que el cliente lo vea
-    const etiqueta = document.getElementById("status");
-    if (etiqueta) {
-        if (abierto) {
-            etiqueta.innerText = "● ABIERTO AHORA";
-            etiqueta.className = "status-pill open";
-        } else {
-            etiqueta.innerText = "● CERRADO - Abrimos Vie a Dom (8-11 PM)";
-            etiqueta.className = "status-pill closed";
-        }
-    }
-    return abierto;
-  }
-
-function enviarWA() {
-    // ESTO ES LO QUE ESTÁS APRENDIENDO: El candado
-    if (!verificarHorarioDonApuleyo()) {
-        alert("¡Hola! Por ahora el está cerrado. 🌙 \nNuestro horario es de Viernes a Domingo de 8:00 PM a 11:00 PM. ¡Te esperamos pronto!");
-        return; // El 'return' detiene todo aquí y no abre WhatsApp
-    }
-
-    // ... aquí abajo va todo tu código de enviar el mensaje ...
-    console.log("¡Pedido permitido! Abriendo WhatsApp...");
-}
-  
-  
 const whatsappNum = "521XXXXXXXXXX";
 
 const menuData = [
-  {id:1, c:"Antojitos", i:"🌮", n:"Tlacoyo", d:"Relleno de frijol, con salsa y queso", p:12, pop:true},
+  {id:1, c:"Antojitos", i:"🌮", n:"Tlacoyo", d:"Frijol o haba, con salsa y queso", p:12, pop:true},
   {id:2, c:"Antojitos", i:"🌮", n:"Taco de suadero", d:"Doble tortilla, suadero suave", p:14},
-  {id:3, c:"Antojitos", i:"🌮", n:"Huarache Suadero", d:"Tamaño grande con quesillo", p:45, pop:true, ex:[{n:"Quesillo Extra", p:5}]},
-  {id:4, c:"Hamburguesas", i:"🍔", n:"Sencilla", d:"Carne 100% res, lechuga y jitomate", p:55, ex:[{n:"Papas Francesa", p:15},{n:"Queso Extra", p:10}]},
-  {id:5, c:"Hamburguesas", i:"🍍", n:"Hawaiana", d:"Con piña y doble queso fundido", p:65, pop:true, ex:[{n:"Tocino", p:15}]},
+  {id:3, c:"Antojitos", i:"🌮", n:"Huarache Suadero", d:"Grande con quesillo", p:45, pop:true, ex:[{n:"Quesillo Extra", p:5}]},
+  {id:4, c:"Hamburguesas", i:"🍔", n:"Sencilla", d:"100% res, lechuga y jitomate", p:55, ex:[{n:"Papas Francesa", p:15},{n:"Queso Extra", p:10}]},
+  {id:5, c:"Hamburguesas", i:" Pineapple", n:"Hawaiana", d:"Piña y doble queso fundido", p:65, pop:true, ex:[{n:"Tocino", p:15}]},
   {id:6, c:"Hot-Dogs", i:"🌭", n:"Sencillo", d:"Salchicha clásica y pan artesanal", p:18},
   {id:7, c:"Pizzas", i:"🍕", n:"Pizza Chica", d:"Peperoni o Hawaiana", p:85},
   {id:8, c:"Postres", i:"🍓", n:"Fresas con Crema", d:"Receta especial de la casa", p:25, pop:true},
@@ -352,10 +227,28 @@ const menuData = [
 let cart = {};
 let currentCat = "Antojitos";
 
+// FUNCIÓN DE HORARIOS
+function verificarHorario() {
+  const ahora = new Date();
+  const dia = ahora.getDay(); 
+  const hora = ahora.getHours();
+  const diasAbiertos = [5, 6, 0]; // Vie, Sab, Dom
+  const abierto = diasAbiertos.includes(dia) && hora >= 20 && hora < 23;
+  
+  const el = document.getElementById("status");
+  if(abierto) {
+    el.innerText = "● ABIERTO AHORA";
+    el.className = "status-pill open";
+  } else {
+    el.innerText = "● CERRADO (Vie a Dom 8-11 PM)";
+    el.className = "status-pill closed";
+  }
+  return abierto;
+}
+
 function init() {
   const catBox = document.getElementById("categorias");
   const uniqueCats = [...new Set(menuData.map(m => m.c))];
-  
   uniqueCats.forEach(catName => {
     const item = menuData.find(m => m.c === catName);
     const b = document.createElement("button");
@@ -370,6 +263,7 @@ function init() {
     catBox.appendChild(b);
   });
   renderMenu();
+  verificarHorario();
 }
 
 function renderMenu() {
@@ -379,7 +273,7 @@ function renderMenu() {
     const div = document.createElement("div");
     div.className = "product";
     const badge = p.pop ? `<div class="badge-pop">RECOMENDADO ⭐</div>` : '';
-    let exHtml = p.ex ? `<div class="extras-box">` + p.ex.map(e => `<div class="extra-pill ${cart[p.id]?.extras?.includes(e.n)?'selected':''}" onclick="toggleEx(${p.id},'${e.n}',${e.p})">+ ${e.n} ($${e.p})</div>`).join('') + `</div>` : '';
+    let exHtml = p.ex ? `<div class="extras-box">` + p.ex.map(e => `<div class="extra-pill ${cart[p.id]?.extras?.includes(e.n)?'selected':''}" onclick="toggleEx(${p.id},'${e.n}',${e.p})">+ ${e.n}</div>`).join('') + `</div>` : '';
 
     div.innerHTML = `${badge}<div class="product-info"><div class="name">${p.n}</div><div class="desc">${p.d}</div><div class="controls-row"><div class="price">$${p.p}</div><div class="controls"><button onclick="upd(${p.id},-1)">-</button><span class="qty">${cart[p.id]?.q || 0}</span><button onclick="upd(${p.id},1)">+</button></div></div></div>${exHtml}`;
     container.appendChild(div);
@@ -394,7 +288,7 @@ function upd(id, delta) {
 }
 
 function toggleEx(id, n, p) {
-  if(!cart[id]) return alert("Añade el producto primero");
+  if(!cart[id]) return;
   const i = cart[id].extras.indexOf(n);
   if(i > -1) { cart[id].extras.splice(i,1); cart[id].exP -= p; }
   else { cart[id].extras.push(n); cart[id].exP += p; }
@@ -403,20 +297,32 @@ function toggleEx(id, n, p) {
 
 function refresh() {
   let t = 0;
+  let tieneBebidaOPostre = false;
+  
   for(let id in cart) {
     const item = menuData.find(x => x.id == id);
     t += (item.p + cart[id].exP) * cart[id].q;
+    if(item.c === "Bebidas" || item.c === "Postres") tieneBebidaOPostre = true;
   }
+  
   document.getElementById("total-val").innerText = t;
+  document.getElementById("upsell").style.display = (t > 0 && !tieneBebidaOPostre) ? "block" : "none";
+  
   const btn = document.getElementById("sendOrder");
   btn.className = t > 0 ? "order-btn active" : "order-btn";
   btn.innerText = t > 0 ? "PEDIR AHORA POR WHATSAPP" : "Selecciona productos";
   renderMenu();
 }
 
-document.getElementById("sendOrder").onclick = () => {
+function enviarWA() {
+  if(!verificarHorario()) {
+    alert("¡Hola! Por ahora estamos cerrados. Abrimos de Viernes a Domingo de 8:00 PM a 11:00 PM.");
+    return;
+  }
+  
   let val = document.getElementById("total-val").innerText;
   if(val === "0") return;
+  
   let type = document.querySelector(".del-btn.active").dataset.v;
   let text = `*CENADURÍA DON APULEYO*%0A*Entrega:* ${type}%0A%0A`;
   for(let id in cart) {
@@ -427,7 +333,7 @@ document.getElementById("sendOrder").onclick = () => {
   }
   text += `%0A*Notas:* ${document.getElementById("obs").value}%0A*TOTAL: $${val}*`;
   window.open(`https://wa.me/${whatsappNum}?text=${text}`);
-};
+}
 
 document.querySelectorAll(".del-btn").forEach(btn => {
   btn.onclick = () => {
