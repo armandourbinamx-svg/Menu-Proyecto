@@ -44,7 +44,7 @@ header {
 .logo-text { font-weight: 800; font-size: 32px; color: white; }
 .logo-text span { color: var(--secondary); }
 
-/* ESTILO DEL STATUS DE HORARIO */
+/* STATUS DE HORARIO */
 .status-container { text-align: center; padding: 10px 0; }
 .status-pill {
   display: inline-block;
@@ -111,23 +111,9 @@ header {
 .product-info .name { font-weight: 700; font-size: 18px; }
 .product-info .price { font-weight: 800; color: var(--primary); font-size: 20px; }
 
-.controls {
-  display: flex;
-  align-items: center;
-  background: #F5F5F5;
-  border-radius: 15px;
-  padding: 4px;
-  gap: 15px;
-}
-.controls button {
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 12px;
-  background: var(--primary);
-  color: white;
-  font-size: 22px;
-}
+.controls-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+.controls { display: flex; align-items: center; background: #F5F5F5; border-radius: 15px; padding: 4px; gap: 15px; }
+.controls button { width: 38px; height: 38px; border: none; border-radius: 12px; background: var(--primary); color: white; font-size: 22px; }
 
 .extras-box { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; border-top: 1px dashed #EEE; padding-top: 10px; }
 .extra-pill { font-size: 11px; font-weight: 700; padding: 8px 15px; background: #F9F9F9; border-radius: 12px; }
@@ -161,6 +147,20 @@ header {
 .total-display { display: flex; justify-content: space-between; margin-bottom: 10px; }
 .total-display span:last-child { font-weight: 800; font-size: 24px; color: var(--primary); }
 
+/* AQUÍ ESTÁ EL ARREGLO PARA QUE NO SE VEA MOCHO */
+textarea {
+  width: 100% !important;
+  border: 1.5px solid #EEE;
+  border-radius: 15px;
+  padding: 12px;
+  font-family: inherit;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  resize: none;
+  display: block;
+}
+
 .order-btn {
   width: 100%;
   padding: 18px;
@@ -191,9 +191,7 @@ header {
 <div id="menu-container"></div>
 
 <div class="cart">
-  <div id="upsell" class="upsell-msg" style="display: none; background: #FFF9E6; color: #856404; font-size: 11px; font-weight: 700; padding: 8px; border-radius: 12px; text-align: center; margin-bottom: 10px; border: 1px dashed #FFB703;">
-    🥤 ¡No olvides tu bebida o unas fresas con crema! 🍓
-  </div>
+  <div id="upsell" class="upsell-msg">🥤 ¡No olvides tu bebida o unas fresas con crema! 🍓</div>
 
   <div class="total-display">
     <span>Total del pedido</span>
@@ -210,10 +208,6 @@ header {
   
   <button class="order-btn" id="sendOrder" onclick="enviarWA()">Selecciona productos</button>
 </div>
-  
-  
-  <button class="order-btn" id="sendOrder" onclick="enviarWA()">Selecciona productos</button>
-</div>
 
 <script>
 const whatsappNum = "521XXXXXXXXXX";
@@ -223,7 +217,7 @@ const menuData = [
   {id:2, c:"Antojitos", i:"🌮", n:"Taco de suadero", d:"Doble tortilla, suadero suave", p:14},
   {id:3, c:"Antojitos", i:"🌮", n:"Huarache Suadero", d:"Grande con quesillo", p:45, pop:true, ex:[{n:"Quesillo Extra", p:5}]},
   {id:4, c:"Hamburguesas", i:"🍔", n:"Sencilla", d:"100% res, lechuga y jitomate", p:55, ex:[{n:"Papas Francesa", p:15},{n:"Queso Extra", p:10}]},
-  {id:5, c:"Hamburguesas", i:" Pineapple", n:"Hawaiana", d:"Piña y doble queso fundido", p:65, pop:true, ex:[{n:"Tocino", p:15}]},
+  {id:5, c:"Hamburguesas", i:"🍍", n:"Hawaiana", d:"Piña y doble queso fundido", p:65, pop:true, ex:[{n:"Tocino", p:15}]},
   {id:6, c:"Hot-Dogs", i:"🌭", n:"Sencillo", d:"Salchicha clásica y pan artesanal", p:18},
   {id:7, c:"Pizzas", i:"🍕", n:"Pizza Chica", d:"Peperoni o Hawaiana", p:85},
   {id:8, c:"Postres", i:"🍓", n:"Fresas con Crema", d:"Receta especial de la casa", p:25, pop:true},
@@ -233,7 +227,6 @@ const menuData = [
 let cart = {};
 let currentCat = "Antojitos";
 
-// FUNCIÓN DE HORARIOS
 function verificarHorario() {
   const ahora = new Date();
   const dia = ahora.getDay(); 
