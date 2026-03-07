@@ -191,20 +191,26 @@ header {
 <div id="menu-container"></div>
 
 <div class="cart">
-  <div id="upsell" class="upsell-msg">🥤 ¡No olvides tu bebida o unas fresas con crema! 🍓</div>
+  <div id="upsell" class="upsell-msg" style="display: none; background: #FFF9E6; color: #856404; font-size: 11px; font-weight: 700; padding: 8px; border-radius: 12px; text-align: center; margin-bottom: 10px; border: 1px dashed #FFB703;">
+    🥤 ¡No olvides tu bebida o unas fresas con crema! 🍓
+  </div>
 
   <div class="total-display">
     <span>Total del pedido</span>
     <span>$<span id="total-val">0</span></span>
   </div>
   
-  <textarea id="obs" rows="2" placeholder="Notas (ej. Sin cebolla, traer cambio)"></textarea>
+  <textarea id="obs" rows="2" placeholder="Notas (ej. Sin cebolla, traer cambio de $200)"></textarea>
   
   <div id="delivery-type">
     <button class="del-btn active" data-v="Llevar">🛍️ LLEVAR</button>
     <button class="del-btn" data-v="Domicilio">🛵 DOMICILIO</button>
     <button class="del-btn" data-v="En sitio">🍽️ EN SITIO</button>
   </div>
+  
+  <button class="order-btn" id="sendOrder" onclick="enviarWA()">Selecciona productos</button>
+</div>
+  
   
   <button class="order-btn" id="sendOrder" onclick="enviarWA()">Selecciona productos</button>
 </div>
