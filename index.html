@@ -3,48 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Cenaduría Don Apuleyo - Oficial</title>
+<title>CENADURÍA DON APULEYO - App Oficial</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #D90429; /* Rojo Intenso */
-  --secondary: #FFB703; /* Amarillo Premium */
+  --primary: #D90429;
+  --secondary: #FFB703;
   --success: #2ECC71;
   --dark: #1A1A1A;
   --bg: #FDFDFD;
 }
 
-body { margin: 0; font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--dark); padding-bottom: 120px; }
+body { margin:0; font-family:'Outfit',sans-serif; background:var(--bg); color:var(--dark); padding-bottom:120px; }
 
-/* HEADER Y LOGO */
-header { background: #fff; padding: 30px 15px; text-align: center; border-bottom: 4px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-.logo-circle { width: 65px; height: 65px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 6px 20px rgba(217, 4, 41, 0.3); }
-.logo-text { font-weight: 800; font-size: 28px; color: white; }
-.logo-text span { color: var(--secondary); }
-header h1 { margin: 0; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-.status-pill { display: inline-block; font-size: 10px; padding: 5px 15px; border-radius: 20px; font-weight: 800; text-transform: uppercase; margin-top: 10px; }
-.open { background: rgba(46,204,113,0.1); color: var(--success); }
-.closed { background: rgba(217, 4, 41, 0.1); color: var(--primary); }
+/* HEADER CON LOGO PREMIUM */
+header { background:#fff; padding:30px 15px; text-align:center; border-bottom:4px solid var(--primary); box-shadow:0 4px 15px rgba(0,0,0,0.05); }
+.logo-circle { width:65px; height:65px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; box-shadow:0 6px 15px rgba(217,4,41,0.3); }
+.logo-text { font-weight:800; font-size:28px; color:#fff; }
+.logo-text span { color:var(--secondary); }
+header h1 { margin:0; font-size:20px; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
+.status-pill { display:inline-block; font-size:10px; padding:5px 15px; border-radius:20px; font-weight:800; text-transform:uppercase; margin-top:8px; }
+.open { background:rgba(46,204,113,0.1); color:var(--success); }
+.closed { background:rgba(217,4,41,0.1); color:var(--primary); }
 
-/* PRODUCTOS */
-#menu-container { padding: 15px; }
-.card { background: #fff; border-radius: 20px; padding: 18px; margin-bottom: 15px; border: 1px solid #f0f0f0; box-shadow: 0 8px 20px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
-.card-info { flex: 1; }
-.card-name { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
-.card-price { font-weight: 800; color: var(--primary); font-size: 19px; }
-.controls { display: flex; align-items: center; background: #F5F5F5; border-radius: 12px; padding: 4px; gap: 12px; }
-.controls button { width: 35px; height: 35px; border: none; border-radius: 10px; background: var(--primary); color: #fff; font-weight: 800; font-size: 20px; }
-.qty-val { font-weight: 800; min-width: 20px; text-align: center; }
+/* NAVEGACIÓN INFERIOR ESTILO APP */
+.nav-bottom { position:fixed; bottom:0; left:0; right:0; background:#fff; display:flex; justify-content:space-around; padding:12px; border-top:1px solid #eee; z-index:2000; box-shadow:0 -5px 20px rgba(0,0,0,0.05); }
+.nav-item { border:none; background:none; display:flex; flex-direction:column; align-items:center; gap:4px; color:#999; font-weight:600; font-size:11px; }
+.nav-item.active { color:var(--primary); }
+.nav-item span { font-size:22px; }
+
+/* CATEGORÍAS */
+#categorias { display:flex; overflow-x:auto; gap:12px; padding:20px 15px; background:#fff; position:sticky; top:0; z-index:1000; }
+#categorias::-webkit-scrollbar { display:none; }
+.cat-btn { flex:0 0 auto; padding:12px 18px; border-radius:18px; border:1.5px solid #eee; background:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; gap:8px; transition:0.3s; }
+.cat-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 8px 15px rgba(217,4,41,0.2); }
+
+/* PRODUCTOS ESTILO PREMIUM */
+#menu { padding:15px; }
+.card { background:#fff; border-radius:22px; padding:18px; margin-bottom:15px; border:1px solid #f0f0f0; box-shadow:0 10px 25px rgba(0,0,0,0.03); display:flex; gap:15px; position:relative; }
+.card-info { flex:1; }
+.card-name { font-weight:700; font-size:17px; margin-bottom:4px; }
+.card-desc { font-size:12px; color:#777; line-height:1.4; }
+.card-price { font-weight:800; color:var(--primary); font-size:20px; margin-top:10px; }
+.qty-controls { display:flex; align-items:center; background:#f5f5f5; border-radius:14px; padding:5px; gap:12px; height:fit-content; }
+.qty-controls button { width:36px; height:36px; border:none; border-radius:10px; background:var(--primary); color:#fff; font-weight:800; font-size:20px; }
+.qty-val { font-weight:800; min-width:20px; text-align:center; }
 
 /* SECCIÓN DE DIRECCIÓN */
-footer { padding: 30px 20px; background: #f0f0f0; text-align: center; border-top: 1px solid #ddd; }
-.address-box { font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 15px; }
-.maps-btn { display: inline-block; padding: 12px 25px; background: var(--dark); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 12px; transition: 0.3s; }
+footer { padding:40px 20px; background:#f8f9fa; text-align:center; border-top:1px solid #eee; margin-top:20px; }
+.address-box { font-size:14px; color:#555; line-height:1.6; margin-bottom:20px; }
+.maps-btn { display:inline-block; padding:14px 28px; background:var(--dark); color:white; text-decoration:none; border-radius:50px; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:1px; }
 
-/* CARRITO FLOTANTE */
-.cart-panel { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 20px; border-radius: 30px 30px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); z-index: 1000; }
-.order-btn { width: 100%; padding: 18px; border-radius: 18px; border: none; background: #ccc; color: #fff; font-weight: 800; font-size: 16px; transition: 0.3s; }
-.order-btn.active { background: var(--primary); box-shadow: 0 10px 25px rgba(217, 4, 41, 0.3); }
+/* PANEL DE PEDIDO */
+#cart-panel { position:fixed; bottom:75px; left:15px; right:15px; background:#fff; border-radius:25px; padding:20px; box-shadow:0 -10px 40px rgba(0,0,0,0.15); z-index:1500; display:none; border:2px solid var(--primary); }
+.order-btn { width:100%; padding:20px; border-radius:18px; border:none; background:#ccc; color:#fff; font-weight:800; font-size:16px; text-transform:uppercase; }
+.order-btn.active { background:var(--primary); box-shadow:0 8px 20px rgba(217,4,41,0.3); }
+
+textarea { width:100%; border:1.5px solid #eee; border-radius:15px; padding:12px; font-family:inherit; margin-bottom:12px; box-sizing:border-box; }
 </style>
 </head>
 <body>
@@ -52,49 +67,58 @@ footer { padding: 30px 20px; background: #f0f0f0; text-align: center; border-top
 <header>
   <div class="logo-circle"><div class="logo-text">D<span>A</span></div></div>
   <h1>Cenaduría Don Apuleyo</h1>
-  <div id="status" class="status-pill">Verificando...</div>
+  <div id="status" class="status-pill">Verificando horario...</div>
 </header>
 
-<div id="menu-container">
-  </div>
+<div id="categorias"></div>
+<div id="menu"></div>
 
 <footer>
   <div class="address-box">
-    <strong>📍 Nuestra Ubicación:</strong><br>
+    <strong style="color:var(--dark); font-size:16px;">📍 Visítanos en el Jardín</strong><br>
     Av. Independencia No. 73, Santiago, Tezoyuca
   </div>
-  <a href="https://www.google.com/maps?q=Av.+Independencia+73,+Santiago,+Tezoyuca" target="_blank" class="maps-btn">
-    🗺️ CÓMO LLEGAR (GOOGLE MAPS)
+  <a href="https://www.google.com/maps/search/?api=1&query=Av.+Independencia+73+Santiago+Tezoyuca" target="_blank" class="maps-btn">
+    🗺️ CÓMO LLEGAR
   </a>
 </footer>
 
-<div class="cart-panel">
-  <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:800; font-size:20px;">
+<div id="cart-panel">
+  <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:800; font-size:22px;">
     <span style="color:#888;">Total:</span>
     <span style="color:var(--primary);">$<span id="total-val">0</span></span>
   </div>
-  <button id="btn-pedido" class="order-btn">Selecciona productos</button>
+  <textarea id="notas" rows="2" placeholder="Notas: Sin cebolla, traer cambio de..."></textarea>
+  <button id="main-order-btn" class="order-btn">Añade productos</button>
 </div>
+
+<nav class="nav-bottom">
+  <button class="nav-item active"><span>🏠</span>Inicio</button>
+  <button class="nav-item" onclick="toggleCart()"><span>🛒</span>Carrito (<span id="cart-count">0</span>)</button>
+  <button class="nav-item" onclick="window.scrollTo(0, document.body.scrollHeight)"><span>📍</span>Lugar</button>
+</nav>
 
 <script>
 const CONFIG = {
-  tel: "521XXXXXXXXXX", // Tu número aquí
-  dias: [5, 6, 0], // Vie, Sáb, Dom
+  tel: "521XXXXXXXXXX",
+  dias: [5, 6, 0], // Vie, Sab, Dom
   apertura: 20, // 8 PM
   cierre: 23    // 11 PM
 };
 
-const productos = [
-  {id:1, n:"Tlacoyo", p:12, d:"Frijol o haba"},
-  {id:2, n:"Huarache Suadero", p:45, d:"Con quesillo"},
-  {id:3, n:"Hamburguesa Sencilla", p:55, d:"Carne 100% res"},
-  {id:4, n:"Hamburguesa Hawaiana", p:65, d:"Piña y doble queso"},
-  {id:5, n:"Fresas con Crema", p:25, d:"Especialidad"}
+const menuData = [
+  {id:1, cat:"Antojitos", n:"Tlacoyo", d:"Relleno de frijol o haba", p:12, ico:"🌮"},
+  {id:2, cat:"Antojitos", n:"Huarache Suadero", d:"Tamaño grande con quesillo", p:45, ico:"🌮"},
+  {id:3, cat:"Hamburguesas", n:"Sencilla", d:"Carne 100% res", p:55, ico:"🍔"},
+  {id:4, cat:"Hamburguesas", n:"Hawaiana", d:"Piña y doble queso", p:65, ico:"🍍"},
+  {id:5, cat:"Postres", n:"Fresas con Crema", d:"Especialidad de la casa", p:25, ico:"🍓"},
+  {id:6, cat:"Bebidas", n:"Refresco 600ml", d:"Frío y refrescante", p:25, ico:"🥤"}
 ];
 
-let carrito = {};
+let cart = {};
+let currentCat = "Antojitos";
 
-function checkHorario() {
+function checkStatus() {
   const ahora = new Date();
   const esDia = CONFIG.dias.includes(ahora.getDay());
   const esHora = ahora.getHours() >= CONFIG.apertura && ahora.getHours() < CONFIG.cierre;
@@ -106,36 +130,65 @@ function checkHorario() {
   return abierto;
 }
 
-function render() {
-  const container = document.getElementById("menu-container");
-  container.innerHTML = productos.map(p => `
-    <div class="card">
-      <div class="card-info">
-        <div class="card-name">${p.n}</div>
-        <div style="font-size:12px; color:#777;">${p.d}</div>
-        <div class="card-price">$${p.p}</div>
-      </div>
-      <div class="controls">
-        <button onclick="upd(${p.id},-1)">-</button>
-        <span class="qty-val">${carrito[p.id] || 0}</span>
-        <button onclick="upd(${p.id},1)">+</button>
-      </div>
-    </div>
-  `).join('');
+function init() {
+  const catBox = document.getElementById("categorias");
+  const cats = [...new Set(menuData.map(m => m.cat))];
+  cats.forEach(c => {
+    const btn = document.createElement("button");
+    btn.className = `cat-btn ${c === currentCat ? 'active' : ''}`;
+    btn.innerHTML = `<span>${menuData.find(x=>x.cat===c).ico}</span> ${c}`;
+    btn.onclick = () => {
+      document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCat = c;
+      render();
+    };
+    catBox.appendChild(btn);
+  });
+  render();
 }
 
-function upd(id, delta) {
-  if(!checkHorario()) return alert("Solo tomamos pedidos en horario de servicio (Vie-Dom, 8-11 PM)");
-  carrito[id] = Math.max(0, (carrito[id] || 0) + delta);
-  if(carrito[id] === 0) delete carrito[id];
+function render() {
+  const container = document.getElementById("menu");
+  container.innerHTML = "";
+  menuData.filter(m => m.cat === currentCat).forEach(p => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <div class="card-info">
+        <div class="card-name">${p.n}</div>
+        <div class="card-desc">${p.d}</div>
+        <div class="card-price">$${p.p}</div>
+      </div>
+      <div class="qty-controls">
+        <button onclick="upd(${p.id},-1)">-</button>
+        <span class="qty-val">${cart[p.id]?.q || 0}</span>
+        <button onclick="upd(${p.id},1)">+</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function upd(id, d) {
+  if(!checkStatus()) return alert("Abrimos de Vie a Dom (8 PM - 11 PM)");
+  if(!cart[id]) cart[id] = {q:0};
+  cart[id].q = Math.max(0, cart[id].q + d);
+  if(cart[id].q === 0) delete cart[id];
   
-  let total = 0;
-  for(let key in carrito) total += productos.find(p => p.id == key).p * carrito[key];
+  let total = 0, count = 0;
+  for(let key in cart) {
+    total += menuData.find(x => x.id == key).p * cart[key].q;
+    count += cart[key].q;
+  }
   
   document.getElementById("total-val").innerText = total;
-  const btn = document.getElementById("btn-pedido");
+  document.getElementById("cart-count").innerText = count;
+  document.getElementById("cart-panel").style.display = count > 0 ? "block" : "none";
+  
+  const btn = document.getElementById("main-order-btn");
   if(total > 0) {
-    btn.innerText = "PEDIR POR WHATSAPP";
+    btn.innerText = "ENVIAR PEDIDO POR WHATSAPP";
     btn.classList.add("active");
     btn.onclick = enviar;
   } else {
@@ -145,18 +198,25 @@ function upd(id, delta) {
   render();
 }
 
+function toggleCart() {
+  const p = document.getElementById("cart-panel");
+  p.style.display = p.style.display === "none" ? "block" : "none";
+}
+
 function enviar() {
-  let msg = `*DON APULEYO - PEDIDO*%0A%0A`;
-  for(let id in carrito) {
-    const p = productos.find(x => x.id == id);
-    msg += `• *${carrito[id]}x ${p.n}* -> $${p.p * carrito[id]}%0A`;
+  let total = document.getElementById("total-val").innerText;
+  let msg = `*CENADURÍA DON APULEYO*%0A_Pedido desde el Jardín_%0A%0A`;
+  for(let id in cart) {
+    const p = menuData.find(x => x.id == id);
+    msg += `• *${cart[id].q}x ${p.n}* ($${p.p * cart[id].q})%0A`;
   }
-  msg += `%0A*TOTAL: $${document.getElementById("total-val").innerText}*%0A_Ubicación: Av. Independencia 73_`;
+  msg += `%0A*Notas:* ${document.getElementById("notas").value}`;
+  msg += `%0A*TOTAL: $${total}*%0A%0A_Ubicación: Av. Independencia 73_`;
   window.open(`https://wa.me/${CONFIG.tel}?text=${msg}`);
 }
 
-render();
-checkHorario();
+init();
+setInterval(checkStatus, 60000);
 </script>
 </body>
 </html>
