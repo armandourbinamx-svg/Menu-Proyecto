@@ -291,10 +291,49 @@ textarea {
 </div>
 
 <script>
+
+  function verificarHorarioDonApuleyo() {
+    const ahora = new Date();
+    const dia = ahora.getDay();    // 0=Dom, 5=Vie, 6=Sáb
+    const hora = ahora.getHours();  // Formato 0-23
+
+    // Configuración: Viernes(5), Sábado(6), Domingo(0) de 8pm(20) a 11pm(23)
+    const diasAbiertos = [5, 6, 0];
+    const horaApertura = 20; 
+    const horaCierre = 23;
+
+    const abierto = diasAbiertos.includes(dia) && hora >= horaApertura && hora < horaCierre;
+    
+    // Aquí mandamos el resultado a la pantalla para que el cliente lo vea
+    const etiqueta = document.getElementById("status");
+    if (etiqueta) {
+        if (abierto) {
+            etiqueta.innerText = "● ABIERTO AHORA";
+            etiqueta.className = "status-pill open";
+        } else {
+            etiqueta.innerText = "● CERRADO - Abrimos Vie a Dom (8-11 PM)";
+            etiqueta.className = "status-pill closed";
+        }
+    }
+    return abierto;
+  }
+
+function enviarWA() {
+    // ESTO ES LO QUE ESTÁS APRENDIENDO: El candado
+    if (!verificarHorarioDonApuleyo()) {
+        alert("¡Hola! Por ahora el está cerrado. 🌙 \nNuestro horario es de Viernes a Domingo de 8:00 PM a 11:00 PM. ¡Te esperamos pronto!");
+        return; // El 'return' detiene todo aquí y no abre WhatsApp
+    }
+
+    // ... aquí abajo va todo tu código de enviar el mensaje ...
+    console.log("¡Pedido permitido! Abriendo WhatsApp...");
+}
+  
+  
 const whatsappNum = "521XXXXXXXXXX";
 
 const menuData = [
-  {id:1, c:"Antojitos", i:"🌮", n:"Tlacoyo", d:"Relleno de frijol o haba, con salsa y queso", p:12, pop:true},
+  {id:1, c:"Antojitos", i:"🌮", n:"Tlacoyo", d:"Relleno de frijol, con salsa y queso", p:12, pop:true},
   {id:2, c:"Antojitos", i:"🌮", n:"Taco de suadero", d:"Doble tortilla, suadero suave", p:14},
   {id:3, c:"Antojitos", i:"🌮", n:"Huarache Suadero", d:"Tamaño grande con quesillo", p:45, pop:true, ex:[{n:"Quesillo Extra", p:5}]},
   {id:4, c:"Hamburguesas", i:"🍔", n:"Sencilla", d:"Carne 100% res, lechuga y jitomate", p:55, ex:[{n:"Papas Francesa", p:15},{n:"Queso Extra", p:10}]},
