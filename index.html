@@ -1081,12 +1081,12 @@ margin:0 auto;
 
 <div class="promo-dia" id="promoDia">
 <div class="promo-label">🎉 Promoción de Hoy</div>
-<div class="promo-text" id="promoTexto">2x1 en Pizzas Medianas</div>
+<div class="promo-text" id="promoTexto"></div>
 <div class="promo-timer">⏰ Válido hasta las 11 PM</div>
 </div>
 
 <div class="info-bar">
-🍟 Agrega papas a la francesa por $20 en Hamburguesas, Hot-Dogs y Sincronizadas
+🍟 Agrega papas a la francesa por $20 en Hamburguesas, Hot-Dogs
 </div>
 
 <div class="search-container">
@@ -1199,15 +1199,15 @@ const CONFIG={
 };
 
 const promosPorDia={
-  0:{promo:"Postre gratis en cualquier combo",desc:"Cheesecake o Flan de cortesía"},
-  5:{promo:"2x1 en Pizzas Medianas",desc:"Paga 1 y lleva 2"},
+  0:{promo:"",desc:""},
+  5:{promo:"",desc:""},
   6:{promo:"Alitas a $75 (antes $95)",desc:"6 piezas con papas incluidas"}
 };
 
 const combos=[
 {
   id:"combo1",
-  n:"Combo Don Apuleyo",
+  n:"Combo",
   d:"Perfecto para una persona",
   p:115,
   original:145,
@@ -1222,7 +1222,7 @@ const combos=[
   p:195,
   original:240,
   ahorro:45,
-  items:[{n:"2 Hamburguesas Sencillas",icon:"🍔🍔"},{n:"1 Papas Gajo Grandes",icon:"🍟"},{n:"2 Refrescos 600ml",icon:"🥤🥤"}],
+  items:[{n:"2 Hamburguesas Sencillas",icon:"🍔🍔"},{n:"1 Papas a la Francesa",icon:"🍟"},{n:"2 Refrescos 600ml",icon:"🥤🥤"}],
   productos:[{id:1,q:2},{id:35,q:1},{id:65,q:2}]
 }
 ];
