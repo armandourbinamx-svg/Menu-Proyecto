@@ -18,6 +18,7 @@
 --muted:#6c757d;
 --success:#2e7d32;
 --combo:#e74c3c;
+--nuevo:#00b894;
 --radius:16px;
 --shadow:0 4px 20px rgba(0,0,0,0.08);
 --shadow-lg:0 8px 32px rgba(0,0,0,0.12);
@@ -100,6 +101,60 @@ animation:pulse 2s infinite;
 50%{opacity:0.5;}
 }
 
+/* PEDIDOS HOY */
+.pedidos-hoy{
+background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+color:white;
+padding:12px 20px;
+text-align:center;
+font-size:14px;
+font-weight:700;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+}
+
+.pedidos-hoy::before{
+content:"🔥";
+animation:fire 1s infinite;
+}
+
+@keyframes fire{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.2);}
+}
+
+/* PROMO DÍA */
+.promo-dia{
+background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);
+color:white;
+padding:15px 20px;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.promo-label{
+font-size:12px;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:2px;
+opacity:0.9;
+margin-bottom:5px;
+}
+
+.promo-text{
+font-size:18px;
+font-weight:800;
+}
+
+.promo-timer{
+font-size:13px;
+margin-top:5px;
+opacity:0.95;
+}
+
 /* INFO BAR */
 .info-bar{
 background:#fff3cd;
@@ -165,22 +220,11 @@ cursor:pointer;
 display:none;
 }
 
-/* COMBOS SECTION */
+/* COMBOS */
 .combos-section{
 padding:20px 15px;
 background:linear-gradient(135deg,#ff6b6b 0%,#ee5a24 100%);
 margin-bottom:10px;
-position:relative;
-overflow:hidden;
-}
-
-.combos-section::before{
-content:"🔥";
-position:absolute;
-top:-20px;
-right:-20px;
-font-size:100px;
-opacity:0.1;
 }
 
 .combos-header{
@@ -193,10 +237,6 @@ font-weight:800;
 font-size:24px;
 color:white;
 text-shadow:0 2px 4px rgba(0,0,0,0.2);
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
 }
 
 .combos-subtitle{
@@ -240,7 +280,6 @@ padding:6px 15px;
 border-radius:20px;
 font-size:11px;
 font-weight:800;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
 white-space:nowrap;
 }
 
@@ -251,6 +290,13 @@ color:var(--primary);
 text-align:center;
 margin-top:15px;
 margin-bottom:12px;
+}
+
+.combo-desc{
+text-align:center;
+color:var(--muted);
+font-size:13px;
+margin-bottom:10px;
 }
 
 .combo-items{
@@ -283,7 +329,6 @@ align-items:center;
 justify-content:center;
 gap:12px;
 margin-bottom:8px;
-flex-wrap:wrap;
 }
 
 .combo-price{
@@ -325,13 +370,64 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:8px;
-box-shadow:0 4px 15px rgba(217,4,41,0.4);
-transition:all 0.3s;
 }
 
-.combo-btn:active{
-transform:scale(0.98);
-box-shadow:0 3px 10px rgba(217,4,41,0.3);
+/* SUGERENCIAS */
+.sugerencias-box{
+background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);
+padding:15px;
+margin:15px;
+border-radius:16px;
+border:2px solid #2196f3;
+display:none;
+}
+
+.sugerencias-title{
+font-weight:700;
+font-size:14px;
+color:#1565c0;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.sugerencia-item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:white;
+padding:12px;
+border-radius:12px;
+margin-bottom:10px;
+}
+
+.sugerencia-name{
+font-weight:700;
+font-size:14px;
+}
+
+.sugerencia-desc{
+font-size:12px;
+color:var(--muted);
+}
+
+.sugerencia-price{
+font-weight:800;
+font-size:16px;
+color:var(--primary);
+margin-right:12px;
+}
+
+.sugerencia-btn{
+padding:10px 16px;
+border:none;
+border-radius:10px;
+background:var(--success);
+color:white;
+font-weight:700;
+font-size:13px;
+cursor:pointer;
 }
 
 /* RECOMENDADOS */
@@ -352,9 +448,6 @@ padding:0 5px;
 .recom-title{
 font-weight:700;
 font-size:18px;
-display:flex;
-align-items:center;
-gap:8px;
 }
 
 .recom-subtitle{
@@ -378,13 +471,8 @@ background:white;
 border-radius:var(--radius);
 box-shadow:var(--shadow);
 overflow:hidden;
-transition:transform 0.3s,box-shadow 0.3s;
 cursor:pointer;
-border:1px solid #f0f0f0;
-}
-
-.recom-card:active{
-transform:scale(0.98);
+position:relative;
 }
 
 .recom-card img{
@@ -401,9 +489,6 @@ padding:12px;
 font-weight:700;
 font-size:13px;
 margin-bottom:4px;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
 }
 
 .recom-price{
@@ -412,15 +497,22 @@ font-weight:800;
 font-size:14px;
 }
 
-.recom-badge{
-display:inline-block;
-padding:3px 8px;
-background:var(--secondary);
-color:#333;
+.nuevo-badge{
+position:absolute;
+top:10px;
+right:10px;
+background:var(--nuevo);
+color:white;
+padding:4px 10px;
+border-radius:15px;
 font-size:10px;
-font-weight:700;
-border-radius:10px;
-margin-top:6px;
+font-weight:800;
+animation:pulse-nuevo 2s infinite;
+}
+
+@keyframes pulse-nuevo{
+0%,100%{box-shadow:0 0 0 0 rgba(0,184,148,0.4);}
+50%{box-shadow:0 0 0 10px rgba(0,184,148,0);}
 }
 
 /* CATEGORÍAS */
@@ -448,17 +540,15 @@ font-weight:600;
 font-size:14px;
 background:#f5f5f5;
 color:var(--muted);
-transition:all 0.3s;
 white-space:nowrap;
 }
 
 .cat.active{
 background:var(--primary);
 color:white;
-box-shadow:0 4px 15px rgba(217,4,41,0.3);
 }
 
-/* MENÚ GRID */
+/* MENÚ */
 #menu{
 padding:20px 15px;
 display:grid;
@@ -471,20 +561,7 @@ background:white;
 border-radius:var(--radius);
 box-shadow:var(--shadow);
 overflow:hidden;
-display:flex;
-flex-direction:column;
-transition:transform 0.3s,box-shadow 0.3s;
-animation:fadeIn 0.5s ease-out;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-.product:active{
-transform:translateY(-2px);
-box-shadow:var(--shadow-lg);
+position:relative;
 }
 
 .product-img-container{
@@ -498,7 +575,6 @@ overflow:hidden;
 width:100%;
 height:100%;
 object-fit:cover;
-transition:transform 0.3s;
 }
 
 .popular-badge{
@@ -511,40 +587,28 @@ padding:4px 10px;
 border-radius:15px;
 font-size:11px;
 font-weight:700;
-display:flex;
-align-items:center;
-gap:4px;
 }
 
 .info{
 padding:15px;
-flex:1;
-display:flex;
-flex-direction:column;
 }
 
 .name{
 font-weight:700;
 font-size:15px;
 margin-bottom:4px;
-display:flex;
-justify-content:space-between;
-align-items:start;
 }
 
 .desc{
 font-size:12px;
 color:var(--muted);
-line-height:1.4;
 margin-bottom:12px;
-flex:1;
 }
 
 .controls{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:auto;
 }
 
 .price{
@@ -565,22 +629,10 @@ display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-transition:all 0.3s;
-box-shadow:0 2px 8px rgba(217,4,41,0.3);
-}
-
-.add-btn:active{
-transform:scale(0.9);
 }
 
 .add-btn.added{
 background:var(--success);
-animation:pulse-added 0.5s;
-}
-
-@keyframes pulse-added{
-0%,100%{transform:scale(1);}
-50%{transform:scale(1.2);}
 }
 
 .qty-controls{
@@ -598,24 +650,18 @@ height:28px;
 border:none;
 border-radius:8px;
 background:white;
-color:var(--text);
 font-weight:700;
 font-size:16px;
-display:flex;
-align-items:center;
-justify-content:center;
 cursor:pointer;
-box-shadow:0 1px 3px rgba(0,0,0,0.1);
 }
 
 .qty{
 font-weight:700;
 min-width:24px;
 text-align:center;
-font-size:14px;
 }
 
-/* CARRITO COLAPSABLE */
+/* CARRITO */
 .cart-bar{
 position:fixed;
 bottom:20px;
@@ -632,24 +678,11 @@ justify-content:space-between;
 align-items:center;
 z-index:1000;
 cursor:pointer;
-transition:all 0.3s;
-border:2px solid transparent;
 display:none;
 }
 
 .cart-bar.has-items{
 display:flex;
-border-color:var(--primary);
-}
-
-.cart-bar:active{
-transform:translateX(-50%) scale(0.98);
-}
-
-.cart-info{
-display:flex;
-align-items:center;
-gap:12px;
 }
 
 .cart-icon{
@@ -663,7 +696,6 @@ align-items:center;
 justify-content:center;
 font-size:22px;
 position:relative;
-box-shadow:0 4px 12px rgba(217,4,41,0.3);
 }
 
 .cart-count{
@@ -680,27 +712,8 @@ font-weight:800;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
 
-.cart-text{
-font-weight:700;
-font-size:15px;
-}
-
-.cart-total{
-font-size:13px;
-color:var(--muted);
-margin-top:2px;
-}
-
-.cart-arrow{
-font-size:24px;
-color:var(--primary);
-font-weight:700;
-}
-
-/* OVERLAY Y PANEL */
 .cart-overlay{
 position:fixed;
 top:0;
@@ -708,7 +721,6 @@ left:0;
 right:0;
 bottom:0;
 background:rgba(0,0,0,0.6);
-backdrop-filter:blur(4px);
 opacity:0;
 visibility:hidden;
 transition:all 0.3s;
@@ -731,7 +743,7 @@ padding:25px;
 max-height:85vh;
 overflow-y:auto;
 transform:translateY(100%);
-transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+transition:transform 0.3s;
 z-index:2001;
 }
 
@@ -751,9 +763,6 @@ border-bottom:2px solid #f5f5f5;
 .cart-title{
 font-weight:800;
 font-size:20px;
-display:flex;
-align-items:center;
-gap:10px;
 }
 
 .close-cart{
@@ -764,19 +773,6 @@ background:#f5f5f5;
 border-radius:50%;
 font-size:18px;
 cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-transition:all 0.3s;
-}
-
-.close-cart:active{
-background:#e0e0e0;
-transform:scale(0.95);
-}
-
-.cart-items{
-margin-bottom:20px;
 }
 
 .cart-item{
@@ -787,10 +783,6 @@ padding:15px 0;
 border-bottom:1px solid #f5f5f5;
 }
 
-.cart-item:first-child{
-padding-top:0;
-}
-
 .cart-item-info{
 flex:1;
 }
@@ -798,7 +790,6 @@ flex:1;
 .cart-item-name{
 font-weight:700;
 font-size:15px;
-margin-bottom:3px;
 }
 
 .cart-item-price{
@@ -810,7 +801,6 @@ color:var(--muted);
 font-weight:700;
 color:var(--primary);
 font-size:14px;
-margin-top:4px;
 }
 
 .cart-item-qty{
@@ -831,20 +821,82 @@ border-radius:8px;
 font-weight:700;
 font-size:16px;
 cursor:pointer;
-box-shadow:0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* PUNTOS */
+.puntos-box{
+background:linear-gradient(135deg,#fff8e1 0%,#ffecb3 100%);
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;
+border:2px solid var(--secondary);
+}
+
+.puntos-header{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.puntos-title{
+font-weight:700;
+font-size:14px;
+color:#f57c00;
+}
+
+.puntos-valor{
+font-weight:800;
+font-size:20px;
+color:var(--primary);
+}
+
+.puntos-bar{
+height:10px;
+background:#ffe0b2;
+border-radius:5px;
+overflow:hidden;
+}
+
+.puntos-progress{
+height:100%;
+background:linear-gradient(90deg,var(--secondary) 0%,#ff8f00 100%);
+border-radius:5px;
+transition:width 0.5s;
+}
+
+.puntos-text{
+font-size:12px;
+color:var(--muted);
+text-align:center;
+margin-top:8px;
+}
+
+/* REPETIR PEDIDO */
+.reorder-section{
+padding:15px;
+background:white;
+border-bottom:2px solid #f5f5f5;
+display:none;
+}
+
+.reorder-btn{
+width:100%;
+padding:14px;
+border:2px dashed var(--primary);
+border-radius:12px;
+background:rgba(217,4,41,0.05);
+color:var(--primary);
+font-weight:700;
+font-size:14px;
+cursor:pointer;
 display:flex;
 align-items:center;
 justify-content:center;
-}
-
-.cart-item-qty span{
-font-weight:700;
-min-width:24px;
-text-align:center;
+gap:10px;
 }
 
 .cart-total-section{
-background:linear-gradient(135deg,#f8f9fa 0%,#fff 100%);
+background:#f8f9fa;
 padding:20px;
 border-radius:16px;
 margin-bottom:20px;
@@ -854,19 +906,11 @@ margin-bottom:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:15px;
-}
-
-.total-label{
-font-size:14px;
-color:var(--muted);
-font-weight:600;
 }
 
 .total-amount{
 font-size:28px;
 font-weight:800;
-color:var(--text);
 }
 
 textarea{
@@ -878,12 +922,6 @@ font-family:inherit;
 font-size:14px;
 resize:none;
 margin-bottom:15px;
-transition:border-color 0.3s;
-}
-
-textarea:focus{
-outline:none;
-border-color:var(--primary);
 }
 
 .delivery-types{
@@ -902,20 +940,10 @@ font-size:12px;
 font-weight:700;
 text-align:center;
 cursor:pointer;
-transition:all 0.3s;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:4px;
-}
-
-.type-icon{
-font-size:18px;
 }
 
 .type.active{
 border-color:var(--primary);
-background:rgba(217,4,41,0.05);
 color:var(--primary);
 }
 
@@ -929,38 +957,13 @@ color:white;
 font-weight:800;
 font-size:16px;
 cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px;
-box-shadow:0 6px 20px rgba(217,4,41,0.4);
-transition:all 0.3s;
-}
-
-.order-btn:active{
-transform:translateY(2px);
-box-shadow:0 3px 10px rgba(217,4,41,0.3);
 }
 
 .order-btn:disabled{
 background:#ccc;
-cursor:not-allowed;
-box-shadow:none;
 }
 
-.empty-cart{
-text-align:center;
-padding:40px 20px;
-color:var(--muted);
-}
-
-.empty-cart-icon{
-font-size:48px;
-margin-bottom:15px;
-opacity:0.5;
-}
-
-/* BOTÓN DE LLAMADA */
+/* LLAMADA */
 .call-btn{
 position:fixed;
 bottom:100px;
@@ -976,9 +979,6 @@ justify-content:center;
 font-size:24px;
 box-shadow:0 6px 20px rgba(0,184,148,0.4);
 z-index:900;
-cursor:pointer;
-transition:all 0.3s;
-border:none;
 text-decoration:none;
 }
 
@@ -990,44 +990,46 @@ height:100%;
 border-radius:50%;
 background:rgba(0,184,148,0.3);
 animation:ripple 2s infinite;
-z-index:-1;
 }
 
 @keyframes ripple{
-0%{
-transform:scale(1);
+0%{transform:scale(1);opacity:1;}
+100%{transform:scale(1.5);opacity:0;}
+}
+
+/* PUSH NOTIF */
+.push-notif{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%) translateY(-150px);
+background:white;
+padding:15px 20px;
+border-radius:16px;
+box-shadow:0 8px 30px rgba(0,0,0,0.2);
+display:flex;
+align-items:center;
+gap:12px;
+z-index:4000;
+opacity:0;
+transition:all 0.5s;
+}
+
+.push-notif.show{
+transform:translateX(-50%) translateY(0);
 opacity:1;
 }
-100%{
-transform:scale(1.5);
-opacity:0;
-}
-}
 
-.call-btn:active{
-transform:scale(0.95);
-}
-
-.call-tooltip{
-position:absolute;
-right:70px;
-top:50%;
-transform:translateY(-50%);
-background:#333;
+.push-icon{
+width:40px;
+height:40px;
+background:var(--success);
 color:white;
-padding:8px 12px;
-border-radius:8px;
-font-size:12px;
-font-weight:600;
-white-space:nowrap;
-opacity:0;
-visibility:hidden;
-transition:all 0.3s;
-}
-
-.call-btn:hover .call-tooltip{
-opacity:1;
-visibility:visible;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
 }
 
 /* TOAST */
@@ -1042,7 +1044,6 @@ padding:14px 28px;
 border-radius:25px;
 font-weight:600;
 font-size:14px;
-box-shadow:0 4px 20px rgba(0,0,0,0.2);
 opacity:0;
 transition:all 0.3s;
 z-index:3000;
@@ -1053,29 +1054,11 @@ transform:translateX(-50%) translateY(0);
 opacity:1;
 }
 
-/* RESPONSIVE */
 @media(min-width:768px){
 #menu{
 grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
 max-width:1200px;
 margin:0 auto;
-}
-
-.combos-grid{
-grid-template-columns:repeat(2,1fr);
-max-width:800px;
-}
-
-.cart-panel{
-left:50%;
-transform:translateX(-50%) translateY(100%);
-width:100%;
-max-width:500px;
-border-radius:25px 25px 0 0;
-}
-
-.cart-overlay.show .cart-panel{
-transform:translateX(-50%) translateY(0);
 }
 }
 </style>
@@ -1085,55 +1068,59 @@ transform:translateX(-50%) translateY(0);
 <header>
 <div class="logo">Cenaduría Don Apuleyo</div>
 <div class="tagline">Av. Independencia No. 73, Santiago Tezoyuca</div>
-<div id="status" class="status-badge">
+<div class="status-badge">
 <span class="status-dot"></span>
 <span id="statusText">Verificando...</span>
 </div>
 </header>
 
+<div class="pedidos-hoy">
+<span>🔥</span>
+<span id="contadorPedidos">12 personas han pedido hoy</span>
+</div>
+
+<div class="promo-dia" id="promoDia">
+<div class="promo-label">🎉 Promoción de Hoy</div>
+<div class="promo-text" id="promoTexto">2x1 en Pizzas Medianas</div>
+<div class="promo-timer">⏰ Válido hasta las 11 PM</div>
+</div>
+
 <div class="info-bar">
 🍟 Agrega papas a la francesa por $20 en Hamburguesas, Hot-Dogs y Sincronizadas
 </div>
 
-<!-- BUSCADOR -->
 <div class="search-container">
 <div class="search-box">
-<input type="text" id="searchInput" placeholder="🔍 Buscar hamburguesas, tacos, pizzas..." oninput="handleSearch(this.value)">
+<input type="text" id="searchInput" placeholder="🔍 Buscar..." oninput="handleSearch(this.value)">
 <button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button>
 <span class="search-icon">🔍</span>
 </div>
 </div>
 
-<!-- COMBOS DESTACADOS -->
 <div class="combos-section">
 <div class="combos-header">
-<div class="combos-title">🎉 COMBOS ESPECIALES</div>
-<div class="combos-subtitle">Ahorra más con nuestros combos</div>
+<div class="combos-title">🎁 COMBOS ESPECIALES</div>
 </div>
 <div class="combos-grid" id="combosGrid"></div>
 </div>
 
+<div class="sugerencias-box" id="sugerenciasBox">
+<div class="sugerencias-title">💡 Completa tu pedido</div>
+<div id="sugerenciasList"></div>
+</div>
+
 <div id="recom">
 <div class="recom-header">
-<div>
 <div class="recom-title">🔥 Recomendados</div>
-<div class="recom-subtitle">Los favoritos de nuestros clientes</div>
-</div>
 </div>
 <div class="recom-list" id="recomList"></div>
 </div>
 
 <div id="cats"></div>
-
 <div id="menu"></div>
 
-<!-- BOTÓN DE LLAMADA -->
-<a href="tel:+5215512345678" class="call-btn" title="Llamar para pedir">
-📞
-<span class="call-tooltip">¿Dudas? ¡Llámanos!</span>
-</a>
+<a href="tel:+5215512345678" class="call-btn">📞</a>
 
-<!-- CARRITO COLAPSABLE -->
 <div class="cart-bar" id="cartBar" onclick="openCart()">
 <div class="cart-info">
 <div class="cart-icon">
@@ -1155,50 +1142,68 @@ transform:translateX(-50%) translateY(0);
 <button class="close-cart" onclick="closeCart()">✕</button>
 </div>
 
+<div class="reorder-section" id="reorderSection">
+<button class="reorder-btn" onclick="repetirPedido()">
+<span>↩️</span>
+<span>Repetir mi último pedido</span>
+</button>
+</div>
+
 <div class="cart-items" id="cartItems"></div>
+
+<div class="puntos-box">
+<div class="puntos-header">
+<div class="puntos-title">⭐ Tus Puntos</div>
+<div class="puntos-valor" id="puntosValor">0 pts</div>
+</div>
+<div class="puntos-bar">
+<div class="puntos-progress" id="puntosProgress" style="width:0%"></div>
+</div>
+<div class="puntos-text" id="puntosText">Faltan 50 puntos para una hamburguesa gratis</div>
+</div>
 
 <div class="cart-total-section">
 <div class="total-row">
-<span class="total-label">Total a pagar</span>
+<span>Total</span>
 <span class="total-amount">$<span id="total">0</span></span>
 </div>
 </div>
 
-<textarea id="obs" placeholder="Notas especiales (ej. sin cebolla, salsa aparte, dirección exacta para domicilio...) 📝" rows="3"></textarea>
+<textarea id="obs" placeholder="Notas especiales..." rows="3"></textarea>
 
 <div class="delivery-types">
-<button class="type active" data="Llevar">
-<span class="type-icon">📦</span>
-<span>Llevar</span>
-</button>
-<button class="type" data="Domicilio">
-<span class="type-icon">🏠</span>
-<span>Domicilio</span>
-</button>
-<button class="type" data="En sitio">
-<span class="type-icon">🍽️</span>
-<span>En sitio</span>
-</button>
+<button class="type active" data="Llevar">📦 Llevar</button>
+<button class="type" data="Domicilio">🏠 Domicilio</button>
+<button class="type" data="En sitio">🍽️ En sitio</button>
 </div>
 
-<button class="order-btn" onclick="send()" id="orderBtn">
-<span>📱</span>
-<span>PEDIR POR WHATSAPP</span>
-</button>
+<button class="order-btn" onclick="send()" id="orderBtn">📱 PEDIR POR WHATSAPP</button>
+</div>
+</div>
+
+<div class="push-notif" id="pushNotif">
+<div class="push-icon">✓</div>
+<div>
+<div style="font-weight:700;">¡Pedido enviado!</div>
+<div style="font-size:12px;color:#666;">Te contactaremos por WhatsApp</div>
 </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// CONFIGURACIÓN - REEMPLAZA CON TUS DATOS REALES
 const CONFIG={
   whatsapp:"5215512345678",
   telefono:"+5215512345678",
   direccion:"Av. Independencia No. 73, Santiago Tezoyuca"
 };
 
-// COMBOS ESPECIALES
+const promosPorDia={
+  0:{promo:"Postre gratis en cualquier combo",desc:"Cheesecake o Flan de cortesía"},
+  5:{promo:"2x1 en Pizzas Medianas",desc:"Paga 1 y lleva 2"},
+  6:{promo:"Alitas a $75 (antes $95)",desc:"6 piezas con papas incluidas"}
+};
+
 const combos=[
 {
   id:"combo1",
@@ -1207,148 +1212,155 @@ const combos=[
   p:115,
   original:145,
   ahorro:30,
-  items:[
-    {n:"1 Hamburguesa Sencilla", icon:"🍔"},
-    {n:"1 Papas a la Francesa", icon:"🍟"},
-    {n:"1 Refresco 600ml", icon:"🥤"}
-  ],
-  productos:[{id:1,q:1},{id:35,q:1},{id:66,q:1}]
+  items:[{n:"1 Hamburguesa Sencilla",icon:"🍔"},{n:"1 Papas a la Francesa",icon:"🍟"},{n:"1 Refresco 600ml",icon:"🥤"}],
+  productos:[{id:1,q:1},{id:34,q:1},{id:65,q:1}]
 },
 {
   id:"combo2",
   n:"Combo Pareja",
-  d:"Ideal para compartir en pareja",
+  d:"Ideal para compartir",
   p:195,
   original:240,
   ahorro:45,
-  items:[
-    {n:"2 Hamburguesas Sencillas", icon:"🍔🍔"},
-    {n:"1 Papas Gajo Grandes", icon:"🍟"},
-    {n:"2 Refrescos 600ml", icon:"🥤🥤"}
-  ],
-  productos:[{id:1,q:2},{id:36,q:1},{id:66,q:2}]
+  items:[{n:"2 Hamburguesas Sencillas",icon:"🍔🍔"},{n:"1 Papas Gajo Grandes",icon:"🍟"},{n:"2 Refrescos 600ml",icon:"🥤🥤"}],
+  productos:[{id:1,q:2},{id:35,q:1},{id:65,q:2}]
 }
 ];
 
-// MENÚ COMPLETO - PRECIOS ACTUALIZADOS 2024
 const menu=[
-// HAMBURGUESAS
-{id:1,c:"Hamburguesas",n:"Hamburguesa Sencilla",d:"Carne 100% res con queso, lechuga y tomate",p:65,img:""},
-{id:2,c:"Hamburguesas",n:"Hamburguesa Hawaiana",d:"Carne de res con piña, jamón y queso",p:75,pop:true,img:""},
-{id:3,c:"Hamburguesas",n:"Hamburguesa Especial",d:"Carne de res con tocino, queso y vegetales",p:80,pop:true,img:""},
-{id:4,c:"Hamburguesas",n:"Hamburguesa Doble",d:"Doble carne, doble queso, tocino crujiente",p:95,pop:true,img:""},
-
-// HOT-DOGS
-{id:5,c:"Hot-Dogs",n:"Hot-Dog Sencillo",d:"Salchicha con catsup y mostaza",p:22,img:""},
-{id:6,c:"Hot-Dogs",n:"Hot-Dog con Tocino",d:"Salchicha envuelta en tocino crujiente",p:28,img:""},
-{id:7,c:"Hot-Dogs",n:"Hot-Dog con Quesillo",d:"Salchicha con quesillo derretido",p:28,img:""},
-{id:8,c:"Hot-Dogs",n:"Hot-Dog Especial",d:"Con tocino, quesillo y jalapeños",p:35,pop:true,img:""},
-{id:9,c:"Hot-Dogs",n:"Sincronizada",d:"Dos tortillas de harina con jamón y queso",p:32,pop:true,img:""},
-
-// ANTOJITOS
-{id:10,c:"Antojitos",n:"Tlacoyo",d:"Masa azul rellena de frijol o haba",p:15,img:""},
-{id:11,c:"Antojitos",n:"Taco de Suadero",d:"Taco tradicional con carne suadero jugosa",p:18,pop:true,img:""},
-{id:12,c:"Antojitos",n:"Taco de Longaniza",d:"Taco con longaniza artesanal",p:20,img:""},
-{id:13,c:"Antojitos",n:"Taco Campechano",d:"Mixto de suadero y longaniza",p:22,pop:true,img:""},
-{id:14,c:"Antojitos",n:"Sope Sencillo",d:"Masa gruesa con frijol, crema y queso",p:25,img:""},
-{id:15,c:"Antojitos",n:"Sope con Suadero",d:"Sope tradicional con carne suadero",p:42,pop:true,img:""},
-{id:16,c:"Antojitos",n:"Sope con Longaniza",d:"Sope con longaniza artesanal",p:45,img:""},
-{id:17,c:"Antojitos",n:"Huarache Sencillo",d:"Masa ovalada con frijol, crema y queso",p:32,img:""},
-{id:18,c:"Antojitos",n:"Huarache con Suadero",d:"Huarache con jugoso suadero",p:55,pop:true,img:""},
-{id:19,c:"Antojitos",n:"Huarache con Longaniza",d:"Huarache con longaniza artesanal",p:58,img:""},
-{id:20,c:"Antojitos",n:"Quesillo Extra",d:"Porción extra de quesillo Oaxaca",p:12,img:""},
-
-// PIZZAS
-{id:21,c:"Pizzas",n:"Pizza Individual",d:"Hawaiana, Española o Peperoni - 4 rebanadas",p:95,img:""},
-{id:22,c:"Pizzas",n:"Pizza Mediana",d:"Hawaiana, Española o Peperoni - 6 rebanadas",p:165,pop:true,img:""},
-{id:23,c:"Pizzas",n:"Pizza Grande",d:"Hawaiana, Española o Peperoni - 8 rebanadas",p:220,img:""},
-{id:24,c:"Pizzas",n:"Pizza Familiar",d:"Hawaiana, Española o Peperoni - 12 rebanadas",p:280,pop:true,img:""},
-{id:25,c:"Pizzas",n:"Pizza Mega",d:"¡La más grande! Hasta 16 rebanadas",p:380,img:""},
-
-// QUESADILLAS FRITAS
-{id:26,c:"Quesadillas Fritas",n:"Quesadilla de Quesillo",d:"Tortilla frita con quesillo Oaxaca",p:22,pop:true,img:""},
-{id:27,c:"Quesadillas Fritas",n:"Quesadilla de Pollo",d:"Tortilla frita rellena de pollo y queso",p:25,img:""},
-{id:28,c:"Quesadillas Fritas",n:"Quesadilla de Champiñones",d:"Tortilla frita con champiñones y queso",p:25,img:""},
-{id:29,c:"Quesadillas Fritas",n:"Quesadilla de Chicharrón",d:"Tortilla frita con chicharrón y queso",p:25,img:""},
-{id:30,c:"Quesadillas Fritas",n:"Quesadilla de Res",d:"Tortilla frita con carne de res",p:28,img:""},
-{id:31,c:"Quesadillas Fritas",n:"Quesillo Extra",d:"Porción extra de quesillo",p:12,img:""},
-
-// SNACKS
-{id:32,c:"Snacks",n:"Alitas BBQ (6 pzas)",d:"6 piezas con salsa BBQ y papas",p:95,pop:true,img:""},
-{id:33,c:"Snacks",n:"Alitas Picantes (6 pzas)",d:"6 piezas con salsa picante y papas",p:95,img:""},
-{id:34,c:"Snacks",n:"Papas a la Francesa",d:"Porción grande de papas fritas",p:35,img:""},
-{id:35,c:"Snacks",n:"Papas Gajo",d:"Papas en gajo sazonadas",p:40,pop:true,img:""},
+{id:1,c:"Hamburguesas",n:"Hamburguesa Sencilla",d:"Carne 100% res con queso",p:65,img:""},
+{id:2,c:"Hamburguesas",n:"Hamburguesa Hawaiana",d:"Con piña, jamón y queso",p:75,pop:true,img:""},
+{id:3,c:"Hamburguesas",n:"Hamburguesa Especial",d:"Con tocino y vegetales",p:80,pop:true,img:""},
+{id:4,c:"Hamburguesas",n:"Hamburguesa Doble",d:"Doble carne y queso",p:95,pop:true,img:""},
+{id:77,c:"Hamburguesas",n:"Hamburguesa BBQ",d:"Salsa BBQ y cebolla caramelizada",p:85,nuevo:true,img:""},
+{id:5,c:"Hot-Dogs",n:"Hot-Dog Sencillo",d:"Con catsup y mostaza",p:22,img:""},
+{id:6,c:"Hot-Dogs",n:"Hot-Dog con Tocino",d:"Envuelto en tocino",p:28,img:""},
+{id:7,c:"Hot-Dogs",n:"Hot-Dog con Quesillo",d:"Con quesillo derretido",p:28,img:""},
+{id:8,c:"Hot-Dogs",n:"Hot-Dog Especial",d:"Tocino, quesillo y jalapeños",p:35,pop:true,img:""},
+{id:9,c:"Hot-Dogs",n:"Sincronizada",d:"Dos tortillas con jamón y queso",p:32,pop:true,img:""},
+{id:10,c:"Antojitos",n:"Tlacoyo",d:"Masa azul con frijol o haba",p:15,img:""},
+{id:11,c:"Antojitos",n:"Taco de Suadero",d:"Carne suadero jugosa",p:18,pop:true,img:""},
+{id:12,c:"Antojitos",n:"Taco de Longaniza",d:"Longaniza artesanal",p:20,img:""},
+{id:13,c:"Antojitos",n:"Taco Campechano",d:"Suadero y longaniza",p:22,pop:true,img:""},
+{id:14,c:"Antojitos",n:"Sope Sencillo",d:"Con frijol, crema y queso",p:25,img:""},
+{id:15,c:"Antojitos",n:"Sope con Suadero",d:"Sope con carne suadero",p:42,pop:true,img:""},
+{id:16,c:"Antojitos",n:"Sope con Longaniza",d:"Sope con longaniza",p:45,img:""},
+{id:17,c:"Antojitos",n:"Huarache Sencillo",d:"Con frijol, crema y queso",p:32,img:""},
+{id:18,c:"Antojitos",n:"Huarache con Suadero",d:"Con jugoso suadero",p:55,pop:true,img:""},
+{id:19,c:"Antojitos",n:"Huarache con Longaniza",d:"Con longaniza artesanal",p:58,img:""},
+{id:20,c:"Antojitos",n:"Quesillo Extra",d:"Porción extra de quesillo",p:12,img:""},
+{id:78,c:"Antojitos",n:"Gordita de Nata",d:"Dulce tradicional recién hecha",p:18,nuevo:true,img:""},
+{id:21,c:"Pizzas",n:"Pizza Individual",d:"4 rebanadas",p:95,img:""},
+{id:22,c:"Pizzas",n:"Pizza Mediana",d:"6 rebanadas",p:165,pop:true,img:""},
+{id:23,c:"Pizzas",n:"Pizza Grande",d:"8 rebanadas",p:220,img:""},
+{id:24,c:"Pizzas",n:"Pizza Familiar",d:"12 rebanadas",p:280,pop:true,img:""},
+{id:25,c:"Pizzas",n:"Pizza Mega",d:"16 rebanadas",p:380,img:""},
+{id:26,c:"Quesadillas Fritas",n:"Quesadilla de Quesillo",d:"Con quesillo Oaxaca",p:22,pop:true,img:""},
+{id:27,c:"Quesadillas Fritas",n:"Quesadilla de Pollo",d:"Rellena de pollo",p:25,img:""},
+{id:28,c:"Quesadillas Fritas",n:"Quesadilla de Champiñones",d:"Con champiñones",p:25,img:""},
+{id:29,c:"Quesadillas Fritas",n:"Quesadilla de Chicharrón",d:"Con chicharrón",p:25,img:""},
+{id:30,c:"Quesadillas Fritas",n:"Quesadilla de Res",d:"Con carne de res",p:28,img:""},
+{id:31,c:"Quesadillas Fritas",n:"Quesillo Extra",d:"Porción extra",p:12,img:""},
+{id:32,c:"Snacks",n:"Alitas BBQ (6 pzas)",d:"Con salsa BBQ y papas",p:95,pop:true,img:""},
+{id:33,c:"Snacks",n:"Alitas Picantes (6 pzas)",d:"Con salsa picante",p:95,img:""},
+{id:34,c:"Snacks",n:"Papas a la Francesa",d:"Porción grande",p:35,img:""},
+{id:35,c:"Snacks",n:"Papas Gajo",d:"En gajo sazonadas",p:40,pop:true,img:""},
 {id:36,c:"Snacks",n:"Plátanos Fritos",d:"Plátano macho frito",p:35,img:""},
-{id:37,c:"Snacks",n:"Plátanos Capeados",d:"Plátano macho con miel y queso",p:45,pop:true,img:""},
-{id:38,c:"Snacks",n:"Aros de Cebolla",d:"Crujientes aros de cebolla",p:45,img:""},
-{id:39,c:"Snacks",n:"Nachos Sencillos",d:"Totopos con queso amarillo",p:35,img:""},
-{id:40,c:"Snacks",n:"Nachos con Chorizo",d:"Nachos con queso y chorizo",p:55,img:""},
-{id:41,c:"Snacks",n:"Nachos Especiales",d:"Con chorizo, tocino y jalapeños",p:65,pop:true,img:""},
-
-// POSTRES
-{id:42,c:"Postres",n:"Fresas con Crema",d:"Fresas frescas con crema batida",p:35,pop:true,img:""},
-{id:43,c:"Postres",n:"Duraznos con Crema",d:"Duraznos en almíbar con crema",p:35,img:""},
-{id:44,c:"Postres",n:"Ensalada de Manzana",d:"Manzana con crema, nuez y pasas",p:35,img:""},
-{id:45,c:"Postres",n:"Tapioca con Fruta",d:"Tapioca con manzana y crema",p:35,img:""},
-{id:46,c:"Postres",n:"Trigo con Uva",d:"Trigo cocido con uvas y crema",p:35,img:""},
-{id:47,c:"Postres",n:"Gelatina de Mosaico",d:"Gelatina de refresco colorida",p:30,img:""},
-{id:48,c:"Postres",n:"Arroz con Leche",d:"Tradicional arroz con leche y canela",p:35,pop:true,img:""},
-{id:49,c:"Postres",n:"Flan Vainilla",d:"Flan casero sabor vainilla",p:28,img:""},
-{id:50,c:"Postres",n:"Flan Napolitano",d:"Flan con tres sabores",p:32,img:""},
-{id:51,c:"Postres",n:"Pay de Limón",d:"Pay frío de limón",p:35,img:""},
-{id:52,c:"Postres",n:"Cheesecake Zarzamora",d:"Cheesecake con salsa de zarzamora",p:50,pop:true,img:""},
-{id:53,c:"Postres",n:"Cheesecake Oreo",d:"Cheesecake con galleta Oreo",p:50,pop:true,img:""},
-{id:54,c:"Postres",n:"Tartaleta Individual",d:"Tartaleta de fruta fresca",p:35,img:""},
-{id:55,c:"Postres",n:"Tartaleta Grande",d:"Para compartir (4-6 personas)",p:55,img:""},
-{id:56,c:"Postres",n:"Pastel de Día",d:"Porción de pastel del día",p:45,img:""},
-{id:57,c:"Postres",n:"Panqué Casero",d:"Panqué de vainilla o chocolate",p:25,img:""},
-
-// CHEESECAKE
-{id:58,c:"Cheesecake",n:"Cheesecake Chico (8 pers.)",d:"Cheesecake entero pequeño",p:320,img:""},
-{id:59,c:"Cheesecake",n:"Cheesecake Grande (12 pers.)",d:"Cheesecake entero grande",p:420,pop:true,img:""},
-{id:60,c:"Cheesecake",n:"Tartaleta Familiar",d:"Tartaleta grande para reunión",p:380,img:""},
-{id:61,c:"Cheesecake",n:"Pastel Imposible",d:"Delicioso chocoflan casero",p:320,pop:true,img:""},
-{id:62,c:"Cheesecake",n:"Pastel Tres Leches",d:"Bizcocho embebido en tres leches",p:350,img:""},
-
-// BEBIDAS
+{id:37,c:"Snacks",n:"Plátanos Capeados",d:"Con miel y queso",p:45,pop:true,img:""},
+{id:38,c:"Snacks",n:"Aros de Cebolla",d:"Crujientes",p:45,img:""},
+{id:39,c:"Snacks",n:"Nachos Sencillos",d:"Con queso amarillo",p:35,img:""},
+{id:40,c:"Snacks",n:"Nachos con Chorizo",d:"Con chorizo",p:55,img:""},
+{id:41,c:"Snacks",n:"Nachos Especiales",d:"Chorizo, tocino y jalapeños",p:65,pop:true,img:""},
+{id:79,c:"Snacks",n:"Boneless (8 pzas)",d:"Pechuga empanizada",p:85,nuevo:true,img:""},
+{id:42,c:"Postres",n:"Fresas con Crema",d:"Fresas con crema batida",p:35,pop:true,img:""},
+{id:43,c:"Postres",n:"Duraznos con Crema",d:"Duraznos en almíbar",p:35,img:""},
+{id:44,c:"Postres",n:"Ensalada de Manzana",d:"Con nuez y pasas",p:35,img:""},
+{id:45,c:"Postres",n:"Tapioca con Fruta",d:"Con manzana y crema",p:35,img:""},
+{id:46,c:"Postres",n:"Trigo con Uva",d:"Con uvas y crema",p:35,img:""},
+{id:47,c:"Postres",n:"Gelatina de Mosaico",d:"Colorida",p:30,img:""},
+{id:48,c:"Postres",n:"Arroz con Leche",d:"Con canela",p:35,pop:true,img:""},
+{id:49,c:"Postres",n:"Flan Vainilla",d:"Casero",p:28,img:""},
+{id:50,c:"Postres",n:"Flan Napolitano",d:"Tres sabores",p:32,img:""},
+{id:51,c:"Postres",n:"Pay de Limón",d:"Frío",p:35,img:""},
+{id:52,c:"Postres",n:"Cheesecake Zarzamora",d:"Con salsa de zarzamora",p:50,pop:true,img:""},
+{id:53,c:"Postres",n:"Cheesecake Oreo",d:"Con galleta Oreo",p:50,pop:true,img:""},
+{id:54,c:"Postres",n:"Tartaleta Individual",d:"De fruta fresca",p:35,img:""},
+{id:55,c:"Postres",n:"Tartaleta Grande",d:"Para 4-6 personas",p:55,img:""},
+{id:56,c:"Postres",n:"Pastel de Día",d:"Del día",p:45,img:""},
+{id:57,c:"Postres",n:"Panqué Casero",d:"Vainilla o chocolate",p:25,img:""},
+{id:58,c:"Cheesecake",n:"Cheesecake Chico (8 pers.)",d:"Entero pequeño",p:320,img:""},
+{id:59,c:"Cheesecake",n:"Cheesecake Grande (12 pers.)",d:"Entero grande",p:420,pop:true,img:""},
+{id:60,c:"Cheesecake",n:"Tartaleta Familiar",d:"Grande para reunión",p:380,img:""},
+{id:61,c:"Cheesecake",n:"Pastel Imposible",d:"Chocoflan",p:320,pop:true,img:""},
+{id:62,c:"Cheesecake",n:"Pastel Tres Leches",d:"Tres leches",p:350,img:""},
 {id:63,c:"Bebidas",n:"Agua Fresca (500ml)",d:"Jamaica, horchata o limón",p:25,img:""},
 {id:64,c:"Bebidas",n:"Agua Fresca (1L)",d:"Jamaica, horchata o limón",p:40,img:""},
-{id:65,c:"Bebidas",n:"Refresco 600ml",d:"Coca, Sprite, Fanta, Sidral",p:30,img:""},
-{id:66,c:"Bebidas",n:"Refresco 1.5L",d:"Coca, Sprite, Fanta, Sidral",p:45,img:""},
-{id:67,c:"Bebidas",n:"Agua Embotellada 600ml",d:"Agua natural",p:18,img:""},
-{id:68,c:"Bebidas",n:"Agua Embotellada 1L",d:"Agua natural",p:25,img:""},
-{id:69,c:"Bebidas",n:"Café de Olla",d:"Café tradicional con canela",p:25,img:""},
-{id:70,c:"Bebidas",n:"Café Americano",d:"Café negro recién hecho",p:22,img:""},
-{id:71,c:"Bebidas",n:"Té Caliente",d:"Té negro o manzanilla",p:18,img:""},
-{id:72,c:"Bebidas",n:"Té Helado",d:"Té frío con limón",p:25,img:""}
+{id:65,c:"Bebidas",n:"Refresco 600ml",d:"Coca, Sprite, Fanta",p:30,img:""},
+{id:66,c:"Bebidas",n:"Refresco 1.5L",d:"Coca, Sprite, Fanta",p:45,img:""},
+{id:67,c:"Bebidas",n:"Agua Embotellada 600ml",d:"Natural",p:18,img:""},
+{id:68,c:"Bebidas",n:"Agua Embotellada 1L",d:"Natural",p:25,img:""},
+{id:69,c:"Bebidas",n:"Café de Olla",d:"Con canela",p:25,img:""},
+{id:70,c:"Bebidas",n:"Café Americano",d:"Negro",p:22,img:""},
+{id:71,c:"Bebidas",n:"Té Caliente",d:"Negro o manzanilla",p:18,img:""},
+{id:72,c:"Bebidas",n:"Té Helado",d:"Con limón",p:25,img:""}
 ];
+
+const sugerencias={
+  "Hamburguesas":[{id:34,n:"Papas a la Francesa",p:35},{id:65,n:"Refresco 600ml",p:30}],
+  "Hot-Dogs":[{id:34,n:"Papas a la Francesa",p:35},{id:65,n:"Refresco 600ml",p:30}],
+  "Pizzas":[{id:63,n:"Agua Fresca 500ml",p:25},{id:37,n:"Plátanos Capeados",p:45}],
+  "Antojitos":[{id:63,n:"Agua Fresca 500ml",p:25},{id:20,n:"Quesillo Extra",p:12}],
+  "Snacks":[{id:65,n:"Refresco 600ml",p:30},{id:42,n:"Fresas con Crema",p:35}],
+  "default":[{id:34,n:"Papas a la Francesa",p:35},{id:65,n:"Refresco 600ml",p:30}]
+};
 
 let cart={};
 let cat="Hamburguesas";
 let searchTerm="";
+let puntos=0;
+let pedidosHoy=12;
 
 function init(){
-  const saved=localStorage.getItem('cartDonApuleyo');
-  if(saved){
-    cart=JSON.parse(saved);
-    refresh();
-  }
+  const savedCart=localStorage.getItem('cartDonApuleyo');
+  if(savedCart)cart=JSON.parse(savedCart);
   
-  menu.forEach(p=>{
-    if(p.img){
-      const img=new Image();
-      img.src=p.img;
-    }
-  });
+  const savedPuntos=localStorage.getItem('puntosDonApuleyo');
+  if(savedPuntos)puntos=parseInt(savedPuntos);
   
+  const lastOrder=localStorage.getItem('lastOrderDonApuleyo');
+  if(lastOrder)document.getElementById('reorderSection').style.display="block";
+  
+  renderPromoDia();
+  actualizarContadorPedidos();
   renderCategories();
   renderCombos();
   renderRecom();
   render();
+  actualizarPuntos();
   horario();
-  setInterval(horario,60000);
+  
+  setInterval(()=>{
+    if(Math.random()>0.7){
+      pedidosHoy++;
+      actualizarContadorPedidos();
+    }
+  },30000);
   
   document.querySelector('.call-btn').href="tel:"+CONFIG.telefono;
+}
+
+function renderPromoDia(){
+  const d=new Date().getDay();
+  const promo=promosPorDia[d];
+  if(promo){
+    document.getElementById('promoTexto').innerText=promo.promo;
+  }else{
+    document.getElementById('promoDia').style.display="none";
+  }
+}
+
+function actualizarContadorPedidos(){
+  document.getElementById('contadorPedidos').innerText=pedidosHoy+" "+(pedidosHoy===1?"persona ha":"personas han")+" pedido hoy";
 }
 
 function renderCategories(){
@@ -1367,7 +1379,6 @@ function renderCategories(){
       document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
       b.classList.add('active');
       render();
-      window.scrollTo({top:document.getElementById('cats').offsetTop-80,behavior:'smooth'});
     };
     box.appendChild(b);
   });
@@ -1382,7 +1393,7 @@ function renderCombos(){
     div.innerHTML=`
       <div class="combo-badge">AHORRA $${c.ahorro}</div>
       <div class="combo-name">${c.n}</div>
-      <div class="combo-desc" style="text-align:center;color:var(--muted);font-size:13px;margin-bottom:10px;">${c.d}</div>
+      <div class="combo-desc">${c.d}</div>
       <div class="combo-items">
         ${c.items.map(i=>`<div class="combo-item"><span class="combo-icon">${i.icon}</span><span>${i.n}</span></div>`).join('')}
       </div>
@@ -1391,10 +1402,7 @@ function renderCombos(){
         <span class="combo-original">$${c.original}</span>
       </div>
       <span class="combo-ahorro">¡Ahorras $${c.ahorro}!</span>
-      <button class="combo-btn" onclick="addCombo('${c.id}')">
-        <span>🛒</span>
-        <span>Agregar Combo</span>
-      </button>
+      <button class="combo-btn" onclick="addCombo('${c.id}')">🛒 Agregar Combo</button>
     `;
     grid.appendChild(div);
   });
@@ -1408,26 +1416,22 @@ function addCombo(comboId){
   });
   saveCart();
   refresh();
-  showToast(`¡${c.n} agregado! Ahorraste $${c.ahorro}`);
+  showToast("¡"+c.n+" agregado! Ahorraste $"+c.ahorro);
 }
 
 function renderRecom(){
   const r=document.getElementById('recomList');
   r.innerHTML="";
-  const recoms=menu.filter(x=>x.pop);
-  recoms.slice(0,6).forEach(p=>{
+  menu.filter(x=>x.pop).slice(0,6).forEach(p=>{
     const d=document.createElement('div');
     d.className='recom-card';
-    d.onclick=()=>{
-      add(p.id,1);
-      showToast(`¡${p.n} agregado!`);
-    };
+    d.onclick=()=>{add(p.id,1);showToast(p.n+" agregado");};
     d.innerHTML=`
       <img src="${p.img||'https://via.placeholder.com/400x300?text='+encodeURIComponent(p.n)}" onerror="this.src='https://via.placeholder.com/400x300?text=🍽️'">
+      ${p.nuevo?'<div class="nuevo-badge">NUEVO</div>':''}
       <div class="recom-info">
         <div class="recom-name">${p.n}</div>
         <div class="recom-price">$${p.p}</div>
-        <span class="recom-badge">POPULAR</span>
       </div>
     `;
     r.appendChild(d);
@@ -1436,15 +1440,9 @@ function renderRecom(){
 
 function handleSearch(term){
   searchTerm=term.toLowerCase();
-  const clearBtn=document.getElementById('clearSearch');
-  clearBtn.style.display=term?"block":"none";
-  
+  document.getElementById('clearSearch').style.display=term?"block":"none";
   if(term){
-    const filtered=menu.filter(p=>
-      p.n.toLowerCase().includes(searchTerm)||
-      p.d.toLowerCase().includes(searchTerm)||
-      p.c.toLowerCase().includes(searchTerm)
-    );
+    const filtered=menu.filter(p=>p.n.toLowerCase().includes(searchTerm)||p.d.toLowerCase().includes(searchTerm)||p.c.toLowerCase().includes(searchTerm));
     renderFiltered(filtered);
   }else{
     render();
@@ -1461,21 +1459,13 @@ function clearSearch(){
 function renderFiltered(items){
   const m=document.getElementById('menu');
   m.innerHTML="";
-  
   if(items.length===0){
-    m.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);grid-column:1/-1"><div style="font-size:48px;margin-bottom:15px">🔍</div>No encontramos productos con ese nombre<br><small>Intenta con: taco, hamburguesa, pizza...</small></div>';
+    m.innerHTML='<div style="text-align:center;padding:40px;grid-column:1/-1">No encontramos productos</div>';
     return;
   }
-  
-  const title=document.createElement('div');
-  title.style.cssText="grid-column:1/-1;font-weight:700;font-size:16px;margin-bottom:10px;color:var(--primary)";
-  title.innerText=`${items.length} resultado${items.length>1?'s':''} para "${searchTerm}"`;
-  m.appendChild(title);
-  
   items.forEach((p,i)=>{
     const q=cart[p.id]?.q||0;
-    const div=createProductCard(p,q,i);
-    m.appendChild(div);
+    m.appendChild(createProductCard(p,q,i));
   });
 }
 
@@ -1483,31 +1473,23 @@ function render(){
   const m=document.getElementById('menu');
   m.innerHTML="";
   const items=menu.filter(x=>x.c==cat);
-  
-  if(items.length===0){
-    m.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);grid-column:1/-1"><div style="font-size:48px;margin-bottom:15px">📭</div>No hay productos en esta categoría</div>';
-    return;
-  }
-  
   items.forEach((p,i)=>{
     const q=cart[p.id]?.q||0;
-    const div=createProductCard(p,q,i);
-    m.appendChild(div);
+    m.appendChild(createProductCard(p,q,i));
   });
+  mostrarSugerencias();
 }
 
 function createProductCard(p,q,i){
   const div=document.createElement('div');
   div.className='product';
   div.style.animationDelay=i*0.05+"s";
-  
-  const img=p.img?`<div class="product-img-container">
-    <img src="${p.img}" onerror="this.style.display='none'">
-    ${p.pop?'<div class="popular-badge">🔥 POPULAR</div>':''}
-  </div>`:"";
-  
   div.innerHTML=`
-    ${img}
+    <div class="product-img-container">
+      <img src="${p.img||'https://via.placeholder.com/300x200?text='+encodeURIComponent(p.n)}" onerror="this.style.display='none'">
+      ${p.pop?'<div class="popular-badge">🔥 POPULAR</div>':''}
+      ${p.nuevo?'<div class="nuevo-badge">NUEVO</div>':''}
+    </div>
     <div class="info">
       <div class="name">${p.n}</div>
       <div class="desc">${p.d}</div>
@@ -1527,24 +1509,54 @@ function createProductCard(p,q,i){
   return div;
 }
 
+function mostrarSugerencias(){
+  const box=document.getElementById('sugerenciasBox');
+  const list=document.getElementById('sugerenciasList');
+  const count=Object.keys(cart).length;
+  if(count===0){box.style.display="none";return;}
+  
+  const catsEnCarrito=[];
+  for(let id in cart){
+    const item=menu.find(x=>x.id==id);
+    if(item&&!catsEnCarrito.includes(item.c))catsEnCarrito.push(item.c);
+  }
+  
+  let sugs=[];
+  catsEnCarrito.forEach(c=>{if(sugerencias[c])sugs=[...sugs,...sugerencias[c]];});
+  sugs=sugs.filter((s,i,self)=>self.findIndex(t=>t.id===s.id)===i);
+  sugs=sugs.filter(s=>!cart[s.id]).slice(0,2);
+  
+  if(sugs.length===0){box.style.display="none";return;}
+  
+  list.innerHTML="";
+  sugs.forEach(s=>{
+    const div=document.createElement('div');
+    div.className='sugerencia-item';
+    div.innerHTML=`
+      <div>
+        <div class="sugerencia-name">${s.n}</div>
+        <div class="sugerencia-desc">Perfecto con tu pedido</div>
+      </div>
+      <div class="sugerencia-price">$${s.p}</div>
+      <button class="sugerencia-btn" onclick="add(${s.id},1);showToast('${s.n} agregado');mostrarSugerencias();">Agregar</button>
+    `;
+    list.appendChild(div);
+  });
+  box.style.display="block";
+}
+
 function add(id,d,btn,msg){
   if(!cart[id])cart[id]={q:0};
   cart[id].q=Math.max(0,cart[id].q+d);
   if(cart[id].q===0)delete cart[id];
-  
   saveCart();
   refresh();
-  
   if(btn&&d>0){
     btn.classList.add('added');
     btn.innerText="✓";
-    setTimeout(()=>{
-      btn.classList.remove('added');
-      btn.innerText="+";
-    },1000);
+    setTimeout(()=>{btn.classList.remove('added');btn.innerText="+";},1000);
   }
-  
-  if(msg&&d>0)showToast(`${msg} actualizado`);
+  if(msg&&d>0)showToast(msg+" actualizado");
 }
 
 function saveCart(){
@@ -1552,50 +1564,30 @@ function saveCart(){
 }
 
 function refresh(){
-  let t=0;
-  let count=0;
+  let t=0,count=0;
   for(let id in cart){
     const item=menu.find(x=>x.id==id);
-    if(item){
-      t+=item.p*cart[id].q;
-      count+=cart[id].q;
-    }
+    if(item){t+=item.p*cart[id].q;count+=cart[id].q;}
   }
-  
   document.getElementById('total').innerText=t.toLocaleString();
   document.getElementById('barTotal').innerText=t.toLocaleString();
   document.getElementById('cartCount').innerText=count;
-  
   const bar=document.getElementById('cartBar');
-  if(count>0){
-    bar.style.display="flex";
-    bar.classList.add('has-items');
-  }else{
-    bar.style.display="none";
-    bar.classList.remove('has-items');
-  }
-  
+  bar.style.display=count>0?"flex":"none";
+  bar.classList.toggle('has-items',count>0);
   document.getElementById('orderBtn').disabled=count===0;
-  
   if(!searchTerm)render();
   renderCartItems();
+  mostrarSugerencias();
 }
 
 function renderCartItems(){
   const itemsDiv=document.getElementById('cartItems');
   const count=Object.keys(cart).length;
-  
   if(count===0){
-    itemsDiv.innerHTML=`
-      <div class="empty-cart">
-        <div class="empty-cart-icon">🛒</div>
-        <div style="font-weight:700;margin-bottom:5px">Tu carrito está vacío</div>
-        <div style="font-size:13px">Agrega productos del menú o un combo</div>
-      </div>
-    `;
+    itemsDiv.innerHTML='<div class="empty-cart"><div class="empty-cart-icon">🛒</div><div style="font-weight:700">Tu carrito está vacío</div></div>';
     return;
   }
-  
   itemsDiv.innerHTML="";
   for(let id in cart){
     const item=menu.find(x=>x.id==id);
@@ -1618,6 +1610,31 @@ function renderCartItems(){
   }
 }
 
+function actualizarPuntos(){
+  let totalCompras=parseInt(localStorage.getItem('totalComprasDonApuleyo')||0);
+  puntos=Math.floor(totalCompras/10);
+  document.getElementById('puntosValor').innerText=puntos+" pts";
+  const meta=50;
+  const progreso=Math.min((puntos/meta)*100,100);
+  document.getElementById('puntosProgress').style.width=progreso+"%";
+  const faltan=Math.max(meta-puntos,0);
+  document.getElementById('puntosText').innerText=faltan===0?"🎉 ¡Tienes una hamburguesa gratis!":`Faltan ${faltan} puntos para una hamburguesa gratis`;
+  localStorage.setItem('puntosDonApuleyo',puntos);
+}
+
+function repetirPedido(){
+  const lastOrder=localStorage.getItem('lastOrderDonApuleyo');
+  if(!lastOrder)return;
+  const order=JSON.parse(lastOrder);
+  order.items.forEach(item=>{
+    if(!cart[item.id])cart[item.id]={q:0};
+    cart[item.id].q+=item.q;
+  });
+  saveCart();
+  refresh();
+  showToast("¡Pedido anterior agregado!");
+}
+
 function openCart(){
   document.getElementById('cartOverlay').classList.add('show');
   document.body.style.overflow="hidden";
@@ -1635,32 +1652,42 @@ function send(){
     showToast("⏰ Estamos cerrados. Horario: Viernes-Domingo 8-11 PM");
     return;
   }
-  
   const total=document.getElementById('total').innerText;
   if(total==="0"||total===""){
     showToast("Agrega productos al carrito");
     return;
   }
-  
   const notes=document.getElementById('obs').value;
   const type=document.querySelector('.type.active').getAttribute('data');
   
   let txt="*🍽️ CENADURÍA DON APULEYO*%0A%0A";
-  txt+=`📍 ${CONFIG.direccion}%0A%0A`;
-  txt+="*Pedido:*%0A";
+  txt+=`📍 ${CONFIG.direccion}%0A%0A*Pedido:*%0A`;
   
+  const orderItems=[];
   for(let id in cart){
     const item=menu.find(x=>x.id==id);
     if(item){
       txt+=`▪️ ${cart[id].q}× ${item.n} ($${item.p*cart[id].q})%0A`;
+      orderItems.push({id:id,q:cart[id].q});
     }
   }
   
-  txt+=`%0A*💰 Total:* $${total}%0A`;
-  txt+=`*🚚 Tipo:* ${type}%0A`;
+  txt+=`%0A*💰 Total:* $${total}%0A*🚚 Tipo:* ${type}%0A`;
   if(notes)txt+=`*📝 Notas:* ${notes}%0A`;
   txt+=`%0A¡Gracias por su preferencia! 🙏`;
   
+  localStorage.setItem('lastOrderDonApuleyo',JSON.stringify({fecha:new Date().toISOString(),items:orderItems,total:total}));
+  
+  let totalCompras=parseInt(localStorage.getItem('totalComprasDonApuleyo')||0);
+  totalCompras+=parseInt(total.replace(/,/g,''));
+  localStorage.setItem('totalComprasDonApuleyo',totalCompras);
+  
+  document.getElementById('pushNotif').classList.add('show');
+  setTimeout(()=>document.getElementById('pushNotif').classList.remove('show'),4000);
+  
+  cart={};
+  saveCart();
+  refresh();
   window.open(`https://wa.me/${CONFIG.whatsapp}?text=${txt}`,"_blank");
 }
 
@@ -1669,10 +1696,8 @@ function horario(){
   const d=h.getDay();
   const hr=h.getHours();
   const open=[5,6,0].includes(d)&&hr>=20&&hr<23;
-  
   const s=document.getElementById('statusText');
   const dot=document.querySelector('.status-dot');
-  
   if(open){
     s.innerText="Abierto ahora • Cierra 11 PM";
     dot.style.background="#4caf50";
